@@ -1,0 +1,31 @@
+[character]
+symbol = "➜"
+error_symbol = "✗"
+use_symbol_for_status = true
+
+[directory]
+truncation_length = 4
+
+[git_status]
+staged_count.enabled = true
+modified_count.enabled = true
+untracked_count.enabled = true
+conflicted = "⚔️ "
+ahead = "🏎️💨"
+behind = "🐢"
+diverged = "🔱"
+untracked = "🛤️ "
+stashed = "📦"
+modified = "📝"
+staged = "🗃️ "
+renamed = "📛"
+deleted = "🗑️ "
+prefix = ""
+suffix = " "
+style = "bright-white"
+
+[memory_usage]
+disabled = false
+show_percentage = true
+threshold = 50
+
