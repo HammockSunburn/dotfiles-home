@@ -19,7 +19,8 @@ I use Fedora Workstation and this is my cheatsheet. I install some packages whic
 
 ```shell
 sudo dnf install neovim fish ripgrep gnome-tweaks util-linux-user \
-    tmux-powerline cascadia-code-fonts openssl-devel fzf exa bat
+    tmux-powerline cascadia-code-fonts openssl-devel fzf exa bat \
+    ninja-build make cmake clang gcc-c++
 ```
 
 To set up Rust, I use [`rustup`](https://rustup.rs/), cross my fingers, and directly run shell scripts received over the internet:
