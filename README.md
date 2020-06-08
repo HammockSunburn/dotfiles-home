@@ -34,6 +34,7 @@ sudo dnf install \
          ninja-build \
          openssl-devel \
          ripgrep \
+         starship \
          tmux-powerline \
          util-linux-user
 ```
@@ -45,10 +46,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
 
-There are some Rust-based tools that aren't currently packaged for Fedora that I install:
+There are some Rust-based tools that aren't currently packaged for Fedora that I install. I used to also install `starship` via cargo, but Fedora now packages it and keeps it pretty up-to-date.
 
 ```shell
-cargo install starship
 cargo install du-dust
 ```
 
