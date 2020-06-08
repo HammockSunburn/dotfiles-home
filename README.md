@@ -18,9 +18,24 @@ I primarily use tools that have out-of-the-box configurations which I find pleas
 I use Fedora Workstation and this is my cheatsheet. I install some packages which aren't included with the base Fedora installation:
 
 ```shell
-sudo dnf install neovim fish ripgrep gnome-tweaks util-linux-user \
-    tmux-powerline cascadia-code-fonts openssl-devel fzf exa bat \
-    ninja-build make cmake clang gcc-c++
+sudo dnf install \
+         bat \
+         cascadia-code-fonts \
+         clang \
+         cmake \
+         exa \
+         fd-find \
+         fish \
+         fzf \
+         gcc-c++ \
+         gnome-tweaks \
+         make \
+         neovim \
+         ninja-build \
+         openssl-devel \
+         ripgrep \
+         tmux-powerline \
+         util-linux-user
 ```
 
 To set up Rust, I use [`rustup`](https://rustup.rs/), cross my fingers, and directly run shell scripts received over the internet:
