@@ -50,6 +50,7 @@ There are some Rust-based tools that aren't currently packaged for Fedora that I
 
 ```shell
 cargo install du-dust
+cargo install xsv
 ```
 
 To get [`vim-plug`](https://github.com/junegunn/vim-plug) ready, I cry a little inside and run the following:
