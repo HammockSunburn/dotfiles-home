@@ -8,10 +8,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-fswitch'
-Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-highlightedyank'
 Plug 'mileszs/ack.vim'
+Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/vim-clang-format'
@@ -37,11 +37,9 @@ set wildignore+=*.o
 " Make vim try to use colors that look good on a dark background
 set background=dark
 
-" Color scheme from flazz/vim-colorschemes
-colorscheme ghostbuster
-
-" Better color for paren matching w/ghostbuster
-hi MatchParen cterm=bold ctermfg=23
+" Colorscheme setup
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 
 " Yank highlighting
 hi HighlightedyankRegion cterm=reverse

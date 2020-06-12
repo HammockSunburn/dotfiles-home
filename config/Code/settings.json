@@ -3,4 +3,6 @@
     "editor.fontLigatures": true,
     "window.titleBarStyle": "custom",
     "editor.formatOnSave": true,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.colorCustomizations": {},
 }

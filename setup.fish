@@ -29,10 +29,15 @@ function _setup_vscode -a force
     command ln -s $force "$PWD/config/Code/settings.json" "$HOME/.config/Code/User"
 end
 
+function _setup_gnome_terminal
+    command dconf load /org/gnome/terminal/ < gnome-terminal-prefs.dconf
+end
+
 _setup_gitconfig -f
 _setup_starship_toml -f
 _setup_fish -f
 _setup_nvim -f
 _setup_tmux -f
 _setup_vscode -f
+_setup_gnome_terminal
 

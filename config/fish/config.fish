@@ -1,4 +1,4 @@
 starship init fish | source
 
-alias ls="exa"
+alias ls="exa --time-style=long-iso"
 
