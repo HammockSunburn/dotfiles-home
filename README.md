@@ -60,9 +60,11 @@ To get [`vim-plug`](https://github.com/junegunn/vim-plug) ready, I cry a little 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you. This sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
+In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you. This needs to be run before I use `chsh` to change shells since it will muck about with the fish configuration. This sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
 
 ```shell
 sudo dnf check-update
 sudo dnf install code
 ```
+
+Finally, I change my default shell using `chsh` to `/usr/bin/fish`.
