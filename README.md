@@ -13,6 +13,7 @@ I primarily use tools that have out-of-the-box configurations which I find pleas
   * Better TOML
   * Gruvbox Theme (with Gruvbox Hard Dark)
 * Neovim
+* tmux
 
 ## Fedora Setup
 
@@ -60,11 +61,28 @@ To get [`vim-plug`](https://github.com/junegunn/vim-plug) ready, I cry a little 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you. This needs to be run before I use `chsh` to change shells since it will muck about with the fish configuration. This sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
+Next, I start `nvim` and run the `PlugInstall` command to get my plugins installed.
+
+In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you.
+
+```shell
+rm -rf $HOME/.config/fish
+ln -sf $HOME/dotfiles-home/config/fish $HOME/.config
+fish setup.fish
+chsh -s /usr/bin/fish
+```
+
+The `setup.fish` script sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
 
 ```shell
 sudo dnf check-update
 sudo dnf install code
 ```
 
-Finally, I change my default shell using `chsh` to `/usr/bin/fish`.
+Now, I log out and back in to pick up the changes.
+
+It's good to get the locate db primed in case I need to use `locate` before the usual update:
+
+```shell
+sudo updatedb
+```
