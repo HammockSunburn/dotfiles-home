@@ -86,3 +86,11 @@ It's good to get the locate db primed in case I need to use `locate` before the 
 ```shell
 sudo updatedb
 ```
+
+I also like to setup the RPM Fusion repository (note that the following assumes I'm running the `fish` shell):
+
+```shell
+sudo dnf install \
+         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm \
+         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
+```
