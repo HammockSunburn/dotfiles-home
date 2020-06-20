@@ -17,28 +17,25 @@ I primarily use tools that have out-of-the-box configurations which I find pleas
 
 ## Fedora Setup
 
-I use Fedora Workstation and this is my cheatsheet. I install some packages which aren't included with the base Fedora installation:
+I use Fedora Workstation and this is my cheatsheet. I've written two simple Ansible playbooks that I run locally to get my workstation ready for use. The first, `root-setup.yml` does a variety of setup tasks as `root`, such as setting up extra `dnf` repositories and installing packages which aren't part of the default Fedora Workstation installation.
 
 ```shell
-sudo dnf install \
-         bat \
-         cascadia-code-fonts \
-         clang \
-         cmake \
-         exa \
-         fd-find \
-         fish \
-         fzf \
-         gcc-c++ \
-         gnome-tweaks \
-         make \
-         neovim \
-         ninja-build \
-         openssl-devel \
-         ripgrep \
-         starship \
-         tmux-powerline \
-         util-linux-user
+ansible-playbook -K root-setup.yml
+```
+
+The second playbook, `user-setup.yml`, does user specific setup (e.g., `tmux` and `nvim` configuration) as whatever user is currently logged in.
+
+```shell
+ansible-playbook user-setup.yml
+```
+
+Now, I log out and back in to pick up the changes, such as the default shell which is now changed to `fish`.
+
+Ansible's support for `dconf` is poor, so the next step is done manually outside of the normal Ansible automation. This configures my Gnome desktop preferences for Terminal and the window manager:
+
+```shell
+dconf load /org/gnome/terminal/ < gnome-terminal-prefs.dconf
+dconf load /org/gnome/desktop/wm/preferences/ < gnome-wm-prefs.dconf
 ```
 
 To set up Rust, I use [`rustup`](https://rustup.rs/), cross my fingers, and directly run shell scripts received over the internet:
@@ -63,34 +60,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 Next, I start `nvim` and run the `PlugInstall` command to get my plugins installed.
 
-In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you.
-
-```shell
-rm -rf $HOME/.config/fish
-ln -sf $HOME/dotfiles-home/config/fish $HOME/.config
-fish setup.fish
-chsh -s /usr/bin/fish
-```
-
-The `setup.fish` script sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
-
-```shell
-sudo dnf check-update
-sudo dnf install code
-```
-
-Now, I log out and back in to pick up the changes.
-
 It's good to get the locate db primed in case I need to use `locate` before the usual update:
 
 ```shell
 sudo updatedb
-```
-
-I also like to setup the RPM Fusion repository (note that the following assumes I'm running the `fish` shell):
-
-```shell
-sudo dnf install \
-         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm \
-         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
 ```
