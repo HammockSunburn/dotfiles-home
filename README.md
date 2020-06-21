@@ -22,6 +22,7 @@ mkdir -p ~/.ssh && scp secret_location/id_rsa* ~/.ssh
 git clone git@github.com:HammockSunburn/dotfiles-home.git
 sudo dnf install fish
 fish dotfiles-home/setup.fish
+# after it finishes, log out and back in to pick up the changes
 ```
 
 I've written a [fish script](setup.fish) that automates my initial setup tasks to make a cozy home for me. `setup.fish` is idempotent like any good automation should be. It does things such as:
