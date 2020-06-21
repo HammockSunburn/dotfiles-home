@@ -10,6 +10,7 @@ rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.confi
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
 ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.config"
+ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 echo Done!
 
 # VSCode
@@ -35,6 +36,7 @@ sudo dnf -q install \
 sudo dnf install -y \
          bat \
          cascadia-code-fonts \
+         cc65 \
          clang \
          cmake \
          code \
@@ -49,6 +51,7 @@ sudo dnf install -y \
          ninja-build \
          openssl-devel \
          ripgrep \
+         SDL2-devel \
          starship \
          tmux-powerline \
          util-linux-user \
