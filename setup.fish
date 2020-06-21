@@ -1,43 +1,89 @@
 # Possibly useful if you use Fedora, probably not useful otherwise.
 
-function _setup_gitconfig -a force
-    set -l file "$HOME/.gitconfig"
-    command ln -s $force "$PWD/gitconfig" "$file"
+sudo true
+set -x dotfiles_dir (dirname (readlink -m (status --current-filename)))
+
+# Basic shell, editor, tmux configuration.
+echo -n Basic shell, editor, tmux configuration...
+mkdir -p "$HOME/.config"
+rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
+ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
+ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
+ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.config"
+echo Done!
+
+# VSCode
+echo -n VSCode setup...
+sudo rpm --quiet --import https://packages.microsoft.com/keys/microsoft.asc
+sudo cp -f "$dotfiles_dir/vscode/vscode.repo" /etc/yum.repos.d/
+mkdir -p "$HOME/.config/Code/User"
+ln -sf "$dotfiles_dir/config/Code/settings.json" "$HOME/.config/Code/User"
+echo Done!
+
+# Gnome
+echo -n Gnome dconf...
+dconf load /org/gnome/terminal/ < "$dotfiles_dir/gnome-terminal-prefs.dconf"
+dconf load /org/gnome/desktop/wm/preferences/ < "$dotfiles_dir/gnome-wm-prefs.dconf"
+echo Done!
+
+# RPM Fusion
+sudo dnf -q install \
+         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm \
+         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
+
+# RPMs
+sudo dnf -q install \
+         bat \
+         cascadia-code-fonts \
+         clang \
+         cmake \
+         code \
+         exa \
+         fd-find \
+         fish \
+         fzf \
+         gcc-c++ \
+         gnome-tweaks \
+         make \
+         neovim \
+         ninja-build \
+         openssl-devel \
+         ripgrep \
+         starship \
+         tmux-powerline \
+         util-linux-user \
+         vlc
+
+# Change shell if necessary
+chsh -s /usr/bin/fish
+
+# Setup vim-plug
+if test ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim"
+    echo Installing vim-plug and getting plugins...
+    curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" \
+        --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    nvim +PlugInstall +qall 
+else
+    nvim --headless +PlugClean +qall
 end
 
-function _setup_starship_toml -a force
-    set -l file "$HOME/.config/starship.toml"
-    command ln -s $force "$PWD/config/starship.toml" "$HOME/.config"
+# Setup rust
+if test ! -d "$HOME/.cargo"
+    echo Installing rustup...
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | /bin/bash -s -- -y
 end
 
-function _setup_fish -a force
-    command ln -s $force "$PWD/config/fish" "$HOME/.config"
-end
+# Install certain rust programs from source
+cargo install -q \
+          du-dust \
+          procs \
+          tokei \
+          xsv
 
-function _setup_nvim -a force
-    command ln -s $force "$PWD/config/nvim" "$HOME/.config"
-end
+# Enable sshd service
+sudo systemctl enable sshd.service
+sudo systemctl start sshd.service
 
-function _setup_tmux -a force
-    command ln -s $force "$PWD/tmux.conf" "$HOME/.tmux.conf"
-end
+# Update the locate db
+sudo updatedb
 
-function _setup_vscode -a force
-    command sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    command sudo cp $force vscode/vscode.repo /etc/yum.repos.d/
-    command mkdir -p $HOME/.config/Code/User
-    command ln -s $force "$PWD/config/Code/settings.json" "$HOME/.config/Code/User"
-end
-
-function _setup_gnome
-    command dconf load /org/gnome/terminal/ < gnome-terminal-prefs.dconf
-    command dconf load /org/gnome/desktop/wm/preferences/ < gnome-wm-prefs.dconf
-end
-
-_setup_gitconfig -f
-_setup_starship_toml -f
-_setup_fish -f
-_setup_nvim -f
-_setup_tmux -f
-_setup_vscode -f
-_setup_gnome

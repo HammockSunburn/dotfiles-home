@@ -17,80 +17,19 @@ I primarily use tools that have out-of-the-box configurations which I find pleas
 
 ## Fedora Setup
 
-I use Fedora Workstation and this is my cheatsheet. I install some packages which aren't included with the base Fedora installation:
+First, I copy my ssh keys from a secret location. Then I fetch this repository using ssh:
 
 ```shell
-sudo dnf install \
-         bat \
-         cascadia-code-fonts \
-         clang \
-         cmake \
-         exa \
-         fd-find \
-         fish \
-         fzf \
-         gcc-c++ \
-         gnome-tweaks \
-         make \
-         neovim \
-         ninja-build \
-         openssl-devel \
-         ripgrep \
-         starship \
-         tmux-powerline \
-         util-linux-user
+mkdir -p ~/.ssh && cp secret_location/id_rsa* ~/.ssh
+git clone git@github.com:HammockSunburn/dotfiles-home.git
 ```
 
-To set up Rust, I use [`rustup`](https://rustup.rs/), cross my fingers, and directly run shell scripts received over the internet:
+I've written a [fish script](setup.fish) that automates my initial setup tasks to make a cozy home for me. `setup.fish` is idempotent like any good automation should be. It does things such as:
 
-```shell
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
-```
-
-There are some Rust-based tools that aren't currently packaged for Fedora that I install. I used to also install `starship` via cargo, but Fedora now packages it and keeps it pretty up-to-date.
-
-```shell
-cargo install du-dust
-cargo install xsv
-```
-
-To get [`vim-plug`](https://github.com/junegunn/vim-plug) ready, I cry a little inside and let the internet mess around in my home directory:
-
-```shell
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-Next, I start `nvim` and run the `PlugInstall` command to get my plugins installed.
-
-In the root of this repository is a poorly-written fish script, `setup.fish`, that makes a lot of assumptions that are correct for me, but probably wrong for you.
-
-```shell
-rm -rf $HOME/.config/fish
-ln -sf $HOME/dotfiles-home/config/fish $HOME/.config
-fish setup.fish
-chsh -s /usr/bin/fish
-```
-
-The `setup.fish` script sets up a `gnome-terminal` profile for Gruvbox Dark with my preferred font and makes it the default. Also, this script adds VSCode's RPM-based repositories to Fedora. Then, I install VSCode (stable):
-
-```shell
-sudo dnf check-update
-sudo dnf install code
-```
-
-Now, I log out and back in to pick up the changes.
-
-It's good to get the locate db primed in case I need to use `locate` before the usual update:
-
-```shell
-sudo updatedb
-```
-
-I also like to setup the RPM Fusion repository (note that the following assumes I'm running the `fish` shell):
-
-```shell
-sudo dnf install \
-         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm \
-         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
-```
+* Install non-Fedora DNF repositories
+* Install packages not included in the default Fedora workstation setup
+* Install `vim-plug` and `PlugInstall` my neovim plugins
+* Use `dconf` to configure Gnome with my preferences
+* Link files in this repository, like my `tmux` configuration, into their correct locations
+* Install `rustup` and a various Rust programs that aren't yet packaged for Fedora
+* Enable the ssh server
