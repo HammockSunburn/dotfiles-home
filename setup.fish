@@ -32,7 +32,7 @@ sudo dnf -q install \
          https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
 
 # RPMs
-sudo dnf -q install \
+sudo dnf install -y \
          bat \
          cascadia-code-fonts \
          clang \
@@ -74,7 +74,7 @@ if test ! -d "$HOME/.cargo"
 end
 
 # Install certain rust programs from source
-cargo install -q \
+cargo install \
           du-dust \
           procs \
           tokei \
