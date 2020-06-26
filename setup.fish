@@ -53,9 +53,15 @@ sudo dnf install -y \
          ripgrep \
          SDL2-devel \
          starship \
+         texlive \
          tmux-powerline \
          util-linux-user \
          vlc
+
+# Bat theme configuration
+mkdir -p (bat --config-dir)/themes
+ln -sf $dotfiles_dir/gruvbox.tmTheme (bat --config-dir)/themes
+bat cache --build
 
 # Change shell if necessary
 chsh -s /usr/bin/fish
