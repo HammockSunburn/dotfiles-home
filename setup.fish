@@ -79,6 +79,7 @@ end
 # Install VS Code extensions
 for ext in \
     "DavidAnson.vscode-markdownlint" \
+    "GitHub.vscode-pull-request-github" \
     "Zignd.html-css-class-completion" \
     "bungcip.better-toml" \
     "eamodio.gitlens" \
