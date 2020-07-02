@@ -85,6 +85,9 @@ for ext in \
     "ecmel.vscode-html-css" \
     "jdinhlife.gruvbox" \
     "matklad.rust-analyzer" \
+    "ms-vscode.cmake-tools" \
+    "ms-vscode.cpptools" \
+    "twxs.cmake" \
     "yzhang.markdown-all-in-one"
     code --install-extension "$ext"
 end
