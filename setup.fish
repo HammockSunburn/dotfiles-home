@@ -76,6 +76,19 @@ else
     nvim --headless +PlugClean +qall
 end
 
+# Install VS Code extensions
+for ext in \
+    "DavidAnson.vscode-markdownlint" \
+    "Zignd.html-css-class-completion" \
+    "bungcip.better-toml" \
+    "eamodio.gitlens" \
+    "ecmel.vscode-html-css" \
+    "jdinhlife.gruvbox" \
+    "matklad.rust-analyzer" \
+    "yzhang.markdown-all-in-one"
+    code --install-extension "$ext"
+end
+
 # Setup rust
 if test ! -d "$HOME/.cargo"
     echo Installing rustup...

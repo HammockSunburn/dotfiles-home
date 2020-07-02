@@ -34,5 +34,6 @@ I've written a [fish script](setup.fish) that automates my initial setup tasks t
 * Install `vim-plug` and `PlugInstall` my neovim plugins
 * Use `dconf` to configure Gnome with my preferences
 * Link files in this repository, like my `tmux` configuration, into their correct locations
+* Install VS Code extensions I use
 * Install `rustup` and a various Rust programs that aren't yet packaged for Fedora
 * Enable the ssh server
