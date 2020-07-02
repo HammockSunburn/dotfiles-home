@@ -6,12 +6,14 @@ I primarily use tools that have out-of-the-box configurations which I find pleas
 
 * Fish with the [`jorgebucaran/fisher`](https://github.com/jorgebucaran/fisher) package manager, [`danhper/fish-ssh-agent`](https://github.com/danhper/fish-ssh-agent) and [`jethrokuan/fzf`](https://github.com/jethrokuan/fzf)
 * VS Code with the following extensions:
-  * rust-analyzer
+  * Better TOML
   * GitLens
+  * Gruvbox Theme (with Gruvbox Hard Dark)
+  * HTML CSS Support
+  * IntelliSense for CSS class names
   * Markdown All in One
   * markdownlint
-  * Better TOML
-  * Gruvbox Theme (with Gruvbox Hard Dark)
+  * rust-analyzer
 * Neovim
 * tmux
 
