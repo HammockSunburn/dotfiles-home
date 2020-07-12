@@ -34,7 +34,9 @@ sudo dnf -q install \
 
 # RPMs
 sudo dnf install -y \
+         bashtop \
          bat \
+         buildah \
          cascadia-code-fonts \
          cc65 \
          clang \
@@ -47,6 +49,7 @@ sudo dnf install -y \
          gcc-c++ \
          gnome-tweaks \
          make \
+         musl-gcc \
          neovim \
          ninja-build \
          openssl-devel \
