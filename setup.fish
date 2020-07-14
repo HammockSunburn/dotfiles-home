@@ -11,6 +11,7 @@ ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
 ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
+ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 echo Done!
 
 # VSCode
