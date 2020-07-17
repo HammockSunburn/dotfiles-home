@@ -85,11 +85,13 @@ for ext in \
     "DavidAnson.vscode-markdownlint" \
     "GitHub.vscode-pull-request-github" \
     "Zignd.html-css-class-completion" \
+    "asabil.meson" \
     "bungcip.better-toml" \
     "eamodio.gitlens" \
     "ecmel.vscode-html-css" \
     "jdinhlife.gruvbox" \
     "matklad.rust-analyzer" \
+    "mrorz.language-gettext" \
     "ms-vscode.cmake-tools" \
     "ms-vscode.cpptools" \
     "twxs.cmake" \
