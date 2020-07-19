@@ -9,7 +9,7 @@ mkdir -p "$HOME/.config"
 rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
-ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.config"
+ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 echo Done!
@@ -96,7 +96,7 @@ for ext in \
     "ms-vscode.cpptools" \
     "twxs.cmake" \
     "yzhang.markdown-all-in-one"
-    code --install-extension "$ext"
+    code --force --install-extension "$ext"
 end
 
 # Setup rust
