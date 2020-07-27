@@ -49,6 +49,8 @@ sudo dnf install -y \
          fzf \
          gcc-c++ \
          gnome-tweaks \
+         kicad \
+         kicad-doc \
          make \
          musl-gcc \
          neovim \
