@@ -12,6 +12,7 @@ ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
 ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
+ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 echo Done!
 
 # VSCode
@@ -110,6 +111,7 @@ end
 # Install certain rust programs from source
 cargo install \
           du-dust \
+          git-delta \
           procs \
           tokei \
           xsv
