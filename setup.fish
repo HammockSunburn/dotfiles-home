@@ -120,6 +120,9 @@ cargo install \
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
 
+# Ensure I'm in the dialout and lock groups for Arduino.
+sudo usermod -a -G dialout,lock (whoami)
+
 # Update the locate db
 sudo updatedb
 
