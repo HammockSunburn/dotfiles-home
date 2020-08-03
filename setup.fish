@@ -17,7 +17,7 @@ echo Done!
 
 # VSCode
 echo -n VSCode setup...
-sudo rpm --quiet --import https://packages.microsoft.com/keys/microsoft.asc
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo cp -f "$dotfiles_dir/vscode/vscode.repo" /etc/yum.repos.d/
 mkdir -p "$HOME/.config/Code/User"
 ln -sf "$dotfiles_dir/config/Code/settings.json" "$HOME/.config/Code/User"
@@ -30,7 +30,7 @@ dconf load /org/gnome/desktop/wm/preferences/ < "$dotfiles_dir/gnome-wm-prefs.dc
 echo Done!
 
 # RPM Fusion
-sudo dnf -q install \
+sudo dnf install -y \
          https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm \
          https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
 
