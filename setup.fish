@@ -108,6 +108,9 @@ if test ! -d "$HOME/.cargo"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | /bin/bash -s -- -y
 end
 
+# Ensure rust is up-to-date
+rustup update
+
 # Install certain rust programs from source
 cargo install \
           du-dust \
