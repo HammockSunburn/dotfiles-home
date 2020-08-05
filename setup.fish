@@ -13,6 +13,7 @@ ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
+rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 echo Done!
 
 # VSCode
@@ -50,8 +51,10 @@ sudo dnf install -y \
          fzf \
          gcc-c++ \
          gnome-tweaks \
+         gnuplot \
          kicad \
          kicad-doc \
+         kitty \
          make \
          musl-gcc \
          neovim \
