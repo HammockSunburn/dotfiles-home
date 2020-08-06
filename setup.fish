@@ -118,6 +118,7 @@ rustup update
 cargo install \
           du-dust \
           git-delta \
+          mdcat \
           procs \
           tokei \
           xsv
