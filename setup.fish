@@ -88,20 +88,21 @@ end
 
 # Install VS Code extensions
 for ext in \
-    "DavidAnson.vscode-markdownlint" \
-    "GitHub.vscode-pull-request-github" \
-    "Zignd.html-css-class-completion" \
     "asabil.meson" \
     "bungcip.better-toml" \
+    "DavidAnson.vscode-markdownlint" \
     "eamodio.gitlens" \
     "ecmel.vscode-html-css" \
+    "GitHub.vscode-pull-request-github" \
     "jdinhlife.gruvbox" \
     "matklad.rust-analyzer" \
     "mrorz.language-gettext" \
     "ms-vscode.cmake-tools" \
     "ms-vscode.cpptools" \
+    "serayuzgur.crates" \
     "twxs.cmake" \
     "yzhang.markdown-all-in-one"
+    "Zignd.html-css-class-completion" \
     code --force --install-extension "$ext"
 end
 
