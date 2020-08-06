@@ -101,8 +101,8 @@ for ext in \
     "ms-vscode.cpptools" \
     "serayuzgur.crates" \
     "twxs.cmake" \
-    "yzhang.markdown-all-in-one"
-    "Zignd.html-css-class-completion" \
+    "yzhang.markdown-all-in-one" \
+    "Zignd.html-css-class-completion"
     code --force --install-extension "$ext"
 end
 
