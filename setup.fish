@@ -21,7 +21,8 @@ echo -n VSCode setup...
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo cp -f "$dotfiles_dir/vscode/vscode.repo" /etc/yum.repos.d/
 mkdir -p "$HOME/.config/Code/User"
-ln -sf "$dotfiles_dir/config/Code/settings.json" "$HOME/.config/Code/User"
+ln -sf "$dotfiles_dir/config/Code/User/settings.json" "$HOME/.config/Code/User"
+ln -sf "$dotfiles_dir/config/Code/User/keybindings.json" "$HOME/.config/Code/User"
 echo Done!
 
 # Gnome
