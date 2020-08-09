@@ -53,9 +53,11 @@ sudo dnf install -y \
          gcc-c++ \
          gnome-tweaks \
          gnuplot \
+         ImageMagick \
          kicad \
          kicad-doc \
          kitty \
+         lxi-tools \
          make \
          musl-gcc \
          neovim \
