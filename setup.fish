@@ -120,6 +120,7 @@ rustup update
 
 # Install certain rust programs from source
 cargo install \
+          broot \
           du-dust \
           git-delta \
           mdcat \
