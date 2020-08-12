@@ -63,6 +63,7 @@ sudo dnf install -y \
          neovim \
          ninja-build \
          openssl-devel \
+         prettyping \
          ripgrep \
          SDL2-devel \
          starship \
