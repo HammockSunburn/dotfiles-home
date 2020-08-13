@@ -51,6 +51,7 @@ sudo dnf install -y \
          fish \
          fzf \
          gcc-c++ \
+         gimp \
          gnome-tweaks \
          gnuplot \
          ImageMagick \
