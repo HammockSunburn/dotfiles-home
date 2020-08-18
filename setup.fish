@@ -3,6 +3,13 @@
 sudo true
 set -x dotfiles_dir (dirname (readlink -m (status --current-filename)))
 
+mkdir -p "$HOME/.local/share/fonts/caskaydia"
+if test ! -e "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
+    wget -O "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+    unzip -d "$HOME/.local/share/fonts/caskaydia" "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
+    fc-cache -v
+end
+
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
 mkdir -p "$HOME/.config"
@@ -41,7 +48,6 @@ sudo dnf install -y \
          bashtop \
          bat \
          buildah \
-         cascadia-code-fonts \
          cc65 \
          clang \
          cmake \
@@ -72,6 +78,8 @@ sudo dnf install -y \
          tmux-powerline \
          util-linux-user \
          vlc
+
+sudo dnf remove cascadia-code-fonts
 
 # Bat theme configuration
 mkdir -p (bat --config-dir)/themes

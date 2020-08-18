@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "'Cascadia Code PL', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Caskaydia Cove Nerd Font Mono','Cascadia Code PL', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "window.titleBarStyle": "custom",
     "editor.formatOnSave": true,
