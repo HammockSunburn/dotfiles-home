@@ -79,7 +79,7 @@ sudo dnf install -y \
          util-linux-user \
          vlc
 
-sudo dnf remove cascadia-code-fonts
+sudo dnf remove -y cascadia-code-fonts
 
 # Bat theme configuration
 mkdir -p (bat --config-dir)/themes
@@ -100,24 +100,25 @@ else
 end
 
 # Install VS Code extensions
-for ext in \
-    "asabil.meson" \
-    "bungcip.better-toml" \
-    "DavidAnson.vscode-markdownlint" \
-    "eamodio.gitlens" \
-    "ecmel.vscode-html-css" \
-    "GitHub.vscode-pull-request-github" \
-    "jdinhlife.gruvbox" \
-    "matklad.rust-analyzer" \
-    "mrorz.language-gettext" \
-    "ms-vscode.cmake-tools" \
-    "ms-vscode.cpptools" \
-    "serayuzgur.crates" \
-    "twxs.cmake" \
-    "yzhang.markdown-all-in-one" \
-    "Zignd.html-css-class-completion"
-    code --force --install-extension "$ext"
-end
+# It's a lot faster to do this as a single command rather than a for loop with a lot of
+# invocations of 'code'.
+set ie --install-extension
+code --force \
+    $ie "asabil.meson" \
+    $ie "bungcip.better-toml" \
+    $ie "DavidAnson.vscode-markdownlint" \
+    $ie "eamodio.gitlens" \
+    $ie "ecmel.vscode-html-css" \
+    $ie "GitHub.vscode-pull-request-github" \
+    $ie "jdinhlife.gruvbox" \
+    $ie "matklad.rust-analyzer" \
+    $ie "mrorz.language-gettext" \
+    $ie "ms-vscode.cmake-tools" \
+    $ie "ms-vscode.cpptools" \
+    $ie "serayuzgur.crates" \
+    $ie "twxs.cmake" \
+    $ie "yzhang.markdown-all-in-one" \
+    $ie "Zignd.html-css-class-completion"
 
 # Setup rust
 if test ! -d "$HOME/.cargo"
