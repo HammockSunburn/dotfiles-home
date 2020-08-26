@@ -1,3 +1,4 @@
+#!/usr/bin/fish
 # Possibly useful if you use Fedora, probably not useful otherwise.
 
 sudo true
@@ -21,6 +22,7 @@ ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
+rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
 echo Done!
 
 # VSCode
