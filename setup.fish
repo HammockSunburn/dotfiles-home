@@ -62,6 +62,7 @@ sudo dnf install -y \
          gimp \
          gnome-tweaks \
          gnuplot \
+         hyperfine \
          ImageMagick \
          kicad \
          kicad-doc \
