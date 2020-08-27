@@ -35,4 +35,14 @@ DARK MODE
 -   fg0        229    fb f1 c7  251  241  199
 -   orange     208    fe 80 19  254  128  25
 
+LIGHT MODE ALTERNATIVES
+
+9   red        88     9d 00 06  157  0    6
+10  green      100    79 74 0e  121  116  14
+11  yellow     136    b5 76 14  181  118  20
+12  blue       24     07 66 78  7    102  120
+13  purple     96     8f 3f 71  143  63   113
+14  aqua       14     42 7b 58  66   123  88
+15  fg         237    3c 38 36  60   56   54
+-   orange     130    af 3a 03  175  58   3
 
