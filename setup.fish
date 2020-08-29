@@ -140,7 +140,8 @@ cargo install \
           mdcat \
           procs \
           tokei \
-          xsv
+          xsv \
+          zoxide
 
 # Enable sshd service
 sudo systemctl enable sshd.service
