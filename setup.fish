@@ -78,11 +78,14 @@ sudo dnf install -y \
          SDL2-devel \
          starship \
          texlive \
+         tldr \
          tmux-powerline \
          util-linux-user \
          vlc
 
 sudo dnf remove -y cascadia-code-fonts
+
+tldr --update
 
 # Bat theme configuration
 mkdir -p (bat --config-dir)/themes
@@ -138,6 +141,7 @@ cargo install \
           du-dust \
           git-delta \
           mdcat \
+          nu \
           procs \
           tokei \
           xsv \
