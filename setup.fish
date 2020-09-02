@@ -133,7 +133,7 @@ if test ! -d "$HOME/.cargo"
 end
 
 # Ensure rust is up-to-date
-rustup update
+rustup toolchain install nightly stable
 
 # Install certain rust programs from source
 cargo install \
