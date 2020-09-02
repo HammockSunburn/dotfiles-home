@@ -78,7 +78,7 @@ sudo dnf install -y \
          SDL2-devel \
          starship \
          texlive \
-         tldr \
+         tealdeer \
          tmux-powerline \
          util-linux-user \
          vlc
