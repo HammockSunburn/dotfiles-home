@@ -81,6 +81,7 @@ sudo dnf install -y \
          tealdeer \
          tmux-powerline \
          util-linux-user \
+         valgrind \
          vlc
 
 sudo dnf remove -y cascadia-code-fonts
