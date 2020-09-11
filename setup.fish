@@ -76,7 +76,6 @@ sudo dnf install -y \
          prettyping \
          ripgrep \
          SDL2-devel \
-         starship \
          texlive \
          tealdeer \
          tmux-powerline \
@@ -85,6 +84,9 @@ sudo dnf install -y \
          vlc
 
 sudo dnf remove -y cascadia-code-fonts
+
+# Starship in the Fedora repositories doesn't move fast enough.
+sudo dnf remove -y starship
 
 tldr --update
 
@@ -144,6 +146,7 @@ cargo install \
           mdcat \
           nu \
           procs \
+          starship \
           tokei \
           xsv \
           zoxide

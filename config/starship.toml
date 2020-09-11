@@ -6,6 +6,10 @@ use_symbol_for_status = true
 [directory]
 truncation_length = 4
 
+[jobs]
+symbol = "🏃"
+threshold = 0
+
 [git_status]
 staged_count.enabled = true
 modified_count.enabled = true
