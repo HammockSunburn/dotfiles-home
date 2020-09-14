@@ -74,6 +74,7 @@ sudo dnf install -y \
          ninja-build \
          openssl-devel \
          prettyping \
+         R \
          ripgrep \
          SDL2-devel \
          texlive \
@@ -119,6 +120,7 @@ code --force \
     $ie "eamodio.gitlens" \
     $ie "ecmel.vscode-html-css" \
     $ie "GitHub.vscode-pull-request-github" \
+    $ie "Ikuyadeu.r" \
     $ie "jdinhlife.gruvbox" \
     $ie "matklad.rust-analyzer" \
     $ie "mrorz.language-gettext" \
@@ -138,13 +140,13 @@ end
 # Ensure rust is up-to-date
 rustup toolchain install nightly stable
 
-# Install certain rust programs from source
+# Install certain rust programs from source. I install "nu" from source, too, but it always rebuilds even when
+# there are no changes, so for now, I just do that by hand when I want to update it.
 cargo install \
           broot \
           du-dust \
           git-delta \
           mdcat \
-          nu \
           procs \
           starship \
           tokei \
