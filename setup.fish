@@ -49,7 +49,9 @@ sudo dnf install -y \
 sudo dnf install -y \
          bashtop \
          bat \
+         boost-devel \
          buildah \
+         catch-devel \
          cc65 \
          clang \
          cmake \
@@ -57,6 +59,7 @@ sudo dnf install -y \
          exa \
          fd-find \
          fish \
+         fmt-devel \
          fzf \
          gcc-c++ \
          gimp \
@@ -67,6 +70,7 @@ sudo dnf install -y \
          kicad \
          kicad-doc \
          kitty \
+         libcurl-devel \
          lxi-tools \
          make \
          musl-gcc \
@@ -77,8 +81,9 @@ sudo dnf install -y \
          R \
          ripgrep \
          SDL2-devel \
-         texlive \
+         tbb-devel \
          tealdeer \
+         texlive \
          tmux-powerline \
          util-linux-user \
          valgrind \

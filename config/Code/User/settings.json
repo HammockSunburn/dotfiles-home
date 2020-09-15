@@ -6,4 +6,6 @@
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.colorCustomizations": {},
     "mesonbuild.configureOnOpen": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.default.cppStandard": "c++17",
 }
