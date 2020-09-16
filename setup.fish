@@ -46,6 +46,11 @@ sudo dnf install -y \
          https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
 
 # RPMs
+sudo dnf remove -y tldr cascadia-code-fonts
+
+# Starship in the Fedora repositories doesn't move fast enough.
+sudo dnf remove -y starship
+
 sudo dnf install -y \
          bashtop \
          bat \
@@ -88,11 +93,6 @@ sudo dnf install -y \
          util-linux-user \
          valgrind \
          vlc
-
-sudo dnf remove -y cascadia-code-fonts
-
-# Starship in the Fedora repositories doesn't move fast enough.
-sudo dnf remove -y starship
 
 tldr --update
 
