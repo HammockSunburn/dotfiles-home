@@ -81,6 +81,7 @@ sudo dnf install -y \
          ninja-build \
          openssl-devel \
          prettyping \
+         python3-devel \
          R \
          ripgrep \
          SDL2-devel \
