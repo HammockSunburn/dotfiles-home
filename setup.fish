@@ -74,6 +74,7 @@ sudo dnf install -y \
          kicad-doc \
          kitty \
          libcurl-devel \
+         libzstd-devel \
          lxi-tools \
          make \
          musl-gcc \
