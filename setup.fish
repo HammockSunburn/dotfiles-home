@@ -77,6 +77,7 @@ sudo dnf install -y \
          libzstd-devel \
          lxi-tools \
          make \
+         meson \
          musl-gcc \
          neovim \
          ninja-build \
