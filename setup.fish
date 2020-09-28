@@ -82,6 +82,7 @@ sudo dnf install -y \
          neovim \
          ninja-build \
          openssl-devel \
+         PEGTL-devel \
          prettyping \
          python3-devel \
          R \
