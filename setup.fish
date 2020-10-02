@@ -59,6 +59,7 @@ sudo dnf install -y \
          clang \
          cmake \
          code \
+	 emacs \
          exa \
          fd-find \
          fish \
