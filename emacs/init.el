@@ -52,8 +52,8 @@
 
 ;; Projectile
 (straight-use-package 'projectile)
-(projectile-global-mode)
-(setq projectile-completion-system 'ido)
+(projectile-mode +1)
+(setq projectile-completion-system 'ivy)
 (global-set-key "\C-xf" 'projectile-find-file)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
