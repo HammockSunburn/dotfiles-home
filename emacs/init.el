@@ -75,9 +75,22 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+(setq scroll-preserve-screen-position 'always)
+
+(straight-use-package 'goto-last-change)
+(global-set-key (kbd "C-x C-\\") 'goto-last-change)
+
 ;; Don't show the startup screen and show only minimal text in the scratch buffer.
 (setq inhibit-startup-screen t
       initial-scratch-message ";; ready\n\n")
+
+;; Make the window divider nicer looking.
+(defun my-change-window-divider ()
+  (let ((display-table (or buffer-display-table standard-display-table)))
+    (set-display-table-slot display-table 5 ?│)
+    (set-window-display-table (selected-window) display-table)))
+
+(add-hook 'window-configuration-change-hook 'my-change-window-divider)
 
 ;; Miscellaneous packages
 (straight-use-package 'amx)
