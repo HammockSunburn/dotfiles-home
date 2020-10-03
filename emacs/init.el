@@ -81,6 +81,9 @@
 ; Deadgrep
 (straight-use-package 'deadgrep)
 
+;; Web stuff
+(straight-use-package 'web-mode)
+
 ;; ido configuration
 ;;(ido-mode 1)
 ;;(ido-everywhere 1)
