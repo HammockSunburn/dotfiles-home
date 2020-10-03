@@ -22,9 +22,10 @@
 (straight-use-package 'gruvbox-theme)
 (load-theme 'gruvbox-dark-hard t)
 
-;; Magit
+;; Magit and vc configuration
 (straight-use-package 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+(setq vc-follow-symlinks t)
 
 ;; git-gutter
 (straight-use-package 'git-gutter)
