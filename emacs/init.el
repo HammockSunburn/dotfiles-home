@@ -75,36 +75,15 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
-;; Remove?
+;; Don't show the startup screen and show only minimal text in the scratch buffer.
+(setq inhibit-startup-screen t
+      initial-scratch-message ";; ready\n\n")
+
+;; Miscellaneous packages
 (straight-use-package 'amx)
-
-; Deadgrep
 (straight-use-package 'deadgrep)
-
-;; Web stuff
 (straight-use-package 'web-mode)
-
-;; ido configuration
-;;(ido-mode 1)
-;;(ido-everywhere 1)
-;;(ido-ubiquitous-mode 1)
-;;(setq ido-use-faces t)
-;; 
-;;;; ido-vertical configuration
-;;(ido-vertical-mode 1)
-;;(setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-;;(setq ido-vertical-show-count t)
-;;(set-face-attribute 'ido-vertical-first-match-face nil
-;;                    :background nil
-;;                    :foreground "orange")
-;;(set-face-attribute 'ido-vertical-only-match-face nil
-;;                    :background nil
-;;                    :foreground nil)
-;;(set-face-attribute 'ido-vertical-match-face nil
-;;                    :foreground nil)
-;;
-
-;; Projectile configuration.
+(straight-use-package 'fish-mode)
 
 ;; Backup and auto-save configuration.
 (let ((backup-dir "~/.emacs.d/backup")
@@ -123,16 +102,3 @@
       version-control t      ; Use version numbers on backups,                  
       kept-new-versions 5    ; keep some new versions                           
       kept-old-versions 2)   ; and some old ones, too                           
-
-;; Don't show the startup screen and show only minimal text in the scratch buffer.
-(setq inhibit-startup-screen t
-      initial-scratch-message ";; ready\n\n")
-
-;;(require 'doom-modeline)
-;;(doom-modeline-mode 1)
-;;(add-hook 'after-init-hook #'doom-modeline-mode)
-;;(setq doom-modeline-project-detection 'project)
-
-;;(use-package helm :config (require 'helm-config))
-;;(require 'helm)
-;;(helm-mode 1)
