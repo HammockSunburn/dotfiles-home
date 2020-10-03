@@ -13,7 +13,7 @@ end
 
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
-mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config" "$HOME/.emacs.d"
 rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
@@ -21,6 +21,7 @@ ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
+ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
 echo Done!
