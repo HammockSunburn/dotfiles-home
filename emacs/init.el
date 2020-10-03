@@ -115,3 +115,11 @@
       version-control t      ; Use version numbers on backups,                  
       kept-new-versions 5    ; keep some new versions                           
       kept-old-versions 2)   ; and some old ones, too                           
+
+;; Modes
+(straight-use-package 'blackout)
+(blackout 'counsel-mode)
+(blackout 'ivy-mode)
+(blackout 'projectile-mode "🚀")
+(blackout 'git-gutter-mode "🔃")
+(blackout 'eldoc-mode "📖")
