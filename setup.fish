@@ -61,6 +61,7 @@ sudo dnf install -y \
          cmake \
          code \
 	 emacs \
+	 emacs-auctex \
          exa \
          fd-find \
          fish \
