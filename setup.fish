@@ -11,6 +11,8 @@ if test ! -e "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
     fc-cache -v
 end
 
+wget -O "emacs/ligature.el" https://raw.githubusercontent.com/mickeynp/ligature.el/master/ligature.el
+
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
 mkdir -p "$HOME/.config" "$HOME/.emacs.d"
