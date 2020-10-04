@@ -26,7 +26,7 @@
 
 ;; Ligatures.
 ;; No MELPA support yet: https://github.com/mickeynp/ligature.el
-(load-file "~/dotfiles-home/emacs/ligature.el")
+(load-file "~/.emacs.d/local/ligature.el")
 (ligature-set-ligatures 't '("www"))
 (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
                                      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"

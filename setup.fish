@@ -11,8 +11,6 @@ if test ! -e "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
     fc-cache -v
 end
 
-wget -O "emacs/ligature.el" https://raw.githubusercontent.com/mickeynp/ligature.el/master/ligature.el
-
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
 mkdir -p "$HOME/.config" "$HOME/.emacs.d"
@@ -27,6 +25,11 @@ ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
 echo Done!
+
+# Emacs ligatures support until it's in MELPA
+mkdir -p "$HOME/.emacs.d/local"
+wget -O "$HOME/.emacs.d/local/ligature.el" https://raw.githubusercontent.com/mickeynp/ligature.el/master/ligature.el
+emacs -batch -f batch-byte-compile $HOME/.emacs.d/local/*.el
 
 # VSCode
 echo -n VSCode setup...
