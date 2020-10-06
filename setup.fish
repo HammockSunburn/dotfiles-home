@@ -93,6 +93,7 @@ sudo dnf install -y \
          openssl-devel \
          PEGTL-devel \
          prettyping \
+         pv \
          python3-devel \
          R \
          ripgrep \
