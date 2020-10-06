@@ -45,6 +45,7 @@
 (straight-use-package 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
 (setq vc-follow-symlinks t)
+(straight-use-package 'git-timemachine)
 
 ;; git-gutter
 (straight-use-package 'git-gutter)
