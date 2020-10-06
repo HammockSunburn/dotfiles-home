@@ -112,6 +112,10 @@
 (straight-use-package 'web-mode)
 (straight-use-package 'fish-mode)
 
+;; Haskell
+(straight-use-package 'haskell-mode)
+(straight-use-package 'ghc)
+
 ;; Backup and auto-save configuration.
 (let ((backup-dir "~/.emacs.d/backup")
       (auto-saves-dir "~/.emacs.d/auto-saves/"))
@@ -124,11 +128,11 @@
         tramp-backup-directory-alist `((".*" . ,backup-dir))
         tramp-auto-save-directory auto-saves-dir))
 
-(setq backup-by-copying t    ; Don't delink hardlinks                           
-      delete-old-versions t  ; Clean up the backups                             
-      version-control t      ; Use version numbers on backups,                  
-      kept-new-versions 5    ; keep some new versions                           
-      kept-old-versions 2)   ; and some old ones, too                           
+(setq backup-by-copying t    ; Don't delink hardlinks
+      delete-old-versions t  ; Clean up the backups
+      version-control t      ; Use version numbers on backups,
+      kept-new-versions 5    ; keep some new versions
+      kept-old-versions 2)   ; and some old ones, too
 
 ;; Modes
 (straight-use-package 'blackout)

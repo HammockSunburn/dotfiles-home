@@ -73,6 +73,7 @@ sudo dnf install -y \
          fmt-devel \
          fzf \
          gcc-c++ \
+         ghc-compiler \
          gimp \
          gnome-tweaks \
          gnuplot \
