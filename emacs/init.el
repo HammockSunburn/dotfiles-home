@@ -80,7 +80,21 @@
 (global-set-key "\C-xf" 'projectile-find-file)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-; Ivy/Counsel/Swiper
+;; Compilation
+(straight-use-package 'meson-mode)
+
+;; Snippets
+(setq yas-snippet-dirs '("~/dotfiles-home/emacs/snippets"))
+(straight-use-package 'yasnippet)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+
+(defun yas-c-mode-common-hook ()
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
+
+(add-hook 'c-mode-common-hook 'yas-c-mode-common-hook)
+
+;; Ivy/Counsel/Swiper
 (straight-use-package 'ivy)
 (straight-use-package 'counsel)
 (straight-use-package 'counsel-projectile)
@@ -112,6 +126,7 @@
 
 ;; Miscellaneous packages
 (straight-use-package 'amx)
+(straight-use-package 'ripgrep)
 (straight-use-package 'deadgrep)
 (straight-use-package 'web-mode)
 (straight-use-package 'fish-mode)
