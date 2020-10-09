@@ -160,3 +160,17 @@
 (blackout 'projectile-mode "🚀")
 (blackout 'git-gutter-mode "🔃")
 (blackout 'eldoc-mode "📖")
+
+;; Smart clang formatting
+(straight-use-package 'clang-format)
+
+(defun clang-format-buffer-smart ()
+  (interactive)
+  "Reformat buffer if .clang-format exists in the projectile root."
+  (when (file-exists-p (expand-file-name ".clang-format" (projectile-project-root)))
+    (clang-format-buffer)))
+
+(add-hook 'c-mode-common-hook
+	  (function (lambda ()
+		      (add-hook 'before-save-hook
+				'clang-format-buffer-smart))))
