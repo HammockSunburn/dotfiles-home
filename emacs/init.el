@@ -23,7 +23,6 @@
 (load-theme 'gruvbox-dark-hard t)
 (add-to-list 'default-frame-alist '(font . "CaskaydiaCove Nerd Font Mono 12"))
 
-
 ;; Ligatures.
 ;; No MELPA support yet: https://github.com/mickeynp/ligature.el
 (load-file "~/.emacs.d/local/ligature.el")
@@ -193,7 +192,6 @@
   (c-set-offset 'access-label -4)
   (show-paren-mode t)
   (setq truncate-lines nil)
-; (auto-fill-mode)
   (setq fill-column 120)
   )
 
@@ -222,3 +220,6 @@
                                   :project-file "meson.build"
                                   :compile "cd builddir && ninja"
                                   :test "cd builddir && ninja test")
+
+;; Don't prompt for compilation command.
+(setq compilation-read-command nil)

@@ -1,0 +1,39 @@
+* Emacs
+
+** Projectile
+
+C-C p a          projectile-find-other-file (switch between header/impl)
+C-x f            counsel-projectile-find-file
+C-c p s r        counsel-projectile-rg
+C-c p c          projectile-compile-project
+C-x `            next-error (or M-g n, or M-g M-n)
+
+** Registers
+
+C-x r s <r>      copy-to-register
+C-x r i <r>      insert-register (works for rectangles, too)
+C-x r r <r>      copy-rectangle-to-register
+
+** Bookmarks
+
+C-x r m RET      bookmark-set (can set w/optional name)
+C-x r M RET      as previous, but don't overwrite
+C-x r b RET      bookmark-jump
+C-x r l          list-bookmarks
+
+** Macros
+
+F3               kmacro-start-macro-or-insert-counter
+F4               kmacro-end-or-call-macro
+C-u F3           Re-execute the last keyboard macro, then append keys to its definition
+C-u C-u F3       Append keys to the last keyboard macro without re-executing it
+C-x C-k r        Run the last keyboard macro on each line that begins in the region
+
+** Git
+
+C-x n            git-gutter:next-hunk
+C-x p            git-gutter:previous-hunk
+
+** Calc
+
+1024 2 B         log_2(1024)
