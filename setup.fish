@@ -24,12 +24,9 @@ ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
+mkdir -p "$HOME/.ssh"
+chmod o-rwx,g-rwx "$HOME/.ssh"
 echo Done!
-
-# Emacs ligatures support until it's in MELPA
-mkdir -p "$HOME/.emacs.d/local"
-wget -O "$HOME/.emacs.d/local/ligature.el" https://raw.githubusercontent.com/mickeynp/ligature.el/master/ligature.el
-emacs -batch -f batch-byte-compile $HOME/.emacs.d/local/*.el
 
 # VSCode
 echo -n VSCode setup...
@@ -125,6 +122,11 @@ if test ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim"
 else
     nvim --headless +PlugClean +qall
 end
+
+# Emacs ligatures support until it's in MELPA
+mkdir -p "$HOME/.emacs.d/local"
+wget -O "$HOME/.emacs.d/local/ligature.el" https://raw.githubusercontent.com/mickeynp/ligature.el/master/ligature.el
+emacs -batch -f batch-byte-compile $HOME/.emacs.d/local/*.el
 
 # Install VS Code extensions
 # It's a lot faster to do this as a single command rather than a for loop with a lot of
