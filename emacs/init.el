@@ -223,3 +223,6 @@
 
 ;; Don't prompt for compilation command.
 (setq compilation-read-command nil)
+
+;; Miscellanous key bindings
+(global-set-key (kbd "C-c M-r") 'revert-buffer)
