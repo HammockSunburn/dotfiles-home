@@ -161,6 +161,48 @@
 (blackout 'git-gutter-mode "🔃")
 (blackout 'eldoc-mode "📖")
 
+; Setup C++ indentation like I like it.
+(setq-default indent-tabs-mode nil)
+
+; Added in 2008.
+(defun my-c-mode-common-hook ()
+  (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+  (c-set-offset 'substatement-open 0)
+  (c-set-offset 'arglist-intro 8)
+  (c-set-offset 'arglist-close 4)
+  (c-set-offset 'case-label 0)
+  (c-set-offset 'inclass 4)
+  (c-set-offset 'comment-intro 0)
+  (c-set-offset 'topmost-intro-cont 0)
+  (c-set-offset 'innamespace 0)
+  (c-set-offset 'namespace-open 0)
+  (c-set-offset 'namespace-close 0)
+  (c-set-offset 'template-args-cont 4)
+  (c-set-offset 'statement-case-open 0)
+  (c-set-offset 'statement-case-intro 4)
+  (c-set-offset 'member-init-intro 4)
+  (c-set-offset 'member-init-cont -2)
+  (c-set-offset 'inher-cont 0)
+  (c-set-offset 'statement-cont 4)
+  (c-set-offset 'brace-list-open 0)
+  (c-set-offset 'brace-list-intro 4)
+  (c-set-offset 'statement-case-open 0)
+  (c-set-offset 'statement-block-intro 4)
+  (c-set-offset 'defun-block-intro 4)
+  (c-set-offset 'case-label 4)
+  (c-set-offset 'access-label -4)
+  (show-paren-mode t)
+  (setq truncate-lines nil)
+; (auto-fill-mode)
+  (setq fill-column 120)
+  )
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; Treat .h and .ipp files as C++.
+(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ipp$" . c++-mode))
+
 ;; Smart clang formatting
 (straight-use-package 'clang-format)
 
@@ -174,3 +216,9 @@
 	  (function (lambda ()
 		      (add-hook 'before-save-hook
 				'clang-format-buffer-smart))))
+
+;; Meson project support for projectile
+(projectile-register-project-type 'meson '("meson.build")
+                                  :project-file "meson.build"
+                                  :compile "cd builddir && ninja"
+                                  :test "cd builddir && ninja test")

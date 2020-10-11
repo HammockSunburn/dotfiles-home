@@ -6,7 +6,7 @@ set -x dotfiles_dir (dirname (readlink -m (status --current-filename)))
 
 mkdir -p "$HOME/.local/share/fonts/caskaydia"
 if test ! -e "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
-    wget -O "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+    wget -O "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
     unzip -d "$HOME/.local/share/fonts/caskaydia" "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
     fc-cache -v
 end
