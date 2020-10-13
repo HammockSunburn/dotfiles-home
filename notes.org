@@ -37,3 +37,8 @@ C-x p            git-gutter:previous-hunk
 ** Calc
 
 1024 2 B         log_2(1024)
+
+** TODO
+*** dired-hacks
+*** dired-git
+

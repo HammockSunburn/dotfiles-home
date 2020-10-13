@@ -52,13 +52,11 @@
 ;; git-gutter
 (straight-use-package 'git-gutter)
 (global-git-gutter-mode +1)
-
-(custom-set-variables
- '(git-gutter:window-width 2)
- '(git-gutter:added-sign "+")
- '(git-gutter:modified-sign "=")
- '(git-gutter:deleted-sign "-")
- '(git-gutter:update-interval 1))
+(setq git-gutter:added-sign "+"
+      git-gutter:deleted-sign "-"
+      git-gutter:modified-sign "="
+      git-gutter:update-interval 1
+      git-gutter:window-width 2)
 
 (dolist (face '(git-gutter:added git-gutter:modified git-gutter:deleted	git-gutter:unchanged))
   (set-face-background face "background"))
@@ -224,5 +222,43 @@
 ;; Don't prompt for compilation command.
 (setq compilation-read-command nil)
 
-;; Miscellanous key bindings
+;; Miscellanous key bindings.
 (global-set-key (kbd "C-c M-r") 'revert-buffer)
+
+;; More colors in dired.
+(straight-use-package 'diredfl)
+(diredfl-global-mode +1)
+(setq diredfl-ignore-compressed-flag nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diredfl-autofile-name ((t (:background "dark" :foreground "#ff0000"))))
+ '(diredfl-compressed-file-name ((t (:background "dark" :foreground "#d79921"))))
+ '(diredfl-compressed-file-suffix ((t (:background "dark" :foreground "#d79921"))))
+ '(diredfl-date-time ((t (:background "dark" :foreground "#b8bb26"))))
+ '(diredfl-deletion ((t (:background "dark" :foreground "#fb4934"))))
+ '(diredfl-deletion-file-name ((t (:background "dark" :foreground "#cc241d"))))
+ '(diredfl-dir-heading ((t (:background "dark" :foreground "#a89984"))))
+ '(diredfl-dir-name ((t (:background "dark" :foreground "#83a598"))))
+ '(diredfl-dir-priv ((t (:background "dark" :foreground "#83a598"))))
+ '(diredfl-exec-priv ((t (:background "dark" :foreground "#689d6a"))))
+
+ ;; where is this?
+ '(diredfl-executable-tag ((t (:background "dark" :foreground "#689d6a"))))
+ '(diredfl-file-name ((t (:background "dark" :foreground "#ebdbb2"))))
+ '(diredfl-file-suffix ((t (:background "dark" :foreground "#ebdbb2"))))
+ '(diredfl-flag-mark ((t (:background "dark" :foreground "#689d6a"))))
+ '(diredfl-flag-mark-line ((t (:background "#504945" :foreground "#8ec07c"))))
+ '(diredfl-ignored-file-name ((t (:background "dark" :foreground "#928374"))))
+ '(diredfl-link-priv ((t (:background "dark" :foreground "#d79921"))))
+ '(diredfl-no-priv ((t (:background "dark" :foreground "#928374"))))
+ '(diredfl-number ((t (:background "dark" :foreground "#fe8019"))))
+ '(diredfl-other-priv ((t (:background "dark" :foreground "#fabd2f"))))
+ '(diredfl-rare-priv ((t (:background "dark" :foreground "#fb4934"))))
+ '(diredfl-read-priv ((t (:background "dark" :foreground "#98971a"))))
+ '(diredfl-symlink ((t (:background "dark" :foreground "#b8bb26"))))
+ '(diredfl-tagged-autofile-name ((t (:background "dark" :foreground "#ebdbb2"))))
+ '(diredfl-write-priv ((t (:background "dark" :foreground "#cc241d"))))
+)
