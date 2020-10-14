@@ -41,4 +41,15 @@ C-x p            git-gutter:previous-hunk
 ** TODO
 *** dired-hacks
 *** dired-git
+*** color-theme-sanityinc-tomorrow
 
+* Ninja
+
+** Show all targets
+
+ninja -t targets all
+
+** Show dependency graph
+
+ninja -t graph <target_name> | dot -Tpng | icat
+ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat

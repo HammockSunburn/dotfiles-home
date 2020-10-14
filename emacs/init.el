@@ -244,8 +244,6 @@
  '(diredfl-dir-name ((t (:background "dark" :foreground "#83a598"))))
  '(diredfl-dir-priv ((t (:background "dark" :foreground "#83a598"))))
  '(diredfl-exec-priv ((t (:background "dark" :foreground "#689d6a"))))
-
- ;; where is this?
  '(diredfl-executable-tag ((t (:background "dark" :foreground "#689d6a"))))
  '(diredfl-file-name ((t (:background "dark" :foreground "#ebdbb2"))))
  '(diredfl-file-suffix ((t (:background "dark" :foreground "#ebdbb2"))))
@@ -260,5 +258,4 @@
  '(diredfl-read-priv ((t (:background "dark" :foreground "#98971a"))))
  '(diredfl-symlink ((t (:background "dark" :foreground "#b8bb26"))))
  '(diredfl-tagged-autofile-name ((t (:background "dark" :foreground "#ebdbb2"))))
- '(diredfl-write-priv ((t (:background "dark" :foreground "#cc241d"))))
-)
+ '(diredfl-write-priv ((t (:background "dark" :foreground "#cc241d")))))
