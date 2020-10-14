@@ -57,6 +57,7 @@ sudo dnf install -y \
          bashtop \
          bat \
          boost-devel \
+         bpytop \
          buildah \
          catch-devel \
          cc65 \
