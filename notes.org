@@ -53,3 +53,34 @@ ninja -t targets all
 
 ninja -t graph <target_name> | dot -Tpng | icat
 ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+* Color Themes
+
+https://tmtheme-editor.herokuapp.com/#!/editor/theme
+1 Axar
+2 Blusted
+2 Dark Room Contrast
+2 Earthsong Contrast
+2 Flatland
+2 Freshcut Contrast
+1 GlitterBomb
+1 Gloom Contrast
+2 Gloom
+2 Grunge Contrast
+1 Halflife Contrast
+2 Halflife
+2 Hyperspace
+2 Iceberg Contrast
+1 Keen
+2 Kellys (dark)
+1 Kiwi
+1 Mellow Contrast
+2 Mirrr
+2 Oasis
+2 Pulsar
+2 Rails Envy
+1 Sourlick Contrast
+1 Tech 49
+1 Turnip Contrast
+1 Turnip
+1 Twlightcyanide Colorscheme Black
+
