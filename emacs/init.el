@@ -101,8 +101,12 @@
 (counsel-mode)
 (counsel-projectile-mode)
 (global-set-key (kbd "C-s") 'swiper)
-(setq ivy-re-builders-alist
-      '((t . ivy--regex-fuzzy)))
+
+;; I used to use some fuzzy regexes. Kept for posterity.
+;;(setq ivy-re-builders-alist
+;;      '((ivy-switch-buffer . ivy--regex-plus)
+;;        (counsel-projectile-find-file . ivy--regex-fuzzy)
+;;        (t . ivy--regex-plus))
 
 ;; Disable useless things.
 (menu-bar-mode -1)
