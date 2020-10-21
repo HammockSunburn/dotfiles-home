@@ -1,5 +1,4 @@
 * Emacs
-
 ** Projectile
 
 C-C p a          projectile-find-other-file (switch between header/impl)
@@ -39,10 +38,9 @@ C-x p            git-gutter:previous-hunk
 1024 2 B         log_2(1024)
 
 ** TODO
-*** dired-hacks
-*** dired-git
-*** color-theme-sanityinc-tomorrow
-
+dired-hacks
+dired-git
+color-theme-sanityinc-tomorrow
 * Ninja
 
 ** Show all targets
@@ -53,6 +51,7 @@ ninja -t targets all
 
 ninja -t graph <target_name> | dot -Tpng | icat
 ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+
 * Color Themes
 
 https://tmtheme-editor.herokuapp.com/#!/editor/theme
@@ -83,4 +82,8 @@ https://tmtheme-editor.herokuapp.com/#!/editor/theme
 1 Turnip Contrast
 1 Turnip
 1 Twlightcyanide Colorscheme Black
+
+* Linux
+** Write image to USB:
+pv image.iso | sudo dd of=/dev/sdx
 
