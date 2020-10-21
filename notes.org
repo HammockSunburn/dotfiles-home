@@ -87,3 +87,7 @@ https://tmtheme-editor.herokuapp.com/#!/editor/theme
 ** Write image to USB:
 pv image.iso | sudo dd of=/dev/sdx
 
+* Git
+** Change remote URL from https to ssh
+git remote -v
+git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
