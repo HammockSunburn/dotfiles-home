@@ -156,6 +156,7 @@ code --force \
 if test ! -d "$HOME/.cargo"
     echo Installing rustup...
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | /bin/bash -s -- -y
+    source $HOME/.cargo/env
 end
 
 # Ensure rust is up-to-date
