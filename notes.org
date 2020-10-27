@@ -35,6 +35,8 @@ C-x p            git-gutter:previous-hunk
 
 ** Magit
 
+k                Discard changes
+z                Stash
 F -r u           magit-pull, rebase, from origin
 
 ** Calc
