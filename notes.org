@@ -33,6 +33,10 @@ C-x C-k r        Run the last keyboard macro on each line that begins in the reg
 C-x n            git-gutter:next-hunk
 C-x p            git-gutter:previous-hunk
 
+** Magit
+
+F -r u           magit-pull, rebase, from origin
+
 ** Calc
 
 1024 2 B         log_2(1024)
