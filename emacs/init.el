@@ -108,6 +108,19 @@
 ;;        (counsel-projectile-find-file . ivy--regex-fuzzy)
 ;;        (t . ivy--regex-plus))
 
+;; Make counsel-find-file minibuffer window 1/3 the height of the frame.
+(add-to-list 'ivy-height-alist
+             (cons 'counsel-find-file
+                   (lambda (_caller)
+                     (/ (frame-height) 3))))
+
+;; Make counsel-rg even larger at 1/2 the height of the frame.
+(add-to-list 'ivy-height-alist
+             (cons 'counsel-rg
+                   (lambda (_caller)
+                     (/ (frame-height) 2))))
+
+
 ;; Disable useless things.
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
