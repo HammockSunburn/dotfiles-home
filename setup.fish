@@ -185,6 +185,7 @@ sudo usermod -a -G dialout,lock (whoami)
 
 # Synchronize any new emacs packages
 emacs -batch -l $HOME/.emacs.d/init.el
+systemctl --user enable emacs
 systemctl --user restart emacs
 
 # Update the locate db
