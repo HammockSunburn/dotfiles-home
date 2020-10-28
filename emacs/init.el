@@ -114,6 +114,12 @@
                    (lambda (_caller)
                      (/ (frame-height) 3))))
 
+;; Make swiper minibuffer window 1/3 the height of the frame, too.
+(add-to-list 'ivy-height-alist
+             (cons 'swiper
+                   (lambda (_caller)
+                     (/ (frame-height) 3))))
+
 ;; Make counsel-rg even larger at 1/2 the height of the frame.
 (add-to-list 'ivy-height-alist
              (cons 'counsel-rg
