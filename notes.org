@@ -1,4 +1,16 @@
 * Emacs
+** Org
+*** Structure Editing
+  - C-x n s          Narrow buffer to current subtree
+  - C-x n w          Widen
+*** Plain Lists
+  - M-RET            Insert new item at current level
+  - M-S-RET          Insert new item with a checkbox
+  - M-S-UP/DOWN      Move the item, including subitems up/down, renumbers as appropriate
+  - M-LEFT/RIGHT     Decrease/increase the indentation of an item, leaving children alone
+  - M-S-LEFT/RIGHT   Decrease/increase the indentation of an item, including subitems
+  - C-c C-c          If there is a checkbox in the item line, toggle the state of the it
+  - C-c -            Cycle the entire list level through the different itemize/enumerate bullets
 ** Projectile
  - C-C p a          projectile-find-other-file (switch between header/impl)
  - C-x f            counsel-projectile-find-file
@@ -14,6 +26,13 @@
  - C-x r M RET      as previous, but don't overwrite
  - C-x r b RET      bookmark-jump
  - C-x r l          list-bookmarks
+** ace-window
+  - M-o             ace-window
+  - x               Delete window
+  - m               Swap windows
+  - M               Move window
+  - c               Copy window
+  - See aw-dispatch-alist for the list of prefix commands and keys
 ** Macros
  - F3               kmacro-start-macro-or-insert-counter
  - F4               kmacro-end-or-call-macro
