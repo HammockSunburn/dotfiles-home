@@ -1,16 +1,47 @@
 * Emacs
 ** Org
+*** Motion
+  - C-c C-n          Next heading
+  - C-c C-p          Previous heading
+  - C-c C-f          Next heading same level
+  - C-c C-b          Previous heading same level
+  - C-c C-u          Backward to higher level heading
 *** Structure Editing
+  - M-RET            Insert new heading with same level as current
+  - M-S-RET          Insert new TODO entry at same level as current heading
+  - M-LEFT/RIGHT     Promote/demote current heading by one level
+  - M-UP/DOWN        Move subtree up or down
   - C-x n s          Narrow buffer to current subtree
   - C-x n w          Widen
 *** Plain Lists
-  - M-RET            Insert new item at current level
-  - M-S-RET          Insert new item with a checkbox
-  - M-S-UP/DOWN      Move the item, including subitems up/down, renumbers as appropriate
+  - M-RET            Insert new item at current level, with a prefix argument, force new heading
+  - M-S-RET          Insert a new item with a checkbox
+  - M-S-UP/DOWN      Move the item, including subitems up/down, renumber as appropriate
   - M-LEFT/RIGHT     Decrease/increase the indentation of an item, leaving children alone
   - M-S-LEFT/RIGHT   Decrease/increase the indentation of an item, including subitems
   - C-c C-c          If there is a checkbox in the item line, toggle the state of the it
   - C-c -            Cycle the entire list level through the different itemize/enumerate bullets
+*** Tables
+  - C-c |            Convert the active region to a table
+  - C-c C-c          Realign the table without moving point
+  - TAB              Realign the table, move to the next field, creates a new row if necessary
+  - S-TAB            Realign the table, move to previous field
+  - RET              Realign the table, move down to next row, creates the row if necessary
+  - S-UP/D/L/R       Move a cell up, down, left, or right by swapping with adjacent cell
+  - M-LEFT/RIGHT     Move the current column left/right
+  - M-S-LEFT         Kill the current column
+  - M-S-RIGHT        Insert a new column to the right
+  - M-UP/DOWN        Move the current row up/down
+  - M-S-UP           Kill the current row or horizontal line
+  - M-S-DOWN         Insert new row above current row, w/prefix argument, line is created below the current
+  - C-c -            Insert a horizontal line above current row, w/prefix argument, creates below the current
+  - C-c RET          Insert a horizontal line below current row, move point into row below that line
+
+| Name            | Age |
+|-----------------+-----|
+| Eric Crampton   |  45 |
+| Debbie Crampton |  42 |
+
 ** Projectile
  - C-C p a          projectile-find-other-file (switch between header/impl)
  - C-x f            counsel-projectile-find-file
@@ -49,6 +80,7 @@
 ** Calc
  - 1024 2 B         log_2(1024)
 ** TODO
+ - hydra
  - dired-hacks
  - dired-git
  - color-theme-sanityinc-tomorrow
