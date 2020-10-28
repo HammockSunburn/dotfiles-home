@@ -42,6 +42,8 @@ echo Done!
 echo -n Gnome dconf...
 dconf load /org/gnome/terminal/ < "$dotfiles_dir/gnome-terminal-prefs.dconf"
 dconf load /org/gnome/desktop/wm/preferences/ < "$dotfiles_dir/gnome-wm-prefs.dconf"
+dconf load /org/gnome/desktop/session/ < "$dotfiles_dir/gnome-session-prefs.dconf"
+dconf load /org/gnome/settings-daemon/plugins/power/ < "$dotfiles_dir/gnome-power-prefs.dconf"
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 echo Done!
 

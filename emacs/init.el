@@ -102,11 +102,12 @@
 (counsel-projectile-mode)
 (global-set-key (kbd "C-s") 'swiper)
 
-;; I used to use some fuzzy regexes. Kept for posterity.
-;;(setq ivy-re-builders-alist
-;;      '((ivy-switch-buffer . ivy--regex-plus)
-;;        (counsel-projectile-find-file . ivy--regex-fuzzy)
-;;        (t . ivy--regex-plus))
+;; Ivy regular expression builders
+(setq ivy-re-builders-alist
+      '((ivy-switch-buffer . ivy--regex-plus)
+        (counsel-projectile-find-file . ivy--regex-fuzzy)
+        (swiper . ivy--regex-plus)
+        (t . ivy--regex-plus)))
 
 ;; Make counsel-find-file minibuffer window 1/3 the height of the frame.
 (add-to-list 'ivy-height-alist
