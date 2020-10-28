@@ -1,99 +1,77 @@
 * Emacs
 ** Projectile
-
-C-C p a          projectile-find-other-file (switch between header/impl)
-C-x f            counsel-projectile-find-file
-C-c p s r        counsel-projectile-rg
-C-c p c          projectile-compile-project
-C-x `            next-error (or M-g n, or M-g M-n)
-
+ - C-C p a          projectile-find-other-file (switch between header/impl)
+ - C-x f            counsel-projectile-find-file
+ - C-c p s r        counsel-projectile-rg
+ - C-c p c          projectile-compile-project
+ - C-x `            next-error (or M-g n, or M-g M-n)
 ** Registers
-
-C-x r s <r>      copy-to-register
-C-x r i <r>      insert-register (works for rectangles, too)
-C-x r r <r>      copy-rectangle-to-register
-
+ - C-x r s <r>      copy-to-register
+ - C-x r i <r>      insert-register (works for rectangles, too)
+ - C-x r r <r>      copy-rectangle-to-register
 ** Bookmarks
-
-C-x r m RET      bookmark-set (can set w/optional name)
-C-x r M RET      as previous, but don't overwrite
-C-x r b RET      bookmark-jump
-C-x r l          list-bookmarks
-
+ - C-x r m RET      bookmark-set (can set w/optional name)
+ - C-x r M RET      as previous, but don't overwrite
+ - C-x r b RET      bookmark-jump
+ - C-x r l          list-bookmarks
 ** Macros
-
-F3               kmacro-start-macro-or-insert-counter
-F4               kmacro-end-or-call-macro
-C-u F3           Re-execute the last keyboard macro, then append keys to its definition
-C-u C-u F3       Append keys to the last keyboard macro without re-executing it
-C-x C-k r        Run the last keyboard macro on each line that begins in the region
-
+ - F3               kmacro-start-macro-or-insert-counter
+ - F4               kmacro-end-or-call-macro
+ - C-u F3           Re-execute the last keyboard macro, then append keys to its definition
+ - C-u C-u F3       Append keys to the last keyboard macro without re-executing it
+ - C-x C-k r        Run the last keyboard macro on each line that begins in the region
 ** Git
-
-C-x n            git-gutter:next-hunk
-C-x p            git-gutter:previous-hunk
-
+ - C-x n            git-gutter:next-hunk
+ - C-x p            git-gutter:previous-hunk
 ** Magit
-
-k                Discard changes
-z                Stash
-F -r u           magit-pull, rebase, from origin
-
+ - k                Discard changes
+ - z                Stash
+ - F -r u           magit-pull, rebase, from origin
 ** Calc
-
-1024 2 B         log_2(1024)
-
+ - 1024 2 B         log_2(1024)
 ** TODO
-dired-hacks
-dired-git
-color-theme-sanityinc-tomorrow
+ - dired-hacks
+ - dired-git
+ - color-theme-sanityinc-tomorrow
 * Ninja
-
 ** Show all targets
-
-ninja -t targets all
-
+ - ninja -t targets all
 ** Show dependency graph
-
-ninja -t graph <target_name> | dot -Tpng | icat
-ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
-
+ - ninja -t graph <target_name> | dot -Tpng | icat
+ - ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
 * Color Themes
-
-https://tmtheme-editor.herokuapp.com/#!/editor/theme
-1 Axar
-2 Blusted
-2 Dark Room Contrast
-2 Earthsong Contrast
-2 Flatland
-2 Freshcut Contrast
-1 GlitterBomb
-1 Gloom Contrast
-2 Gloom
-2 Grunge Contrast
-1 Halflife Contrast
-2 Halflife
-2 Hyperspace
-2 Iceberg Contrast
-1 Keen
-2 Kellys (dark)
-1 Kiwi
-1 Mellow Contrast
-2 Mirrr
-2 Oasis
-2 Pulsar
-2 Rails Envy
-1 Sourlick Contrast
-1 Tech 49
-1 Turnip Contrast
-1 Turnip
-1 Twlightcyanide Colorscheme Black
-
+- https://tmtheme-editor.herokuapp.com/#!/editor/theme
+- 1 Axar
+- 2 Blusted
+- 2 Dark Room Contrast
+- 2 Earthsong Contrast
+- 2 Flatland
+- 2 Freshcut Contrast
+- 1 GlitterBomb
+- 1 Gloom Contrast
+- 2 Gloom
+- 2 Grunge Contrast
+- 1 Halflife Contrast
+- 2 Halflife
+- 2 Hyperspace
+- 2 Iceberg Contrast
+- 1 Keen
+- 2 Kellys (dark)
+- 1 Kiwi
+- 1 Mellow Contrast
+- 2 Mirrr
+- 2 Oasis
+- 2 Pulsar
+- 2 Rails Envy
+- 1 Sourlick Contrast
+- 1 Tech 49
+- 1 Turnip Contrast
+- 1 Turnip
+- 1 Twlightcyanide Colorscheme Black
 * Linux
 ** Write image to USB:
-pv image.iso | sudo dd of=/dev/sdx
-
+ - pv image.iso | sudo dd of=/dev/sdx
 * Git
 ** Change remote URL from https to ssh
-git remote -v
-git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
+ - git remote -v
+ - git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
