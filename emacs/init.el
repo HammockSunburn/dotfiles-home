@@ -61,8 +61,8 @@
 (dolist (face '(git-gutter:added git-gutter:modified git-gutter:deleted	git-gutter:unchanged))
   (set-face-background face "background"))
 
-(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-x P") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x N") 'git-gutter:next-hunk)
 (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
 (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
 
@@ -144,6 +144,10 @@
 (straight-use-package 'deadgrep)
 (straight-use-package 'web-mode)
 (straight-use-package 'fish-mode)
+
+;; Ace-window
+(straight-use-package 'ace-window)
+(global-set-key (kbd "M-o") 'ace-window)
 
 ;; Haskell
 (straight-use-package 'haskell-mode)
