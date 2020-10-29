@@ -66,9 +66,9 @@
 (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
 (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
 
-; Powerline
-(straight-use-package 'powerline)
-(powerline-center-theme)
+;; Spaceline
+(straight-use-package 'spaceline)
+(spaceline-spacemacs-theme)
 
 ;; Projectile
 (straight-use-package 'projectile)
