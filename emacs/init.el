@@ -253,6 +253,12 @@
 ;; Don't prompt for compilation command.
 (setq compilation-read-command nil)
 
+;; which-key configuration
+(straight-use-package 'which-key)
+(setq which-key-idle-delay 0.5) ;; 500 ms
+(setq which-key-idle-secondary-delay 0.05) ;; instantaneous
+(which-key-mode)
+
 ;; Miscellanous key bindings.
 (global-set-key (kbd "C-c M-r") 'revert-buffer)
 
