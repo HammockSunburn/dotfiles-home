@@ -80,6 +80,10 @@
  - F -r u           magit-pull, rebase, from origin
 ** Calc
  - 1024 2 B         log_2(1024)
+** AUCTeX
+ - C-c C-a          compile document to PDF, show PDF
+** Miscellaneous Keys
+ - C-x C-x          exchange point and mark
 ** TODO
  - hydra
  - dired-hacks
