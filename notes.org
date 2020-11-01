@@ -56,7 +56,8 @@
  - C-x r m RET      bookmark-set (can set w/optional name)
  - C-x r M RET      as previous, but don't overwrite
  - C-x r b RET      bookmark-jump
- - C-x r l          list-bookmarks
+ - C-x r B RET      bookmark-jump, but in other window (custom function by me)
+ - C-x r l          list bookmarks
 ** ace-window
   - M-o             ace-window
   - x               Delete window

@@ -256,6 +256,28 @@
 ;; Miscellanous key bindings.
 (global-set-key (kbd "C-c M-r") 'revert-buffer)
 
+(defun counsel-bookmark-other-window ()
+  "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
+  (interactive)
+  (require 'bookmark)
+  (ivy-read "Create or jump to bookmark in other window: "
+            (bookmark-all-names)
+            :history 'bookmark-history
+            :action (lambda (x)
+                      (cond ((and counsel-bookmark-avoid-dired
+                                  (member x (bookmark-all-names))
+                                  (file-directory-p (bookmark-location x)))
+                             (with-ivy-window
+                               (let ((default-directory (bookmark-location x)))
+                                 (counsel-find-file))))
+                            ((member x (bookmark-all-names))
+                             (with-ivy-window
+                               (bookmark-jump-other-window x)))
+                            (t
+                             (bookmark-set x))))
+            :caller 'counsel-bookmark))
+(global-set-key (kbd "C-x r B") 'counsel-bookmark-other-window)
+
 ;; More colors in dired.
 (straight-use-package 'diredfl)
 (diredfl-global-mode +1)
