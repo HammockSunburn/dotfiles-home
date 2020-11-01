@@ -123,6 +123,14 @@
 * Linux
 ** Write image to USB:
  - pv image.iso | sudo dd of=/dev/sdx conv=sync
+** zoxide
+ - z foo            cd to highest ranked directory matching foo
+ - z foo bar        cd to highest ranked directory matching foo and bar
+ - z foo/           cd into actual directory named foo
+ - zi foo           cd with interactive selection using fzf
+ - zq foo           echo the best match, but don't cd
+ - za /foo          add /foo to the database
+ - zr /foo          remove /foo from the database
 * Git
 ** Change remote URL from https to ssh
  - git remote -v
