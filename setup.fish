@@ -80,6 +80,7 @@ sudo dnf install -y \
          gnome-tweaks \
          gnuplot \
          hyperfine \
+         info \
          ImageMagick \
          kicad \
          kicad-doc \
