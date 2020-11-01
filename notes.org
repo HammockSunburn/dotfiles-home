@@ -121,7 +121,7 @@
 - 1 Twlightcyanide Colorscheme Black
 * Linux
 ** Write image to USB:
- - pv image.iso | sudo dd of=/dev/sdx
+ - pv image.iso | sudo dd of=/dev/sdx conv=sync
 * Git
 ** Change remote URL from https to ssh
  - git remote -v
