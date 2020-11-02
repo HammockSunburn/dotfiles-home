@@ -52,6 +52,8 @@
  - C-x r s <r>      copy-to-register
  - C-x r i <r>      insert-register (works for rectangles, too)
  - C-x r r <r>      copy-rectangle-to-register
+ - C-x r <SPC> <r>  record the position of point and current buffer in <r>
+ - C-x r j <r>      jump to the position and buffer saved in <r>
 ** Bookmarks
  - C-x r m RET      bookmark-set (can set w/optional name)
  - C-x r M RET      as previous, but don't overwrite
