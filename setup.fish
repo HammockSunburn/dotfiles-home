@@ -107,7 +107,8 @@ sudo dnf install -y \
          tmux-powerline \
          util-linux-user \
          valgrind \
-         vlc
+         vlc \
+         youtube-dl
 
 tldr --update
 
