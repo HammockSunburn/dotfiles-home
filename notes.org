@@ -141,3 +141,6 @@
 ** Change remote URL from https to ssh
  - git remote -v
  - git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
+* ZFS
+ - zfs list -t snapshot          list all snapshots
+ - zfs list -t snapshot -s used  list all snapshots, sort by space used
