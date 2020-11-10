@@ -95,6 +95,7 @@ sudo dnf install -y \
          ninja-build \
          openssl-devel \
          PEGTL-devel \
+         perl-FindBin \
          prettyping \
          pv \
          python3-devel \
@@ -192,6 +193,15 @@ sudo usermod -a -G dialout,lock (whoami)
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
+
+# Conan C++ package manager
+cd $HOME
+if test ! -d "$HOME/conan"
+    virtualenv "$HOME/conan"
+end
+
+$HOME/conan/bin/pip install --upgrade pip
+$HOME/conan/bin/pip install --upgrade conan
 
 # Update the locate db
 sudo updatedb
