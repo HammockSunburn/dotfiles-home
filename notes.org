@@ -46,6 +46,7 @@
  - C-C p a          projectile-find-other-file (switch between header/impl)
  - C-x f            counsel-projectile-find-file
  - C-c p s r        counsel-projectile-rg
+                    -g some_dir/** -- SearchForThis
  - C-c p c          projectile-compile-project
  - C-x `            next-error (or M-g n, or M-g M-n)
 ** Registers

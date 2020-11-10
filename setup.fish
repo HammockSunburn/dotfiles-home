@@ -98,6 +98,7 @@ sudo dnf install -y \
          prettyping \
          pv \
          python3-devel \
+         python3-virtualenv \
          R \
          ripgrep \
          SDL2-devel \
