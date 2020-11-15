@@ -138,6 +138,10 @@
  - zq foo           echo the best match, but don't cd
  - za /foo          add /foo to the database
  - zr /foo          remove /foo from the database
+** Nebulous backgrounds
+ - convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
+** Rename image with date
+ - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
 * Git
 ** Change remote URL from https to ssh
  - git remote -v
@@ -145,3 +149,6 @@
 * ZFS
  - zfs list -t snapshot          list all snapshots
  - zfs list -t snapshot -s used  list all snapshots, sort by space used
+* Haskell
+** ghci
+ - :r               (or :reload) reload the same file

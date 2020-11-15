@@ -96,6 +96,7 @@ sudo dnf install -y \
          openssl-devel \
          PEGTL-devel \
          perl-FindBin \
+         perl-Image-ExifTool \
          prettyping \
          pv \
          python3-devel \
