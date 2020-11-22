@@ -140,8 +140,17 @@
  - zr /foo          remove /foo from the database
 ** Nebulous backgrounds
  - convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
+** Create hashes/de-dup pictures
+ - fd -t f -0 | xargs -0 sha256sum > picture_hashes
+ - sort -k1,1 picture_hashes | uniq -w64 -D
 ** Rename image with date
  - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
+** Convert HEIF files
+ for f in *.HEIC
+ do
+     echo converting $f
+     heif-convert $f $f.jpg
+ done
 * Git
 ** Change remote URL from https to ssh
  - git remote -v
