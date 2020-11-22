@@ -86,6 +86,7 @@ sudo dnf install -y \
          kicad-doc \
          kitty \
          libcurl-devel \
+         libheif \
          libzstd-devel \
          lxi-tools \
          make \
