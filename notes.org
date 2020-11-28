@@ -166,6 +166,13 @@ ace-window works across both windows and frames.
   - 1 Twlightcyanide Colorscheme Black
 
 * Linux
+** Kitty
+
+  - C-S-.           increase font size
+  - C-S-,           decrease font size
+  - C-S-PgUp        scroll back
+  - C-S-PgDn        scroll forward
+
 ** Write image to USB:
  - pv image.iso | sudo dd of=/dev/sdx conv=sync
 ** zoxide
