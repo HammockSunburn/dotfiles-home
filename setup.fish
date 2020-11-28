@@ -91,7 +91,7 @@ sudo dnf install -y \
     libXaw-devel \
     libXdmcp-devel \
     libXres-devel \
-    libXscrnSaver-devel \
+    libXScrnSaver-devel \
     libXvMC-devel \
     libXv-devel \
     libXxf86vm-devel \
@@ -120,6 +120,7 @@ sudo dnf install -y \
     util-linux-user \
     valgrind \
     vlc \
+    weechat \
     xcb-util-image-devel \
     xcb-util-renderutil-devel \
     xcb-util-wm-devel \
