@@ -142,22 +142,27 @@
  - convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
 ** Create hashes/de-dup pictures
  - fd -t f -0 | xargs -0 sha256sum > picture_hashes
+ - fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
  - sort -k1,1 picture_hashes | uniq -w64 -D
 ** Rename image with date
  - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
-** Convert HEIF files
+** Convert HEIF/HEIC files
  for f in *.HEIC
  do
      echo converting $f
      heif-convert $f $f.jpg
  done
+** Delete files listed in another file
+ Assume that each line is a file, possibly with spaces in the filename
+ - xargs -d '\n' rm
 * Git
 ** Change remote URL from https to ssh
  - git remote -v
  - git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
 * ZFS
- - zfs list -t snapshot          list all snapshots
- - zfs list -t snapshot -s used  list all snapshots, sort by space used
+ - zfs list -t snapshot                   list all snapshots
+ - zfs list -o space                      list all filesystems and space taken (used, usedsnap, etc.)
+ - zfs snapshot zdata/pictures@predelete  create a new snapshot
 * Haskell
 ** ghci
  - :r               (or :reload) reload the same file
