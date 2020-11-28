@@ -1,19 +1,24 @@
 * Emacs
 ** Org
-*** Motion
+*** [[info:org#Motion][Motion]]
+
   - C-c C-n          Next heading
   - C-c C-p          Previous heading
   - C-c C-f          Next heading same level
   - C-c C-b          Previous heading same level
   - C-c C-u          Backward to higher level heading
-*** Structure Editing
+
+*** [[info:org#Structure Editing][Structure Editing]]
+
   - M-RET            Insert new heading with same level as current
   - M-S-RET          Insert new TODO entry at same level as current heading
   - M-LEFT/RIGHT     Promote/demote current heading by one level
   - M-UP/DOWN        Move subtree up or down
   - C-x n s          Narrow buffer to current subtree
   - C-x n w          Widen
-*** Plain Lists
+
+*** [[info:org:#Plain Lists][Plain Lists]]
+
   - M-RET            Insert new item at current level, with a prefix argument, force new heading
   - M-S-RET          Insert a new item with a checkbox
   - M-S-UP/DOWN      Move the item, including subitems up/down, renumber as appropriate
@@ -21,7 +26,9 @@
   - M-S-LEFT/RIGHT   Decrease/increase the indentation of an item, including subitems
   - C-c C-c          If there is a checkbox in the item line, toggle the state of the it
   - C-c -            Cycle the entire list level through the different itemize/enumerate bullets
-*** Tables
+
+*** [[info:org#Tables][Tables
+]]
   - C-c |            Convert the active region to a table
   - C-c C-c          Realign the table without moving point
   - TAB              Realign the table, move to the next field, creates a new row if necessary
@@ -37,100 +44,127 @@
   - C-c -            Insert a horizontal line above current row, w/prefix argument, creates below the current
   - C-c RET          Insert a horizontal line below current row, move point into row below that line
 
-| Name            | Age |
-|-----------------+-----|
-| Eric Crampton   |  45 |
-| Debbie Crampton |  42 |
-
 ** Projectile
+
+ [[https://docs.projectile.mx/projectile/index.html][User Manual]]
  - C-C p a          projectile-find-other-file (switch between header/impl)
  - C-x f            counsel-projectile-find-file
  - C-c p s r        counsel-projectile-rg
                     -g some_dir/** -- SearchForThis
  - C-c p c          projectile-compile-project
  - C-x `            next-error (or M-g n, or M-g M-n)
+
 ** Registers
+
  - C-x r s <r>      copy-to-register
  - C-x r i <r>      insert-register (works for rectangles, too)
  - C-x r r <r>      copy-rectangle-to-register
  - C-x r <SPC> <r>  record the position of point and current buffer in <r>
  - C-x r j <r>      jump to the position and buffer saved in <r>
+
 ** Bookmarks
+
  - C-x r m RET      bookmark-set (can set w/optional name)
  - C-x r M RET      as previous, but don't overwrite
  - C-x r b RET      bookmark-jump
  - C-x r B RET      bookmark-jump, but in other window (custom function by me)
  - C-x r l          list bookmarks
+
 ** ace-window
+
+ace-window works across both windows and frames.
+
   - M-o             ace-window
   - x               Delete window
   - m               Swap windows
   - M               Move window
   - c               Copy window
   - See aw-dispatch-alist for the list of prefix commands and keys
+
 ** Macros
+
  - F3               kmacro-start-macro-or-insert-counter
  - F4               kmacro-end-or-call-macro
  - C-u F3           Re-execute the last keyboard macro, then append keys to its definition
  - C-u C-u F3       Append keys to the last keyboard macro without re-executing it
  - C-x C-k r        Run the last keyboard macro on each line that begins in the region
-** Git
+
+** Git Gutter
+
  - C-x n            git-gutter:next-hunk
  - C-x p            git-gutter:previous-hunk
+
 ** Magit
+
  - k                Discard changes
  - z                Stash
  - F -r u           magit-pull, rebase, from origin
+
 ** Calc
+
  - 1024 2 B         log_2(1024)
+
 ** AUCTeX
+
  - C-c C-a          compile document to PDF, show PDF
+
 ** Miscellaneous Keys
+
  - C-x C-x          exchange point and mark
+
 ** TODO
+
  - hydra
  - dired-hacks
  - dired-git
  - color-theme-sanityinc-tomorrow
+
 * Ninja
 ** Show all targets
+
  - ninja -t targets all
+
 ** Show dependency graph
+
  - ninja -t graph <target_name> | dot -Tpng | icat
  - ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+
 * Color Themes
-- https://tmtheme-editor.herokuapp.com/#!/editor/theme
-- 1 Axar
-- 2 Blusted
-- 2 Dark Room Contrast
-- 2 Earthsong Contrast
-- 2 Flatland
-- 2 Freshcut Contrast
-- 1 GlitterBomb
-- 1 Gloom Contrast
-- 2 Gloom
-- 2 Grunge Contrast
-- 1 Halflife Contrast
-- 2 Halflife
-- 2 Hyperspace
-- 2 Iceberg Contrast
-- 1 Keen
-- 2 Kellys (dark)
-- 1 Kiwi
-- 1 Mellow Contrast
-- 2 Mirrr
-- 2 Oasis
-- 2 Pulsar
-- 2 Rails Envy
-- 1 Sourlick Contrast
-- 1 Tech 49
-- 1 Turnip Contrast
-- 1 Turnip
-- 1 Twlightcyanide Colorscheme Black
+
+  - https://tmtheme-editor.herokuapp.com/#!/editor/theme
+  - 1 Axar
+  - 2 Blusted
+  - 2 Dark Room Contrast
+  - 2 Earthsong Contrast
+  - 2 Flatland
+  - 2 Freshcut Contrast
+  - 1 GlitterBomb
+  - 1 Gloom Contrast
+  - 2 Gloom
+  - 2 Grunge Contrast
+  - 1 Halflife Contrast
+  - 2 Halflife
+  - 2 Hyperspace
+  - 2 Iceberg Contrast
+  - 1 Keen
+  - 2 Kellys (dark)
+  - 1 Kiwi
+  - 1 Mellow Contrast
+  - 2 Mirrr
+  - 2 Oasis
+  - 2 Pulsar
+  - 2 Rails Envy
+  - 1 Sourlick Contrast
+  - 1 Tech 49
+  - 1 Turnip Contrast
+  - 1 Turnip
+  - 1 Twlightcyanide Colorscheme Black
+
 * Linux
 ** Write image to USB:
  - pv image.iso | sudo dd of=/dev/sdx conv=sync
 ** zoxide
+
  - z foo            cd to highest ranked directory matching foo
  - z foo bar        cd to highest ranked directory matching foo and bar
  - z foo/           cd into actual directory named foo
@@ -138,31 +172,49 @@
  - zq foo           echo the best match, but don't cd
  - za /foo          add /foo to the database
  - zr /foo          remove /foo from the database
+
 ** Nebulous backgrounds
  - convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
 ** Create hashes/de-dup pictures
+
  - fd -t f -0 | xargs -0 sha256sum > picture_hashes
  - fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
  - sort -k1,1 picture_hashes | uniq -w64 -D
+
 ** Rename image with date
  - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
 ** Convert HEIF/HEIC files
- for f in *.HEIC
- do
-     echo converting $f
-     heif-convert $f $f.jpg
- done
+
+#+BEGIN_SRC shell
+  for f in *.HEIC
+  do
+      echo converting $f
+      heif-convert $f $f.jpg
+  done
+#+END_SRC
+
 ** Delete files listed in another file
+
  Assume that each line is a file, possibly with spaces in the filename
- - xargs -d '\n' rm
+
+#+BEGIN_SRC shell
+  xargs -d '\n' rm
+#+END_SRC
+
 * Git
 ** Change remote URL from https to ssh
- - git remote -v
- - git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
+
+#+BEGIN_SRC shell
+  git remote -v
+  git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
+#+END_SRC
+
 * ZFS
+
  - zfs list -t snapshot                   list all snapshots
  - zfs list -o space                      list all filesystems and space taken (used, usedsnap, etc.)
  - zfs snapshot zdata/pictures@predelete  create a new snapshot
+
 * Haskell
 ** ghci
  - :r               (or :reload) reload the same file
