@@ -1,12 +1,15 @@
 * Emacs
 ** Org
-*** [[info:org#Motion][Motion]]
+*** [[info:org#Motion][Motion]] / [[info:org#Global and local cycling][Cycling]]
 
   - C-c C-n          Next heading
   - C-c C-p          Previous heading
   - C-c C-f          Next heading same level
   - C-c C-b          Previous heading same level
   - C-c C-u          Backward to higher level heading
+
+  - TAB              org-cycle, rotate current subtree amoing folded/children/subtree
+  - C-u TAB          org-global-cycle, rotate entire buffer among the states
 
 *** [[info:org#Structure Editing][Structure Editing]]
 
@@ -93,6 +96,7 @@ ace-window works across both windows and frames.
 
  - C-x n            git-gutter:next-hunk
  - C-x p            git-gutter:previous-hunk
+ - C-x v r          git-gutter:revert-hunk
 
 ** Magit
 
@@ -118,6 +122,7 @@ ace-window works across both windows and frames.
  - dired-hacks
  - dired-git
  - color-theme-sanityinc-tomorrow
+ - EMMS (Emacs Multimedia System)
 
 * Ninja
 ** Show all targets
@@ -185,35 +190,45 @@ ace-window works across both windows and frames.
  - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
 ** Convert HEIF/HEIC files
 
-#+BEGIN_SRC shell
+#+begin_src shell
   for f in *.HEIC
   do
       echo converting $f
       heif-convert $f $f.jpg
   done
-#+END_SRC
+#+end_src
 
 ** Delete files listed in another file
 
  Assume that each line is a file, possibly with spaces in the filename
 
-#+BEGIN_SRC shell
+#+begin_src shell
   xargs -d '\n' rm
-#+END_SRC
+#+end_src
 
 * Git
 ** Change remote URL from https to ssh
 
-#+BEGIN_SRC shell
+#+begin_src shell
   git remote -v
   git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
-#+END_SRC
+#+end_src
 
 * ZFS
 
  - zfs list -t snapshot                   list all snapshots
  - zfs list -o space                      list all filesystems and space taken (used, usedsnap, etc.)
  - zfs snapshot zdata/pictures@predelete  create a new snapshot
+
+ - Snapshot sizes
+   - November 27
+     - data1: 792G
+     - video: 11.9G
+     - pictures: 71G
+   - November 28
+     - data1: 768G
+     - video: 11.9G
+     - pictures: 71G
 
 * Haskell
 ** ghci
