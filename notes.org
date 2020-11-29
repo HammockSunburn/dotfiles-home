@@ -1,3 +1,5 @@
+#+title: Hammock's Notes
+
 * Emacs
 ** Org
 *** [[info:org#Motion][Motion]] / [[info:org#Global and local cycling][Cycling]]
@@ -17,6 +19,10 @@
   - M-S-RET          Insert new TODO entry at same level as current heading
   - M-LEFT/RIGHT     Promote/demote current heading by one level
   - M-UP/DOWN        Move subtree up or down
+  - C-c @            Mark the subtree at point
+  - C-c C-x C-w      Kill subtree (remove, save in kill ring)
+  - C-c C-x M-w      Copy subtree (save in kill ring)
+  - C-c C-x C-y      Yank subtree to kill ring
   - C-x n s          Narrow buffer to current subtree
   - C-x n w          Widen
 
