@@ -210,14 +210,15 @@ emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
 
-# Conan C++ package manager
+# Virtualenv for various python tools
 cd $HOME
-if test ! -d "$HOME/conan"
-    virtualenv "$HOME/conan"
+if test ! -d "$HOME/virtualenv"
+    virtualenv "$HOME/virtualenv"
 end
 
-$HOME/conan/bin/pip install --upgrade pip
-$HOME/conan/bin/pip install --upgrade conan
+$HOME/virtualenv/bin/pip install --upgrade pip
+$HOME/virtualenv/bin/pip install --upgrade conan
+$HOME/virtualenv/bin/pip install --upgrade tinytag
 
 # Update the locate db
 sudo updatedb

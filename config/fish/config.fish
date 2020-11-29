@@ -1,5 +1,6 @@
 starship init fish | source
 zoxide init fish | source
+source $HOME/virtualenv/bin/activate.fish
 
 alias ls="exa --time-style=long-iso"
 alias ping="prettyping --nolegend"
