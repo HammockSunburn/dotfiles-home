@@ -306,6 +306,35 @@
 ;; Miscellanous key bindings.
 (global-set-key (kbd "C-c M-r") 'revert-buffer)
 
+;; My dired customizations.
+
+;; Rename selected dired files to start with the EXIF CreateDate field.
+(defun hs:rename-with-exif-date ()
+  (interactive)
+  (dolist (elt (dired-get-marked-files))
+    (when (and
+           (not (string-match "^[[:digit:]]\\{8\\}" (file-name-nondirectory elt)))
+           (file-regular-p elt))
+      (dired-do-shell-command "exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e `?`" 0 (list elt))))
+  (revert-buffer))
+
+;; Convert HEIC files into jpg
+(defun hs:convert-heic ()
+  (interactive)
+  (dolist (elt (dired-get-marked-files))
+    (when (and
+           (string-match "\\.\\(HEIC\\|heic\\)$" (file-name-nondirectory elt))
+           (file-regular-p elt))
+      (dired-do-shell-command "heif-convert `?` `?`.jpg" 0 (list elt))))
+  (revert-buffer))
+
+(defun hs:dired-mode-keys ()
+  (progn
+    (local-set-key (kbd "C-c X") 'hs:rename-with-exif-date)
+    (local-set-key (kbd "C-c C") 'hs:convert-heic)))
+
+(add-hook 'dired-mode-hook 'hs:dired-mode-keys)
+
 (defun counsel-bookmark-other-window ()
   "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
   (interactive)
