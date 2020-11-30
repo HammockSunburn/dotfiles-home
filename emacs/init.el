@@ -195,6 +195,18 @@
 (straight-use-package 'haskell-mode)
 (straight-use-package 'ghc)
 
+;; EMMS
+(straight-use-package 'emms)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Music/")
+
+;; Org mode configuration
+(add-hook 'org-load-hook
+          (lambda ()
+            (define-key org-mode-map "\M-n" 'org-next-link)
+            (define-key org-mode-map "\M-p" 'org-previous-link)))
+
 ;; Backup and auto-save configuration.
 (let ((backup-dir "~/.emacs.d/backup")
       (auto-saves-dir "~/.emacs.d/auto-saves/"))
