@@ -1,4 +1,5 @@
 #+title: Hammock's Notes
+#+author: Hammock Sunburn
 
 * Emacs
 ** Org
@@ -161,46 +162,76 @@
 
 ace-window works across both windows and frames.
 
-  - M-o             ace-window
-  - x               Delete window
-  - m               Swap windows
-  - M               Move window
-  - c               Copy window
-  - See aw-dispatch-alist for the list of prefix commands and keys
+ |-------+---------------|
+ | Keys  | Meaning       |
+ |-------+---------------|
+ | =M-o= | ace-window    |
+ | =x=   | Delete window |
+ | =m=   | Swap windows  |
+ | =M=   | Move window   |
+ | =c=   | Copy window   |
+ |-------+---------------|
 
-** Macros
+See =aw-dispatch-alist= for the list of prefix commands and keys.
 
- - F3               kmacro-start-macro-or-insert-counter
- - F4               kmacro-end-or-call-macro
- - C-u F3           Re-execute the last keyboard macro, then append keys to its definition
- - C-u C-u F3       Append keys to the last keyboard macro without re-executing it
- - C-x C-k r        Run the last keyboard macro on each line that begins in the region
+** [[info:emacs#Keyboard Macros][Keyboard Macros]]
 
-** Git Gutter
+ |--------------+------------------------------------------------------------------------|
+ | Keys         | Meaning                                                                |
+ |--------------+------------------------------------------------------------------------|
+ | =F3=         | kmacro-start-macro-or-insert-counter                                   |
+ | =F4=         | kmacro-end-or-call-macro                                               |
+ | =C-u F3=     | Re-execute the last keyboard macro, then append keys to its definition |
+ | =C-u C-u F3= | Append keys to the last keyboard macro without re-executing it         |
+ | =C-x C-k r=  | Run the last keyboard macro on each line that begins in the region     |
+ |--------------+------------------------------------------------------------------------|
 
- - C-x n            git-gutter:next-hunk
- - C-x p            git-gutter:previous-hunk
- - C-x v r          git-gutter:revert-hunk
+** [[https://github.com/emacsorphanage/git-gutter/][Git Gutter]]
 
-** Magit
+ |-----------+--------------------------|
+ | Keys      | Meaning                  |
+ |-----------+--------------------------|
+ | =C-x n=   | git-gutter:next-hunk     |
+ | =C-x p=   | git-gutter:previous-hunk |
+ | =C-x v r= | git-gutter:revert-hunk   |
+ |-----------+--------------------------|
 
- - k                Discard changes
- - z                Stash
- - F -r u           magit-pull, rebase, from origin
+** [[https://magit.vc/manual/magit/][Magit]]
+
+ |----------+---------------------------------|
+ | Keys     | Meaning                         |
+ |----------+---------------------------------|
+ | =k=      | Discard changes                 |
+ | =z=      | Stash                           |
+ | =F -r u= | magit-pull, rebase, from origin |
+ |----------+---------------------------------|
 
 ** Calc
 
- - 1024 2 B         log_2(1024)
+ |------------+------------|
+ | Keys       | Meaning    |
+ |------------+------------|
+ | =1024 2 B= | log2(1024) |
+ |------------+------------|
 
 ** AUCTeX
 
- - C-c C-a          compile document to PDF, show PDF
+ |-----------+-----------------------------------|
+ | Keys      | Meaning                           |
+ |-----------+-----------------------------------|
+ | =C-c C-a= | Compile document to PDF, show PDF |
+ |-----------+-----------------------------------|
 
 ** Miscellaneous Keys
 
- - C-x C-x          exchange point and mark
+ |-----------+-------------------------|
+ | Keys      | Meaning                 |
+ |-----------+-------------------------|
+ | =C-x C-x= | Exchange point and mark |
+ |-----------+-------------------------|
 
 ** TODO
+*** Packages to consider
 
  - hydra
  - dired-hacks
@@ -211,12 +242,16 @@ ace-window works across both windows and frames.
 * Ninja
 ** Show all targets
 
- - ninja -t targets all
+#+begin_src shell
+  ninja -t targets all
+#+end_src
 
 ** Show dependency graph
 
- - ninja -t graph <target_name> | dot -Tpng | icat
- - ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+#+begin_src shell
+  ninja -t graph <target_name> | dot -Tpng | icat
+  ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+#+end_src
 
 * Color Themes
 
@@ -252,35 +287,58 @@ ace-window works across both windows and frames.
 * Linux
 ** Kitty
 
-  - C-S-.           increase font size
-  - C-S-,           decrease font size
-  - C-S-PgUp        scroll back
-  - C-S-PgDn        scroll forward
+ |------------+--------------------|
+ | Keys       | Meaning            |
+ |------------+--------------------|
+ | =C-S-.=    | Increase font size |
+ | =C-S-,=    | Decrease font size |
+ | =C-S-PgUp= | Scroll back        |
+ | =C-S-PgDn= | Scroll forward     |
+ |------------+--------------------|
 
 ** Write image to USB:
-  - pv image.iso | sudo dd of=/dev/sdx conv=sync
-  - To compare the written image, see checkiso in config.fish
+
+#+begin_src shell
+  pv image.iso | sudo dd of=/dev/sdx conv=sync
+#+end_src
+
+To compare the written image, see checkiso in config.fish.
+
 ** zoxide
 
- - z foo            cd to highest ranked directory matching foo
- - z foo bar        cd to highest ranked directory matching foo and bar
- - z foo/           cd into actual directory named foo
- - zi foo           cd with interactive selection using fzf
- - zq foo           echo the best match, but don't cd
- - za /foo          add /foo to the database
- - zr /foo          remove /foo from the database
+ |-------------+---------------------------------------------------------|
+ | Keys        | Meaning                                                 |
+ |-------------+---------------------------------------------------------|
+ | =z foo=     | cd to highest ranked directory matching =foo=           |
+ | =z foo bar= | cd to highest ranked directory matching =foo= and =bar= |
+ | =z foo/=    | cd into actual directory named =foo=                    |
+ | =zi foo=    | cd with interactive selection using =fzf=               |
+ | =zq foo=    | Echo the best match, but don't cd                       |
+ | =za /foo=   | Add /foo to the database                                |
+ | =zr /foo=   | Remove /foo from the database                           |
+ |-------------+---------------------------------------------------------|
 
 ** Nebulous backgrounds
- - convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
-** Create hashes/de-dup pictures
 
- - fd -t f -0 | xargs -0 sha256sum > picture_hashes
- - fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
- - sort -k1,1 picture_hashes | uniq -w64 -D
+#+begin_src shell
+  convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
+#+end_src
+
+** Create hashes/de-dup pictures
+#
+#+begin_src shell
+  fd -t f -0 | xargs -0 sha256sum > picture_hashes
+  fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
+  sort -k1,1 picture_hashes | uniq -w64 -D
+#+end_src
 
 ** Rename image with date
- - exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
- - Or all files in a directory:
+
+#+begin_src shell
+  exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
+#+end_src
+
+Or all files in a directory:
 
 #+begin_src shell
   for f in *
@@ -288,8 +346,7 @@ ace-window works across both windows and frames.
   end
 #+end_src
 
- - Inside Emacs dired, mark the files and use ! to run the command:
-   exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e `?`
+Inside Emacs dired, mark the files and use my custom command =C-c X= (=hs:rename-with-exif-date=).
 
 ** Convert HEIF/HEIC files
 
@@ -301,9 +358,11 @@ ace-window works across both windows and frames.
   done
 #+end_src
 
+Inside Emacs dired, mark the files and use my custom command =C-c C= (=hs:convert-heic=).
+
 ** Delete files listed in another file
 
- Assume that each line is a file, possibly with spaces in the filename
+Assume that each line is a file, possibly with spaces in the filename
 
 #+begin_src shell
   xargs -d '\n' rm
@@ -319,9 +378,9 @@ ace-window works across both windows and frames.
 
 * ZFS
 
- - zfs list -t snapshot                   list all snapshots
- - zfs list -o space                      list all filesystems and space taken (used, usedsnap, etc.)
- - zfs snapshot zdata/pictures@predelete  create a new snapshot
+ - List all snapshots: =zfs list -t snapshot=
+ - List all filesystems and space taken, including snapshots: =zfs list -o space=
+ - Create a new snapshot: =zfs snapshot zdata/pictures@predelete=
 
  - Snapshot sizes
    - November 27
@@ -334,6 +393,10 @@ ace-window works across both windows and frames.
      - pictures: 71G
    - November 29
      - data1: 768G
+     - video: 11.9G
+     - pictures: 71.7G
+   - November 30
+     - data1: 766G
      - video: 11.9G
      - pictures: 71.7G
 
