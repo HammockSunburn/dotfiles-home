@@ -205,6 +205,11 @@ sudo systemctl start sshd.service
 # Ensure I'm in the dialout and lock groups for Arduino.
 sudo usermod -a -G dialout,lock (whoami)
 
+# Setup email and name for this repository.
+cd "$dotfiles_dir"
+git config user.name "Hammock Sunburn"
+git config user.email "hammocksunburn@gmail.com"
+
 # Synchronize any new emacs packages
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
