@@ -2,7 +2,7 @@
 #+author: Hammock Sunburn
 
 * Emacs
-** Org
+** [[info:org][Org Mode]]
 *** [[info:org#Motion][Motion]] / [[info:org#Global and local cycling][Cycling]]
 
  |-----------+-------------------------------------------------------------------|
@@ -80,6 +80,22 @@
  | =C-c C-x C-p= or =M-p= | Move backward to previous link in the buffer       |
  |------------------------+----------------------------------------------------|
 
+** Info
+
+ |-------+------------------------------|
+ | Keys  | Meaning                      |
+ |-------+------------------------------|
+ | =TAB= | Go to next link              |
+ | =l=   | Navigation: back (last node) |
+ | =r=   | Navigation: forward          |
+ | =u=   | Navigation: previous node    |
+ | =n=   | Navigation: next node        |
+ | =s=   | Search by regexp             |
+ |-------+------------------------------|
+
+ - =M-x emacs-index-search=
+ - =M-x elisp-index-search=
+
 ** [[https://docs.projectile.mx/projectile/index.html][Projectile]]
 
  |-------------+------------------------------------------------------------------|
@@ -91,6 +107,18 @@
  | =C-c p c=   | projectile-compile-project                                       |
  | =C-x `=     | next-error (or =M-g n= or =M-g M-n=)                             |
  |-------------+------------------------------------------------------------------|
+
+** [[https://oremacs.com/swiper/][Swiper]]
+
+ |-----------------+------------------------------------------------------------------------|
+ | Keys            | Meaning                                                                |
+ |-----------------+------------------------------------------------------------------------|
+ | =M-p= and =M-n= | Cycle backwards/forwards through Ivy command history                   |
+ | =M-o=           | Presents valid actions from which to choose (e.g., copy, insert)       |
+ | =C-M-j=         | Exits with the current input instead of the current candidate          |
+ | =C-'=           | Uses avy to select one of the candidates on the current candidate page |
+ |                 |                                                                        |
+ |-----------------+------------------------------------------------------------------------|
 
 ** [[info:emacs#Registers][Registers]]
 
@@ -206,7 +234,7 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  | =F -r u= | magit-pull, rebase, from origin |
  |----------+---------------------------------|
 
-** Calc
+** [[info:Calc][Calc]]
 
  |------------+------------|
  | Keys       | Meaning    |
@@ -233,7 +261,7 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
 ** TODO
 *** Packages to consider
 
- - hydra
+ - hydra, ivy-hydra
  - dired-hacks
  - dired-git
  - color-theme-sanityinc-tomorrow

@@ -28,7 +28,7 @@ I've written a [fish script](setup.fish) that automates my initial setup tasks t
 ```shell
 mkdir -p ~/.ssh && scp secret_location/id_rsa* ~/.ssh
 git clone git@github.com:HammockSunburn/dotfiles-home.git
-sudo dnf install fish
+sudo dnf install -y fish
 fish dotfiles-home/setup.fish
 # after it finishes, log out and back in to pick up the changes
 ```
