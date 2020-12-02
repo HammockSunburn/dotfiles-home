@@ -306,8 +306,13 @@
 ;; Miscellanous key bindings.
 (global-set-key (kbd "C-c M-r") 'revert-buffer)
 
-;; My dired customizations.
+;; Calc mode
+;; The default key is M-tab which is already taken by Gnome.
+(add-hook 'calc-mode-hook
+          (function (lambda ()
+                      (local-set-key (kbd "<backtab>") 'calc-roll-up))))
 
+;; My dired customizations.
 ;; Rename selected dired files to start with the EXIF CreateDate field.
 (defun hs:rename-with-exif-date ()
   (interactive)
