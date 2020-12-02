@@ -145,7 +145,6 @@
  |---------------+------------------------------------------------------------|
 
 ** [[info:emacs#Dired][Dired]]
-
 *** [[info:emacs#Flagging Many Files][Flagging Many Files]] / [[info:emacs#Marks vs Flags][Marks vs Flags]]
 
  |---------------------+----------------------------------------------------------------------|
@@ -235,12 +234,80 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  |----------+---------------------------------|
 
 ** [[info:Calc][Calc]]
+*** [[info:calc#Data Types][Data Types]]
 
- |------------+------------|
- | Keys       | Meaning    |
- |------------+------------|
- | =1024 2 B= | log2(1024) |
- |------------+------------|
+ |-----------------+------------------------|
+ | Input           | Meaning                |
+ |-----------------+------------------------|
+ | =2:3=           | Two-thirds fraction    |
+ | =2:3:4=         | Two and three-quarters |
+ | =[1,2,3]=       | 3-tuple vector         |
+ | =[[1,2],[3,4]]= | 2x2 matrix             |
+ |-----------------+------------------------|
+
+*** [[info:Calc#Stack Manipulation][Stack Manipulation]]
+
+ |---------------------+----------------------------------------------------------|
+ | Keys                | Meaning                                                  |
+ |---------------------+----------------------------------------------------------|
+ | =<RET>= or =<SPC>=  | Duplicate top object on stack                            |
+ | =C-u 2 <RET>=       | Duplicate top two objects on stack                       |
+ | =C-u - 2 <RET>=     | Duplicate second from the top object on stack            |
+ | =<BackSpc>=         | Drop top object from stack                               |
+ | =C-u 2 <BackSpc>=   | Drop top two objects from stack                          |
+ | =C-u - 2 <BackSpc>= | Drop second from the top object on stack                 |
+ | =<TAB>=             | Swap top two objects on stack                            |
+ | =C-u 3 <TAB>=       | Roll down top three elements on stack                    |
+ | =S-<TAB>=           | Roll up top three elements on stack                      |
+ | =C-u 4 S-<TAB>=     | Roll up top four elements on stack                       |
+ | =C-u - 4 <TAB>=     | Roll up until element in level 4 of the stack is deepest |
+ |---------------------+----------------------------------------------------------|
+
+*** [[info:calc#Editing Stack Entries][Editing Stack Entries]]
+
+ |------+-----------------------------------------------------------|
+ | Keys | Meaning                                                   |
+ |------+-----------------------------------------------------------|
+ | =`=  | Creates a temporary buffer for editing top-of-stack value |
+ |------+-----------------------------------------------------------|
+
+*** [[info:calc#Trail Commands][Trail Commands]]
+
+ |-----------------+-----------------------------------------------------------------|
+ | Keys            | Meaning                                                         |
+ |-----------------+-----------------------------------------------------------------|
+ | =t d=           | Toggle display of the trail on/off                              |
+ | =t i= and =t o= | Enter/exit trail                                                |
+ | =t y=           | Read selected trail value and push onto the stack               |
+ | =t n= and =t p= | Move trail pointer to next/previous value                       |
+ | =t [= and =t ]= | Move trail pointer to the beginning/end of trail                |
+ | =t s= and =t r= | Trail isearch forward/backward                                  |
+ | =t m=           | Enter a line of text into the trail, useful for later searching |
+ | =t k=           | Kills selected line from the trail, can take prefix argument    |
+ |-----------------+-----------------------------------------------------------------|
+
+*** [[info:calc#Keep Arguments][Keep Arguments]]
+
+ Using =K= will cause the next command to not remove arguments from the stack. Some
+ operators, like =sin=, can do this in their own way by using ='sin($)'=.
+ 
+ If you executed a command and decided you wanted to keep the argument(s), you can
+ use =M-<RET>= which will push the arguments back on top of the stack. Note that the
+ ordering here is different than if =K= had been used from the start.
+
+ |------+-------------------------------------------------------------------|
+ | Keys | Meaning                                                           |
+ |------+-------------------------------------------------------------------|
+ | =K=  | Keep arguments; next command will not remove arguments from stack |
+ |------+-------------------------------------------------------------------|
+
+*** Other
+
+ |-----------------+------------------------|
+ | Keys            | Meaning                |
+ |-----------------+------------------------|
+ | =1024 2 B=      | log2(1024)             |
+ |-----------------+------------------------|
 
 ** AUCTeX
 
@@ -423,7 +490,7 @@ Assume that each line is a file, possibly with spaces in the filename
      - data1: 768G
      - video: 11.9G
      - pictures: 71.7G
-   - November 30
+   - November 30, December 1
      - data1: 766G
      - video: 11.9G
      - pictures: 71.7G
