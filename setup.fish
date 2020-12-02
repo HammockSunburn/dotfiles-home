@@ -61,6 +61,7 @@ sudo dnf install -y \
     PEGTL-devel \
     R \
     SDL2-devel \
+    abcde \
     bashtop \
     bat \
     boost-devel \
@@ -81,6 +82,7 @@ sudo dnf install -y \
     gcc-c++ \
     ghc-compiler \
     gimp \
+    glyr \
     gnome-tweaks \
     gnuplot \
     hyperfine \
@@ -88,6 +90,7 @@ sudo dnf install -y \
     kicad \
     kicad-doc \
     kitty \
+    lame \
     libXaw-devel \
     libXdmcp-devel \
     libXres-devel \
@@ -111,6 +114,7 @@ sudo dnf install -y \
     prettyping \
     pv \
     python3-devel \
+    python3-eyed3 \
     python3-virtualenv \
     ripgrep \
     tbb-devel \
