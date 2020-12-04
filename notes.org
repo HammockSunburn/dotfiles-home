@@ -235,13 +235,14 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
 
 ** [[https://magit.vc/manual/magit/][Magit]]
 
- |----------+---------------------------------|
- | Keys     | Meaning                         |
- |----------+---------------------------------|
- | =k=      | Discard changes                 |
- | =z=      | Stash                           |
- | =F -r u= | magit-pull, rebase, from origin |
- |----------+---------------------------------|
+ |-------------------------+---------------------------------------------------------|
+ | Keys                    | Meaning                                                 |
+ |-------------------------+---------------------------------------------------------|
+ | =k=                     | Discard changes                                         |
+ | =z=                     | Stash                                                   |
+ | =F -r u=                | magit-pull, rebase, from origin                         |
+ | =magit-log-buffer-file= | shows commits in a separate window for the current file |
+ |-------------------------+---------------------------------------------------------|
 
 ** [[info:Calc][Calc]]
 *** [[info:calc#Data Types][Data Types]]
@@ -503,6 +504,10 @@ Assume that each line is a file, possibly with spaces in the filename
    - November 30, December 1
      - data1: 766G
      - video: 11.9G
+     - pictures: 71.7G
+   - December 3
+     - data1: 766G
+     - video: 12.3G
      - pictures: 71.7G
 
 * Haskell
