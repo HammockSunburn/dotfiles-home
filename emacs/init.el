@@ -138,7 +138,7 @@
 ;; Ivy regular expression builders
 (setq ivy-re-builders-alist
       '((ivy-switch-buffer . ivy--regex-plus)
-        (counsel-projectile-find-file . ivy--regex-fuzzy)
+        (counsel-projectile-find-file . ivy--regex-plus)
         (swiper . ivy--regex-plus)
         (t . ivy--regex-plus)))
 
@@ -163,8 +163,9 @@
 
 ;; Disable useless things.
 (menu-bar-mode -1)
-(toggle-scroll-bar -1)
 (tool-bar-mode -1)
+(when (display-graphic-p)
+  (toggle-scroll-bar -1))
 
 (setq scroll-preserve-screen-position 'always)
 
