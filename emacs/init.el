@@ -108,6 +108,7 @@
 (setq projectile-completion-system 'ivy)
 (global-set-key "\C-xf" 'projectile-find-file)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq projectile-enable-caching t)
 
 ;; Compilation
 (straight-use-package 'meson-mode)
