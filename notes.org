@@ -106,6 +106,7 @@
  | =C-c p s r= | counsel-projectile-rg (=-g some_dir/** -- SearchForThis=)        |
  | =C-c p c=   | projectile-compile-project                                       |
  | =C-x `=     | next-error (or =M-g n= or =M-g M-n=)                             |
+ | =C-c p p=   | projectile-switch-project                                        |
  |-------------+------------------------------------------------------------------|
 
 ** [[https://oremacs.com/swiper/][Swiper]]
@@ -185,7 +186,16 @@
  | =! convert `?` `?`.jpg=        | Runs =convert= once per file, specifying filename in two places |
  |--------------------------------+-----------------------------------------------------------------|
 
-** ace-window
+*** [[info:emacs#Editing the Dired Buffer][Editing the Dired Buffer]]
+
+ |-----------+--------------------------------|
+ | Keys      | Meaning                        |
+ |-----------+--------------------------------|
+ | =C-x C-q= | Enter Wdired ("writable") mode |
+ | =C-c C-c= | Finish Wdired editing          |
+ |-----------+--------------------------------|
+
+** [[https://github.com/abo-abo/ace-window][ace-window]]
 
 ace-window works across both windows and frames.
 
