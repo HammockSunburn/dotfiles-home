@@ -21,7 +21,22 @@
 ;; Colors and fonts
 (straight-use-package 'gruvbox-theme)
 (load-theme 'gruvbox-dark-hard t)
-(add-to-list 'default-frame-alist '(font . "CaskaydiaCove Nerd Font Mono 12"))
+
+;; Find the horizontal pixels per millimeter on the selected frame.
+(defun hs:x-pitch ()
+  (let* ((monitor-attr (frame-monitor-attributes (selected-frame)))
+         (x-pixels (nth 3 (assoc 'geometry monitor-attr)))
+         (x-mm (nth 1 (assoc 'mm-size monitor-attr))))
+    (/ (float x-pixels) (float x-mm))))
+
+;; Choose a font based on the horizontal pixels per millimeter.
+(defun hs:get-font ()
+  (format "CaskaydiaCove Nerd Font Mono-%d"
+          (if (> (hs:x-pitch) 3.5)
+              18
+            12)))
+
+(add-to-list 'default-frame-alist (cons 'font (hs:get-font)))
 
 ;; Ligatures.
 ;; No MELPA support yet: https://github.com/mickeynp/ligature.el
