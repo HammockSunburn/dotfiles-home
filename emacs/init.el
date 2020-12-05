@@ -23,6 +23,9 @@
 (load-theme 'gruvbox-dark-hard t)
 
 ;; Find the horizontal pixels per millimeter on the selected frame.
+;; Some displays I use:
+;; Lenovo X1 Carbon:
+;; Dell 3818DW: 3840x1600 pixels, 880x370 mm
 (defun hs:x-pitch ()
   (let* ((monitor-attr (frame-monitor-attributes (selected-frame)))
          (x-pixels (nth 3 (assoc 'geometry monitor-attr)))
@@ -106,7 +109,7 @@
       git-gutter:window-width 2)
 
 (dolist (face '(git-gutter:added git-gutter:modified git-gutter:deleted	git-gutter:unchanged))
-  (set-face-background face "background"))
+  (set-face-background face "unspecified"))
 
 (global-set-key (kbd "C-x P") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-x N") 'git-gutter:next-hunk)
