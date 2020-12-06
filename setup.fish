@@ -19,6 +19,7 @@ rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.confi
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
 ln -sf "$dotfiles_dir/tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$dotfiles_dir/abcde.conf" "$HOME/.abcde.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
