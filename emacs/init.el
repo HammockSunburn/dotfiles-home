@@ -22,22 +22,28 @@
 (straight-use-package 'gruvbox-theme)
 (load-theme 'gruvbox-dark-hard t)
 
-;; Find the horizontal pixels per millimeter on the selected frame.
-;; Some displays I use:
-;; Lenovo X1 Carbon:
-;; Dell 3818DW: 3840x1600 pixels, 880x370 mm
-(defun hs:x-pitch ()
-  (let* ((monitor-attr (frame-monitor-attributes (selected-frame)))
-         (x-pixels (nth 3 (assoc 'geometry monitor-attr)))
-         (x-mm (nth 1 (assoc 'mm-size monitor-attr))))
-    (/ (float x-pixels) (float x-mm))))
+;; Choose a font size based on screen geometry. Unfortunately, some hardware
+;; (like my Lenovo laptop) reports bogus values here. So, we have pixel sizes
+;; here for different reported display physical sizes and geometries, with a
+;; default if we don't find a match.
+(setq hs:monitors
+      '(
+        ;; ((mm_x mm_y geom_x geom_y) px)
+        ((880 370 3840 1600) 14)   ; Dell 3818DW
+        ((677 348 2560 1317) 18)   ; Lenovo Carbon X1 (VMware Workstation, non-full screen)
+        ((677 348 2560 1440) 18))) ; Lenovo Carbon X1 (VMware Workstation, full-screen)
 
-;; Choose a font based on the horizontal pixels per millimeter.
+(defun hs:font-size ()
+  (let* ((monitor-attr (frame-monitor-attributes (selected-frame)))
+         (mm-size (cdr (assoc 'mm-size monitor-attr)))
+         (geom (nthcdr 3 (assoc 'geometry monitor-attr)))
+         (value (assoc (append mm-size geom) hs:monitors)))
+    (if value
+        (car (cdr value))
+      12)))
+
 (defun hs:get-font ()
-  (format "CaskaydiaCove Nerd Font Mono-%d"
-          (if (> (hs:x-pitch) 3.5)
-              18
-            12)))
+  (format "CaskaydiaCove Nerd Font Mono-%d" (hs:font-size)))
 
 (add-to-list 'default-frame-alist (cons 'font (hs:get-font)))
 
@@ -283,7 +289,6 @@
   (c-set-offset 'defun-block-intro 4)
   (c-set-offset 'case-label 4)
   (c-set-offset 'access-label -4)
-  (show-paren-mode t)
   (setq truncate-lines nil)
   (setq fill-column 120)
   )
@@ -293,6 +298,10 @@
 ;; Treat .h and .ipp files as C++.
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ipp$" . c++-mode))
+
+;; Show parentheses everywhere.
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 ;; Smart clang formatting
 (straight-use-package 'clang-format)
