@@ -40,7 +40,7 @@
          (value (assoc (append mm-size geom) hs:monitors)))
     (if value
         (car (cdr value))
-      12)))
+      12))) ; default
 
 (defun hs:get-font ()
   (format "CaskaydiaCove Nerd Font Mono-%d" (hs:font-size)))

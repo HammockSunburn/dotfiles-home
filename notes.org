@@ -312,6 +312,18 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  | =K=  | Keep arguments; next command will not remove arguments from stack |
  |------+-------------------------------------------------------------------|
 
+*** [[info:calc#Units][Units]]
+
+ |--------------+------------------------------------------------------|
+ | Keys         | Meaning                                              |
+ |--------------+------------------------------------------------------|
+ | =u v=        | Display the units table                              |
+ | =u g <unit>= | Get unit definition (e.g., in -> 2.54 cm)            |
+ | =u e=        | Explain units of the expression on the stack         |
+ | =u c <unit>= | Convert units of expression on the stack to =unit=   |
+ | =u d=        | Define unit based on the top expression on the stack |
+ |--------------+------------------------------------------------------|
+
 *** Other
 
  |-----------------+------------------------|
