@@ -403,6 +403,14 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
   - 1 Twlightcyanide Colorscheme Black
 
 * Linux
+** Gnome
+
+Dump all dconf settings:
+
+#+begin_src shell
+dconf dump /
+#+end_src
+
 ** Kitty
 
  |------------+--------------------|
@@ -519,6 +527,10 @@ Assume that each line is a file, possibly with spaces in the filename
      - pictures: 71.7G
    - December 3
      - data1: 766G
+     - video: 12.3G
+     - pictures: 71.7G
+   - December 6
+     - data1: 610G
      - video: 12.3G
      - pictures: 71.7G
 
