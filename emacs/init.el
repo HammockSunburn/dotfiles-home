@@ -424,4 +424,11 @@
  '(diredfl-read-priv ((t (:background "dark" :foreground "#98971a"))))
  '(diredfl-symlink ((t (:background "dark" :foreground "#b8bb26"))))
  '(diredfl-tagged-autofile-name ((t (:background "dark" :foreground "#ebdbb2"))))
- '(diredfl-write-priv ((t (:background "dark" :foreground "#cc241d")))))
+ '(diredfl-write-priv ((t (:background "dark" :foreground "#cc241d"))))
+ '(ivy-current-match ((t (:extend t :background "#458588" :foreground "#ffffc8" :underline t)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
