@@ -356,6 +356,7 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  - dired-git
  - color-theme-sanityinc-tomorrow
  - EMMS (Emacs Multimedia System)
+ - Topgrade
 
 * Ninja
 ** Show all targets
@@ -532,6 +533,10 @@ Assume that each line is a file, possibly with spaces in the filename
    - December 6
      - data1: 610G
      - video: 12.3G
+     - pictures: 71.7G
+   - December 7
+     - data1: 40.9G
+     - video: 13.9G
      - pictures: 71.7G
 
 * Haskell

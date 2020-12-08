@@ -14,7 +14,7 @@ end
 
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
-mkdir -p "$HOME/.config" "$HOME/.emacs.d"
+mkdir -p "$HOME/.config" "$HOME/.emacs.d" "$HOME/.doom.d"
 rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
@@ -24,6 +24,11 @@ ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
+ln -sf "$dotfiles_dir/emacs/doom-emacs/config.el" "$HOME/.doom.d"
+ln -sf "$dotfiles_dir/emacs/doom-emacs/custom.el" "$HOME/.doom.d"
+ln -sf "$dotfiles_dir/emacs/doom-emacs/init.el" "$HOME/.doom.d"
+ln -sf "$dotfiles_dir/emacs/doom-emacs/packages.el" "$HOME/.doom.d"
+ln -sf "$dotfiles_dir/emacs/emacs-profiles.el" "$HOME/.emacs-profiles.el"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
 mkdir -p "$HOME/.ssh"
@@ -215,10 +220,34 @@ cd "$dotfiles_dir"
 git config user.name "Hammock Sunburn"
 git config user.email "hammocksunburn@gmail.com"
 
+# Setup/pull chemacs.
+if test ! -d "$HOME/chemacs"
+    cd $HOME
+    git clone https://github.com/plexus/chemacs.git
+    cd $HOME/chemacs
+    ./install.sh
+else
+    cd $HOME/chemacs
+    git pull --rebase
+end
+
+# Setup/pull doom-emacs.
+mkdir -p "$HOME/emacs"
+if test ! -d "$HOME/emacs/doom-emacs"
+    cd "$HOME/emacs"
+    git clone https://github.com/hlissner/doom-emacs
+    doom-emacs/bin/doom install -y
+else
+    cd "$HOME/emacs/doom-emacs"
+    git pull --rebase
+end
+
 # Synchronize any new emacs packages
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
+
+
 
 # Virtualenv for various python tools
 cd $HOME
