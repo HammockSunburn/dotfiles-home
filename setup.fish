@@ -28,6 +28,7 @@ ln -sf "$dotfiles_dir/emacs/doom-emacs/config.el" "$HOME/.doom.d"
 ln -sf "$dotfiles_dir/emacs/doom-emacs/custom.el" "$HOME/.doom.d"
 ln -sf "$dotfiles_dir/emacs/doom-emacs/init.el" "$HOME/.doom.d"
 ln -sf "$dotfiles_dir/emacs/doom-emacs/packages.el" "$HOME/.doom.d"
+ln -sf "$dotfiles_dir/emacs/spacemacs/spacemacs" "$HOME/.spacemacs"
 ln -sf "$dotfiles_dir/emacs/emacs-profiles.el" "$HOME/.emacs-profiles.el"
 rm -rf "$HOME/.config/kitty"; and ln -s "$dotfiles_dir/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"; and ln -s "$dotfiles_dir/config/broot" "$HOME/.config"
@@ -242,12 +243,19 @@ else
     git pull --rebase
 end
 
+# Setup/pull spacemacs.
+if test ! -d "$HOME/emacs/spacemacs"
+    cd "$HOME/emacs"
+    git clone https://github.com/syl20bnr/spacemacs
+else
+    cd "$HOME/emacs/spacemacs"
+    git pull --rebase
+end
+
 # Synchronize any new emacs packages
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
-
-
 
 # Virtualenv for various python tools
 cd $HOME

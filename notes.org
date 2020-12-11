@@ -349,6 +349,10 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  |-----------+-------------------------|
 
 ** TODO
+*** Things to figure out
+
+ - Thin git gutter fringe like Doom Emacs
+
 *** Packages to consider
 
  - hydra, ivy-hydra
@@ -537,6 +541,10 @@ Assume that each line is a file, possibly with spaces in the filename
    - December 7
      - data1: 40.9G
      - video: 13.9G
+     - pictures: 71.7G
+   - December 8
+     - data1: 40.9G
+     - video: 7.65G
      - pictures: 71.7G
 
 * Haskell
