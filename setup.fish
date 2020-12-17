@@ -92,6 +92,8 @@ sudo dnf install -y \
     glyr \
     gnome-tweaks \
     gnuplot \
+    gtk4 \
+    gtk4-devel \
     hyperfine \
     info \
     kicad \
