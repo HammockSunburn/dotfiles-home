@@ -29,7 +29,7 @@
 (setq hs:monitors
       '(
         ;; ((mm_x mm_y geom_x geom_y) px)
-        ((880 370 3840 1600) 14)   ; Dell 3818DW
+        ((880 370 3840 1600) 12)   ; Dell 3818DW
         ((677 348 2560 1317) 18)   ; Lenovo Carbon X1 (VMware Workstation, non-full screen)
         ((677 348 2560 1440) 18))) ; Lenovo Carbon X1 (VMware Workstation, full-screen)
 
@@ -209,6 +209,10 @@
 (straight-use-package 'deadgrep)
 (straight-use-package 'web-mode)
 (straight-use-package 'fish-mode)
+
+;; ace-jump-mode and keybindings
+(straight-use-package 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; Markdown
 (straight-use-package 'markdown-mode)
