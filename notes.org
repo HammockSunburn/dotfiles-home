@@ -408,6 +408,14 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
   - 1 Twlightcyanide Colorscheme Black
 
 * Linux
+** Fedora
+
+To set the hostname:
+
+#+begin_src shell
+sudo hostnamectl set-hostname new-name
+#+end_src
+
 ** Gnome
 
 Dump all dconf settings:
@@ -497,6 +505,56 @@ Assume that each line is a file, possibly with spaces in the filename
 
 #+begin_src shell
   xargs -d '\n' rm
+#+end_src
+
+** Podman
+
+#+begin_src shell
+podman images           # show images
+podman volume ls        # list volumes
+podman volume prune     # prune all unused volumes
+podman rmi -a           # remove all images
+#+end_src
+
+If trying to remove an image with =podman rmi= doesn't work, you may
+need to delete things you've created with buildah:
+
+#+begin_src shell
+buildah rm -a
+buildah rmi -a
+#+end_src
+
+To see inside a container's filesystem from outside:
+
+#+begin_src shell
+podman inspect <container_id>
+# Find the "Source" under "Mounts"
+podman unshare
+cd <Mounts/Source>
+#+end_src
+
+PostgreSQL:
+
+#+begin_src shell
+podman run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         -d \
+         docker.io/library/postgres:13.1
+podman exec -it postgres psql -U postgres appdb
+podman exec postgres pg_dump -U postgres -F c appdb > backup_file
+podman exec -i postgres pg_restore -U postgres --clean -d appdb < backup_file
+
+podman exec -i postgres pg_dumpall -U postgres > backup-pgdumpall
+
+# Run using local directory:
+podman run \
+    --name postgres \
+    --security-opt label=disable \
+    -e POSTGRES_PASSWORD=postgres \
+    -v $HOME/containers/postgres:/var/lib/postgresql/data \
+    -d docker.io/library/postgres:13.1
 #+end_src
 
 * Git
