@@ -16,7 +16,7 @@ My primary toolset is:
   * Markdown All in One
   * markdownlint
   * rust-analyzer
-* Neovim
+* GNU Emacs and Neovim
 * tmux
 * Kitty terminal
 * Rust
@@ -37,11 +37,13 @@ The `setup.fish` script does things such as:
 
 * Install non-Fedora DNF repositories
 * Install packages not included in the default Fedora workstation setup
+* Install my collection of GNU Emacs packages
 * Install `vim-plug` and `PlugInstall` my neovim plugins
 * Use `dconf` to configure Gnome with my preferences
+* Set up a Python `virtualenv` with a collection of tools I use
 * Link files in this repository, like my `tmux` configuration, into their correct locations
 * Install VS Code extensions I use
-* Install `rustup` and a various Rust programs that aren't yet packaged for Fedora
+* Install `rustup` and build various Rust programs that aren't yet packaged for Fedora
 * Enable the ssh server
 * Symlink various configuration files into `$HOME` or `$HOME/.config` as needed
 * Add me to the appropriate groups from Arduino development
