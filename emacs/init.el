@@ -221,6 +221,9 @@
 ;; Markdown
 (straight-use-package 'markdown-mode)
 
+;; YAML
+(straight-use-package 'yaml-mode)
+
 ;; Ace-window
 (straight-use-package 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)

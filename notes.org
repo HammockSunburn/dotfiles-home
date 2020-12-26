@@ -438,7 +438,7 @@ dconf dump /
 ** Write image to USB:
 
 #+begin_src shell
-  pv image.iso | sudo dd of=/dev/sdx conv=sync
+  pv image.iso | sudo dd of=/dev/sdx conv=fsync
 #+end_src
 
 To compare the written image, see checkiso in config.fish.
@@ -556,6 +556,64 @@ podman run \
     -v $HOME/containers/postgres:/var/lib/postgresql/data \
     -d docker.io/library/postgres:13.1
 #+end_src
+
+** Docker
+
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         -d \
+         postgres
+
+sudo docker exec -it postgres bash
+echo testing > /testing.txt
+exit
+sudo docker exec -it postgres createdb -U postgres app
+sudo docker exec -it postgres psql -U postgres app
+create table foo (x int);
+exit
+sudo docker stop postgres
+sudo docker commit postgres postgres-backup
+sudo docker save postgres-backup | gzip > postgres-backup.tar.gz
+
+---
+
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         --mount source=postgres-data,target=/var/lib/postgresql/data \
+         -d \
+         postgres:13.1
+sudo docker exec -it postgres bash
+echo testing > /testing.txt
+exit
+sudo docker exec -it postgres createdb -U postgres app
+sudo docker exec -it postgres psql -U postgres app
+create table foo (x int);
+exit
+sudo docker stop postgres
+sudo docker commit postgres postgres:13.1-YYYYMMDD
+sudo docker save postgres:13.1-YYYYMMDD | gzip > postgres-13.1:YYYYMMDD.tar.gz
+sudo docker run --rm --volumes-from postgres -v $(pwd):/backups ubuntu:latest tar cvzf /backups/pgdata.tar.gz /var/lib/postgresql/data
+
+sudo docker run --rm -it -v $(pwd):/backups --mount source=postgres-data2,target=/var/lib/postgresql/data --name temp-restore ubuntu:latest tar xvzf /backups/pgdata.tar.gz
+gunzip -c postgres-13.1:20201223.tar.gz | sudo docker load
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres2 \
+         -p 5432:5432 \
+         --mount source=postgres-data2,target=/var/lib/postgresql/data \
+         -d \
+         postgres:13.1-20201223
+
+sudo docker exec -it postgres2 psql -U postgres app
+select * from foo;
+exit
+sudo docker exec -it postgres2 /bin/bash
+cat testing.txt
+exit
 
 * Git
 ** Change remote URL from https to ssh

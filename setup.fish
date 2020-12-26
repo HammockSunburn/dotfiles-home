@@ -69,6 +69,7 @@ sudo dnf install -y \
     R \
     SDL2-devel \
     abcde \
+    ansible \
     bashtop \
     bat \
     boost-devel \
