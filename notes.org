@@ -416,6 +416,14 @@ To set the hostname:
 sudo hostnamectl set-hostname new-name
 #+end_src
 
+** Fish
+
+To substitute =pkg_config= in a shell command, you have to split on spaces unlike in bash:
+
+#+begin_src shell
+gcc -o foo (pkg-config --cflags --libs gtk4 | string split -n " ") *.c
+#+end_src
+
 ** Gnome
 
 Dump all dconf settings:
