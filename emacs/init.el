@@ -134,6 +134,15 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-enable-caching t)
 
+;; Projectile can't switch to _inline.h from .h, unfortunately.
+(defvar my-cpp-other-file-alist
+  '(("\\.cpp\\'" (".h"))
+    ("_inline\\.h\\'" (".cpp"))
+    ("\\.h\\'" ("_inline.h"))))
+
+(setq-default ff-other-file-alist 'my-cpp-other-file-alist)
+(define-key global-map "\C-c\C-f" 'ff-find-other-file)
+
 ;; Compilation
 (straight-use-package 'meson-mode)
 
