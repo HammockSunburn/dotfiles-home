@@ -18,6 +18,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Simpler key bindings.
+(straight-use-package 'bind-key)
+
 ;; Colors and fonts
 (straight-use-package 'gruvbox-theme)
 (load-theme 'gruvbox-dark-hard t)
@@ -98,7 +101,7 @@
 
 ;; Magit and vc configuration
 (straight-use-package 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
+(bind-key "C-x g" #'magit-status)
 (setq vc-follow-symlinks t)
 (straight-use-package 'git-timemachine)
 (straight-use-package 'gitignore-mode)
@@ -117,10 +120,11 @@
 (dolist (face '(git-gutter:added git-gutter:modified git-gutter:deleted	git-gutter:unchanged))
   (set-face-background face "unspecified"))
 
-(global-set-key (kbd "C-x P") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x N") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
-(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+(bind-keys
+ ("C-x P"   . git-gutter:previous-hunk)
+ ("C-x N"   . git-gutter:next-hunk)
+ ("C-x v s" . git-gutter:stage-hunk)
+ ("C-x v r" . git-gutter:revert-hunk))
 
 ;; Spaceline
 (straight-use-package 'spaceline)
@@ -129,9 +133,8 @@
 ;; Projectile
 (straight-use-package 'projectile)
 (projectile-mode +1)
-(setq projectile-completion-system 'ivy)
-(global-set-key "\C-xf" 'projectile-find-file)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(bind-key "C-x f" #'projectile-find-file)
+(bind-key "C-c p" #'projectile-command-map projectile-mode-map)
 (setq projectile-enable-caching t)
 
 ;; Projectile can't switch to _inline.h from .h, unfortunately.
@@ -141,7 +144,7 @@
     ("\\.h\\'" ("_inline.h"))))
 
 (setq-default ff-other-file-alist 'my-cpp-other-file-alist)
-(define-key global-map "\C-c\C-f" 'ff-find-other-file)
+(bind-key "C-c C-f" #'ff-find-other-file)
 
 ;; Compilation
 (straight-use-package 'meson-mode)
@@ -157,42 +160,56 @@
 
 (add-hook 'c-mode-common-hook 'yas-c-mode-common-hook)
 
-;; Ivy/Counsel/Swiper
-(straight-use-package 'ivy)
-(straight-use-package 'counsel)
-(straight-use-package 'counsel-projectile)
-(straight-use-package 'swiper)
+;; Selectrum/Prescient
+(straight-use-package 'prescient)
+(straight-use-package 'selectrum)
+(selectrum-mode +1)
+(straight-use-package 'selectrum-prescient)
+(selectrum-prescient-mode +1)
 
-(ivy-mode)
-(counsel-mode)
-(counsel-projectile-mode)
-(global-set-key (kbd "C-s") 'swiper)
+;; Consult
+(straight-use-package 'consult)
+(setq consult-project-root-function #'projectile-project-root)
 
-;; Ivy regular expression builders
-(setq ivy-re-builders-alist
-      '((ivy-switch-buffer . ivy--regex-plus)
-        (counsel-projectile-find-file . ivy--regex-plus)
-        (swiper . ivy--regex-plus)
-        (t . ivy--regex-plus)))
+(defun my-fdfind (&optional dir)
+  (interactive "P")
+  (let ((consult-find-command '("fd" "--color=never" "--full-path")))
+    (consult-find dir)))
 
-;; Make counsel-find-file minibuffer window 1/3 the height of the frame.
-(add-to-list 'ivy-height-alist
-             (cons 'counsel-find-file
-                   (lambda (_caller)
-                     (/ (frame-height) 3))))
+(fset 'multi-occur #'consult-multi-occur)
+(setq consult-narrow-key (kbd "C-+"))
 
-;; Make swiper minibuffer window 1/3 the height of the frame, too.
-(add-to-list 'ivy-height-alist
-             (cons 'swiper
-                   (lambda (_caller)
-                     (/ (frame-height) 3))))
+(bind-keys
+ ("C-x r b" . consult-bookmark)
+ ("C-x b"   . consult-buffer)
+ ("C-x 4 b" . consult-buffer-other-window)
+ ("C-x 5 b" . consult-buffer-other-frame)
+ ("C-c C-k" . consult-focus-lines)
+ ("M-g k"   . consult-global-mark)
+ ("M-g M-g" . consult-goto-line)
+ ("M-g l"   . consult-line)
+ ("M-g m"   . consult-mark)
+ ("M-s m"   . consult-multi-occur)
+ ("M-g o"   . consult-outline)
+ ("C-c r"   . consult-register)
+ ("M-g r"   . consult-ripgrep)
+ ("M-y"     . consult-yank-pop))
 
-;; Make counsel-rg even larger at 1/2 the height of the frame.
-(add-to-list 'ivy-height-alist
-             (cons 'counsel-rg
-                   (lambda (_caller)
-                     (/ (frame-height) 2))))
+;; Embark (debating usefulness of this)
+(straight-use-package 'embark)
+(straight-use-package 'embark-consult)
+(add-hook 'embark-collect-mode #'embark-consult-preview-minor-mode)
+(bind-key "C-S-a" #'embark-act)
 
+;; Marginalia
+(straight-use-package 'marginalia)
+(bind-key "C-M-a" #'marginalia-cycle minibuffer-local-map)
+(marginalia-mode +1)
+
+(advice-add #'marginalia-cycle :after
+            (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit))))
+
+(setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
 
 ;; Disable useless things.
 (menu-bar-mode -1)
@@ -203,7 +220,7 @@
 (setq scroll-preserve-screen-position 'always)
 
 (straight-use-package 'goto-last-change)
-(global-set-key (kbd "C-x C-\\") 'goto-last-change)
+(bind-key "C-c C-\\" #'goto-last-change)
 
 ;; Don't show the startup screen and show only minimal text in the scratch buffer.
 (setq inhibit-startup-screen t
@@ -221,11 +238,12 @@
 
 ;; avy
 (straight-use-package 'avy)
-(global-set-key (kbd "C-:") 'avy-goto-char)
-(global-set-key (kbd "C-'") 'avy-goto-char-timer)
-(global-set-key (kbd "M-g f") 'avy-goto-line)
-(global-set-key (kbd "M-g w") 'avy-goto-word-1)
-(global-set-key (kbd "M-g e") 'avy-goto-word-0)
+(bind-keys
+ ("C-:"   . avy-goto-char)
+ ("C-'"   . avy-goto-char-timer)
+ ("M-g f" . avy-goto-line)
+ ("M-g w" . avy-goto-word-1)
+ ("M-g e" . avy-goto-word-0))
 
 ;; Markdown
 (straight-use-package 'markdown-mode)
@@ -235,7 +253,7 @@
 
 ;; Ace-window
 (straight-use-package 'ace-window)
-(global-set-key (kbd "M-o") 'ace-window)
+(bind-key "M-o" #'ace-window)
 
 ;; Haskell
 (straight-use-package 'haskell-mode)
@@ -273,8 +291,6 @@
 
 ;; Modes
 (straight-use-package 'blackout)
-(blackout 'counsel-mode)
-(blackout 'ivy-mode)
 (blackout 'projectile-mode "🚀")
 (blackout 'git-gutter-mode "🔃")
 (blackout 'eldoc-mode "📖")
@@ -353,13 +369,12 @@
 (which-key-mode)
 
 ;; Miscellanous key bindings.
-(global-set-key (kbd "C-c M-r") 'revert-buffer)
+(bind-key "C-c M-r" #'revert-buffer)
 
 ;; Calc mode
 ;; The default key is M-tab which is already taken by Gnome.
-(add-hook 'calc-mode-hook
-          (function (lambda ()
-                      (local-set-key (kbd "<backtab>") 'calc-roll-up))))
+(with-eval-after-load 'calc
+  (bind-key "<backtab>" #'calc-roll-up calc-mode-map))
 
 ;; My dired customizations.
 ;; Rename selected dired files to start with the EXIF CreateDate field.
@@ -382,34 +397,32 @@
       (dired-do-shell-command "heif-convert `?` `?`.jpg" 0 (list elt))))
   (revert-buffer))
 
-(defun hs:dired-mode-keys ()
-  (progn
-    (local-set-key (kbd "C-c X") 'hs:rename-with-exif-date)
-    (local-set-key (kbd "C-c C") 'hs:convert-heic)))
+(with-eval-after-load 'dired
+  (bind-keys :map dired-mode-map
+             ("C-c X" . hs:rename-with-exif-date)
+             ("C-c C" . hs:convert-heic)))
 
-(add-hook 'dired-mode-hook 'hs:dired-mode-keys)
-
-(defun counsel-bookmark-other-window ()
-  "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
-  (interactive)
-  (require 'bookmark)
-  (ivy-read "Create or jump to bookmark in other window: "
-            (bookmark-all-names)
-            :history 'bookmark-history
-            :action (lambda (x)
-                      (cond ((and counsel-bookmark-avoid-dired
-                                  (member x (bookmark-all-names))
-                                  (file-directory-p (bookmark-location x)))
-                             (with-ivy-window
-                               (let ((default-directory (bookmark-location x)))
-                                 (counsel-find-file))))
-                            ((member x (bookmark-all-names))
-                             (with-ivy-window
-                               (bookmark-jump-other-window x)))
-                            (t
-                             (bookmark-set x))))
-            :caller 'counsel-bookmark))
-(global-set-key (kbd "C-x r B") 'counsel-bookmark-other-window)
+;;(defun counsel-bookmark-other-window ()
+;;  "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
+;;  (interactive)
+;;  (require 'bookmark)
+;;  (ivy-read "Create or jump to bookmark in other window: "
+;;            (bookmark-all-names)
+;;            :history 'bookmark-history
+;;            :action (lambda (x)
+;;                      (cond ((and counsel-bookmark-avoid-dired
+;;                                  (member x (bookmark-all-names))
+;;                                  (file-directory-p (bookmark-location x)))
+;;                             (with-ivy-window
+;;                               (let ((default-directory (bookmark-location x)))
+;;                                 (counsel-find-file))))
+;;                            ((member x (bookmark-all-names))
+;;                             (with-ivy-window
+;;                               (bookmark-jump-other-window x)))
+;;                            (t
+;;                             (bookmark-set x))))
+;;            :caller 'counsel-bookmark))
+;;(global-set-key (kbd "C-x r B") 'counsel-bookmark-other-window)
 
 ;; More colors in dired.
 (straight-use-package 'diredfl)
