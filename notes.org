@@ -112,6 +112,26 @@
 When inside =counsel-projectile-rg=, pressing =M-o= will allow copying, inserting,
 or switching projects.
 
+** Selectrum/Prescient
+
+ When inside a Selectrum buffer, you can refine the search results. For example,
+ with =consult-ripgrep=, you can enter: =#someterm#foo bar=. Ripgrep is given the
+ string of =someterm= and Selectrum will further filter to only include lines
+ which also have both =foo= and =bar=.
+ 
+ Further, using the following, you can toggle fuzzy mode and do other tricks:
+ 
+ |---------+-----------------------------------------|
+ | Keys    | Meaning                                 |
+ |---------+-----------------------------------------|
+ | =M-s a= | =selectrum-prescient-toggle-anchored=   |
+ | =M-s f= | =selectrum-prescient-toggle-fuzzy=      |
+ | =M-s i= | =selectrum-prescient-toggle-initialism= |
+ | =M-s l= | =selectrum-prescient-toggle-literal=    |
+ | =M-s p= | =selectrum-prescient-toggle-prefix=     |
+ | =M-s r= | =selectrum-prescient-toggle-regexp=     |
+ |---------+-----------------------------------------|
+
 ** [[https://oremacs.com/swiper/][Swiper]]
 
  |-----------------+------------------------------------------------------------------------|
