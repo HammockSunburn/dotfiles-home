@@ -109,6 +109,9 @@
  | =C-c p p=   | projectile-switch-project                                        |
  |-------------+------------------------------------------------------------------|
 
+When inside =counsel-projectile-rg=, pressing =M-o= will allow copying, inserting,
+or switching projects.
+
 ** [[https://oremacs.com/swiper/][Swiper]]
 
  |-----------------+------------------------------------------------------------------------|
