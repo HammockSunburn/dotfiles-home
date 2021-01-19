@@ -133,6 +133,7 @@
 ;; Projectile
 (straight-use-package 'projectile)
 (projectile-mode +1)
+(bind-key "C-x f" #'projectile-find-file)
 (bind-key "C-c p" #'projectile-command-map projectile-mode-map)
 (setq projectile-enable-caching t)
 
@@ -141,10 +142,6 @@
   '(("\\.cpp\\'" (".h"))
     ("_inline\\.h\\'" (".cpp"))
     ("\\.h\\'" ("_inline.h"))))
-
-;; fzf
-(straight-use-package 'fzf)
-(bind-key "C-x f" #'fzf)
 
 (setq-default ff-other-file-alist 'my-cpp-other-file-alist)
 (bind-key "C-c C-f" #'ff-find-other-file)
