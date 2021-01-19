@@ -8,7 +8,11 @@ alias icat="kitty +kitten icat --align=left"
 alias conan="$HOME/conan/bin/conan"
 
 if test -e /opt/boost
-   set -x BOOST_ROOT /opt/boost 
+    set -x BOOST_ROOT /opt/boost 
+end
+
+if test -e $HOME/software/emacs
+    set -gx PATH $HOME/software/emacs/bin $PATH
 end
 
 function checkiso -d "Compare an ISO file to what's been written to a USB drive"
