@@ -9,4 +9,5 @@
     "C_Cpp.updateChannel": "Insiders",
     "C_Cpp.default.cppStandard": "c++17",
     "cmake.configureOnOpen": true,
+    "window.zoomLevel": -1,
 }

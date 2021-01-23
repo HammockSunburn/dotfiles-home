@@ -1,0 +1,39 @@
+theme = "gruvbox-dark"
+icons = "awesome"
+
+[[block]]
+block = "music"
+player = "rhythmbox"
+buttons = ["play", "prev", "next"]
+max_width = 40
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization}% {frequency}GHz"
+warning = 101
+critical = 101
+info = 80
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}|{5m}|{15m}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "uptime"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %m/%d %R"
+

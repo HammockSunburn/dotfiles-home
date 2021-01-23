@@ -86,6 +86,7 @@ sudo dnf install -y \
     fd-find \
     fish \
     fmt-devel \
+    fontawesome-fonts \
     fzf \
     gcc-c++ \
     ghc-compiler \
@@ -96,6 +97,7 @@ sudo dnf install -y \
     gtk4 \
     gtk4-devel \
     hyperfine \
+    i3 \
     info \
     kicad \
     kicad-doc \
@@ -211,6 +213,9 @@ cargo install \
           tokei \
           xsv \
           zoxide
+
+cargo install \
+    --git https://github.com/greshake/i3status-rust i3status-rs
 
 # Enable sshd service
 sudo systemctl enable sshd.service
