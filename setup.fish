@@ -14,7 +14,7 @@ end
 
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
-mkdir -p "$HOME/.config" "$HOME/.emacs.d" "$HOME/.doom.d"
+mkdir -p "$HOME/.config" "$HOME/.config/i3" "$HOME/.emacs.d" "$HOME/.doom.d"
 rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
@@ -23,6 +23,8 @@ ln -sf "$dotfiles_dir/abcde.conf" "$HOME/.abcde.conf"
 ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
+ln -sf "$dotfiles_dir/config/i3/config" "$HOME/.config/i3/config"
+ln -sf "$dotfiles_dir/config/mpd/mpd.conf" "$HOME/.config/mpd/"
 ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
 ln -sf "$dotfiles_dir/emacs/doom-emacs/config.el" "$HOME/.doom.d"
 ln -sf "$dotfiles_dir/emacs/doom-emacs/custom.el" "$HOME/.doom.d"
@@ -117,7 +119,9 @@ sudo dnf install -y \
     lxi-tools \
     make \
     meson \
+    mpdris2 \
     musl-gcc \
+    ncmpcpp \
     neovim \
     ninja-build \
     openssl-devel \
@@ -220,6 +224,8 @@ cargo install \
 # Enable sshd service
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
+systemctl --user enable mpDris2
+systemctl --user start mpDris2
 
 # Ensure I'm in the dialout and lock groups for Arduino.
 sudo usermod -a -G dialout,lock (whoami)

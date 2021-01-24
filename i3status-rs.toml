@@ -3,7 +3,7 @@ icons = "awesome"
 
 [[block]]
 block = "music"
-player = "rhythmbox"
+player = "mpd"
 buttons = ["play", "prev", "next"]
 max_width = 40
 

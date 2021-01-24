@@ -265,6 +265,10 @@
 (emms-default-players)
 (setq emms-source-file-default-directory "~/Music/")
 
+;; MPD
+(straight-use-package 'mpdel)
+(require 'mpdel)
+
 ;; Org mode configuration
 (add-hook 'org-load-hook
           (lambda ()
