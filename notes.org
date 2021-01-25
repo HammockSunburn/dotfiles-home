@@ -655,6 +655,136 @@ set DISPLAY :5
 i3 &
 #+end_src
 
+* ncmpcpp
+
+** Movement
+
+|-------------+---------------------------------------|
+| Key         | Action                                |
+|-------------+---------------------------------------|
+| =[=         | Move cursor up one album              |
+| =]=         | Move cursor down one album            |
+| ={=         | Move cursor up one artist             |
+| =}=         | Move cursor down one artist           |
+| =Tab=       | Switch to next screen in sequence     |
+| =Shift-Tab= | Switch to previous screen in sequence |
+| =1=         | Show playlist                         |
+| =2=         | Show browser                          |
+| =3=         | Show search engine                    |
+| =4=         | Show media library                    |
+| =5=         | Show playlist editor                  |
+| =6=         | Show tag editor                       |
+| =7=         | Show outputs                          |
+| =8=         | Show music visualizer                 |
+| =\==        | Show clock                            |
+| =@=         | Show server info                      |
+|-------------+---------------------------------------|
+
+** Global
+
+|----------------+--------------------------------------------------------|
+| Key            | Action                                                 |
+|----------------+--------------------------------------------------------|
+| =s=            | Stop                                                   |
+| =p=            | Pause/Play                                             |
+| =>=            | Next track                                             |
+| =<=            | Previous track                                         |
+| =Backspace=    | Replay playing song                                    |
+| =f=            | Seek forward in playing song                           |
+| =b=            | Seek backward in playing son                           |
+| =-= or =Left=  | Decrease volume by 2%                                  |
+| =+= or =Right= | Increase volume by 2%                                  |
+| =t=            | Toggle space mode (select/add)                         |
+| =T=            | Toggle add mode (add or remove/always add)             |
+| =v=            | Reverse selection                                      |
+| =V=            | Remove selection                                       |
+| =B=            | Select songs of album around the cursor                |
+| =a=            | Add selected items to playlist                         |
+| =r=            | Toggle repeat mode                                     |
+| =z=            | Toggle random mode                                     |
+| =y=            | Toggle single mode                                     |
+| =R=            | Toggle consume mode                                    |
+| =Y=            | Toggle replay gain mode                                |
+| =#=            | Toggle bitrate visibility                              |
+| =Z=            | Shuffle playlist                                       |
+| =x=            | Toggle crossfade mode                                  |
+| =X=            | Set crossfade                                          |
+| =u=            | Start music database update                            |
+| =:=            | Execute command                                        |
+| =Ctrl-F=       | Apply filter                                           |
+| =/=            | Find item forward                                      |
+| =?=            | Find item backward                                     |
+| =,=            | Jump to previous found item                            |
+| =.=            | Jump to next found item                                |
+| =w=            | Toggle find mode (normal/wrapped)                      |
+| =G=            | Locate song in browser                                 |
+| =~=            | Locate song in media library                           |
+| =Ctrl-L=       | Lock/unlock current screen                             |
+| =Left= or =h=  | Switch to left screen                                  |
+| =Right= or =l= | Switch to right screen                                 |
+| =E=            | Locate song in tag editor                              |
+| =P=            | Toggle display mode                                    |
+| =\\=           | Toggle user interface                                  |
+| =!=            | Toggle displaying separator between albums             |
+| =g=            | Jump to given position in playing audio (mm:ss or x%)  |
+| =i=            | Show song info                                         |
+| =I=            | Show artist info                                       |
+| =L=            | Toggle lyrics fetcher                                  |
+| =F=            | Toggle fetching lyrics for playing songs in background |
+| =q=            | Quit                                                   |
+|----------------+--------------------------------------------------------|
+
+** Playlist
+
+|-----------------+-----------------------------------------|
+| Key             | Action                                  |
+|-----------------+-----------------------------------------|
+| =Enter=         | Play selected item                      |
+| =Delete=        | Remove selected item from playlist      |
+| =c=             | Clear playlist                          |
+| =C=             | Clear playlist except selected item(s)  |
+| =Ctrl-P=        | Set priority of selected items          |
+| =Ctrl-K= or =m= | Move selected items up                  |
+| =Ctrl-J= or =n= | Move selected items down                |
+| =M=             | Move selected items to current position |
+| =A=             | Add item to playlist                    |
+| =e=             | Edit song                               |
+| =S=             | Save playlist                           |
+| =Ctrl-V=        | Sort playlist                           |
+| =Ctrl-R=        | Reverse playlist                        |
+| =o=             | Jump to current song                    |
+| =U=             | Toggle playing song centering           |
+| =l=             | Show lyrics                             |
+|-----------------+-----------------------------------------|
+
+** Browser
+
+|-------------+-------------------------------------------------------------|
+| Key         | Action                                                      |
+|-------------+-------------------------------------------------------------|
+| =Enter=     | Enter directory or add item to playlist and play it         |
+| =Space=     | Add item to playlist/select it                              |
+| =e=         | Edit song or directory name or playlist name                |
+| =2=         | Browse MPD database/local filesystem (requires UNIX socket) |
+| =`=         | Toggle sort mode                                            |
+| =o=         | Locate playing song                                         |
+| =Backspace= | Jump to parent directory                                    |
+| =Delete=    | Delete selected items from disk                             |
+| =G=         | Jump to playlist editor (playlists only)                    |
+|-------------+-------------------------------------------------------------|
+
+** Search Engine
+
+|---------+------------------------------------------------|
+| Key     | Action                                         |
+|---------+------------------------------------------------|
+| =Enter= | Add item to playlist and play it/change option |
+| =Space= | Add item to playlist                           |
+| =e=     | Edit song                                      |
+| =y=     | Start searching                                |
+| =3=     | Reset search constraints and clear results     |
+|---------+------------------------------------------------|
+
 * Git
 ** Change remote URL from https to ssh
 
