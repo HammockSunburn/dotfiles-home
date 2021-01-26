@@ -14,7 +14,7 @@ end
 
 # Basic shell, editor, tmux configuration.
 echo -n Basic shell, editor, tmux configuration...
-mkdir -p "$HOME/.config" "$HOME/.config/i3" "$HOME/.emacs.d" "$HOME/.doom.d" "$HOME/.config/ncmpcpp"
+mkdir -p "$HOME/.config" "$HOME/.config/i3" "$HOME/.emacs.d" "$HOME/.doom.d" "$HOME/.config/ncmpcpp" "$HOME/.config/mpd"
 rm -rf "$HOME/.config/fish"; and ln -s "$dotfiles_dir/config/fish" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/starship.toml" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/nvim" "$HOME/.config"
@@ -83,6 +83,7 @@ sudo dnf install -y \
     clang \
     cmake \
     code \
+    dbus-devel \
     emacs \
     emacs-auctex \
     exa \
@@ -268,6 +269,8 @@ else
 end
 
 # Synchronize any new emacs packages
+
+emacs -batch -l $HOME/dotfiles-home/emacs/pull-all.el
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
