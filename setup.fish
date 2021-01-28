@@ -270,7 +270,7 @@ end
 
 # Synchronize any new emacs packages
 
-emacs -batch -l $HOME/dotfiles-home/emacs/pull-all.el
+emacs -batch -l $HOME/dotfiles-home/emacs/boostrap-straight.el --eval="(straight-pull-all)"
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
