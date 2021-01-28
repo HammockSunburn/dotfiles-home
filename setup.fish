@@ -129,6 +129,7 @@ sudo dnf install -y \
     openssl-devel \
     perl-FindBin \
     perl-Image-ExifTool \
+    playerctl \
     prettyping \
     pv \
     python3-devel \
