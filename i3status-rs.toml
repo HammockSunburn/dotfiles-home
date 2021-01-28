@@ -5,7 +5,8 @@ icons = "awesome"
 block = "music"
 player = "mpd"
 buttons = ["play", "prev", "next"]
-max_width = 40
+max_width = 50
+on_click = "kitty ncmpcpp"
 
 [[block]]
 block = "memory"
