@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
-set -x boost_version 1_74_0
-set -x pretty_boost_version 1.74.0
+set -x boost_version 1_75_0
+set -x pretty_boost_version 1.75.0
 
 # Download the distribution if we don't already have it.
 mkdir -p $HOME/Downloads
