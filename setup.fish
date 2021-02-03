@@ -118,6 +118,7 @@ sudo dnf install -y \
     libfontenc-devel \
     libheif \
     libzstd-devel \
+    lnav \
     lxi-tools \
     make \
     meson \
