@@ -474,6 +474,10 @@ dconf dump /
 
 To compare the written image, see checkiso in config.fish.
 
+#+begin_src shell
+  checkiso image.iso /dev/sdx
+#+end_src
+
 ** zoxide
 
  |-------------+---------------------------------------------------------|
