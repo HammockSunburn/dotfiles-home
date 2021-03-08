@@ -231,6 +231,8 @@ sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
 systemctl --user enable mpDris2
 systemctl --user start mpDris2
+systemctl --user enable mpd
+systemctl --user start mpd
 
 # Ensure I'm in the dialout and lock groups for Arduino.
 sudo usermod -a -G dialout,lock (whoami)
