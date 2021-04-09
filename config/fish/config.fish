@@ -27,3 +27,7 @@ function checkiso -d "Compare an ISO file to what's been written to a USB drive"
     echo "USB checksum: " $usb_sha
     echo "File checksum:" $file_sha
 end
+
+# ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+test -f $HOME/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
