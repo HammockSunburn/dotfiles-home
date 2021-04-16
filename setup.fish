@@ -24,6 +24,7 @@ ln -sf "$dotfiles_dir/tmux-gruvbox-dark.conf" "$HOME/.config"
 ln -sf "$dotfiles_dir/config/bashtop" "$HOME/.config"
 ln -sf "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 ln -sf "$dotfiles_dir/config/i3/config" "$HOME/.config/i3/config"
+ln -sf "$dotfiles_dir/config/i3status-rust" "$HOME/.config/i3status-rust"
 ln -sf "$dotfiles_dir/config/mpd/mpd.conf" "$HOME/.config/mpd/"
 ln -sf "$dotfiles_dir/config/ncmpcpp/config" "$HOME/.config/ncmpcpp"
 ln -sf "$dotfiles_dir/emacs/init.el" "$HOME/.emacs.d"
@@ -234,9 +235,6 @@ systemctl --user start mpDris2
 systemctl --user enable mpd
 systemctl --user start mpd
 
-# Ensure I'm in the dialout and lock groups for Arduino.
-sudo usermod -a -G dialout,lock (whoami)
-
 # Setup email and name for this repository.
 cd "$dotfiles_dir"
 git config user.name "Hammock Sunburn"
@@ -274,7 +272,6 @@ else
 end
 
 # Synchronize any new emacs packages
-
 emacs -batch -l $HOME/dotfiles-home/emacs/boostrap-straight.el --eval="(straight-pull-all)"
 emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
@@ -289,6 +286,9 @@ end
 $HOME/virtualenv/bin/pip install --upgrade pip
 $HOME/virtualenv/bin/pip install --upgrade conan
 $HOME/virtualenv/bin/pip install --upgrade tinytag
+
+# Ensure I'm in the dialout and lock groups for Arduino.
+sudo usermod -a -G dialout,lock (whoami)
 
 # Update the locate db
 sudo updatedb

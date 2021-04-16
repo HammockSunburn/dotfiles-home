@@ -11,16 +11,16 @@ on_click = "kitty ncmpcpp"
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+#format_mem = "{mem_free;G}%"
+#format_swap = "{SUp}%"
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "{barchart} {utilization}% {frequency}GHz"
+format = "{barchart} {utilization} {frequency}"
 warning = 101
 critical = 101
-info = 80
+info = 101
 
 [[block]]
 block = "load"

@@ -184,5 +184,5 @@ bindsym $mod+p mode "process"
 bar {
     font pango: DejaVu Sans Mono, FontAwesome 8
     position top
-    status_command i3status-rs $HOME/dotfiles-home/i3status-rs.toml
+    status_command i3status-rs
 }
