@@ -1,37 +1,30 @@
 [character]
 success_symbol = "[➜](green)"
 error_symbol = "[✖](red)"
-use_symbol_for_status = true
 
 [directory]
 truncation_length = 4
 
 [jobs]
 symbol = "🏃"
-threshold = 0
 
 [git_status]
 format = "[$all_status$ahead_behind]($style)"
-staged_count.enabled = true
-modified_count.enabled = true
-untracked_count.enabled = true
 conflicted = "⚔️ "
 ahead = "🏎️💨"
 behind = "🐢"
 diverged = "🔱"
-untracked = "🛤️ "
+untracked = "🛤️$count "
 stashed = "📦"
-modified = "📝"
-staged = "🗃️ "
+modified = "📝$count "
+staged = "🗃️$count "
 renamed = "📛"
 deleted = "🗑️ "
 style = "bright-white"
 
 [memory_usage]
 disabled = false
-show_percentage = true
 threshold = 50
-symbol = "🐏"
 
 [aws]
 disabled = true
