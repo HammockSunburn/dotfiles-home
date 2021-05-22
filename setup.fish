@@ -114,6 +114,7 @@ sudo dnf install -y \
     lxi-tools \
     make \
     meson \
+    minicom \
     mpd \
     mpdris2 \
     musl-gcc \
