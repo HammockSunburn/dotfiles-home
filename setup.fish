@@ -109,6 +109,7 @@ sudo dnf install -y \
     libcurl-devel \
     libfontenc-devel \
     libheif \
+    libnsl \
     libzstd-devel \
     lnav \
     lxi-tools \
