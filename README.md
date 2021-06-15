@@ -40,7 +40,6 @@ The `setup.fish` script does things such as:
 * Install my collection of GNU Emacs packages
 * Install `vim-plug` and `PlugInstall` my neovim plugins
 * Use `dconf` to configure Gnome with my preferences
-* Set up a Python `virtualenv` with a collection of tools I use
 * Link files in this repository, like my `tmux` configuration, into their correct locations
 * Install VS Code extensions I use
 * Install `rustup` and build various Rust programs that aren't yet packaged for Fedora
