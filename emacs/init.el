@@ -395,6 +395,8 @@
              ("C-c X" . hs:rename-with-exif-date)
              ("C-c C" . hs:convert-heic)))
 
+(setq dired-listing-switches "-alFh")
+
 ;;(defun counsel-bookmark-other-window ()
 ;;  "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
 ;;  (interactive)
