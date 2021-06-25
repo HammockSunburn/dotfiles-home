@@ -39,55 +39,6 @@
 
 (add-to-list 'default-frame-alist (cons 'font (hs:get-font)))
 
-;; Ligatures.
-;; No MELPA support yet: https://github.com/mickeynp/ligature.el
-;;(load-file "~/.emacs.d/local/ligature.el")
-;;(ligature-set-ligatures 't '("www"))
-;;(ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
-;;                                     ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
-;;                                     "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
-;;                                     "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
-;;                                     "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
-;;                                     "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
-;;                                     "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
-;;                                     "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
-;;                                     "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
-;;                                     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
-;;
-;;(global-ligature-mode 't)
-
-;; Although it's for Fira Code, see:
-;; https://github.https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
-;;(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
-;;               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
-;;               (36 . ".\\(?:>\\)")
-;;               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
-;;               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
-;;               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
-;;               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
-;;               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
-;;               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
-;;               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
-;;               (48 . ".\\(?:x[a-zA-Z]\\)")
-;;               (58 . ".\\(?:::\\|[:=]\\)")
-;;               (59 . ".\\(?:;;\\|;\\)")
-;;               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
-;;               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
-;;               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
-;;               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
-;;               (91 . ".\\(?:]\\)")
-;;               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
-;;               (94 . ".\\(?:=\\)")
-;;               (119 . ".\\(?:ww\\)")
-;;               (123 . ".\\(?:-\\)")
-;;               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
-;;               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
-;;               )
-;;             ))
-;;  (dolist (char-regexp alist)
-;;    (set-char-table-range composition-function-table (car char-regexp)
-;;                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
-
 ;; Magit and vc configuration
 (straight-use-package 'magit)
 (bind-key "C-x g" #'magit-status)
@@ -254,7 +205,7 @@
 (emms-default-players)
 (setq emms-source-file-default-directory "~/Music/")
 
-;; MPD
+;; MPD (Music Player Daemon)
 (straight-use-package 'mpdel)
 (require 'mpdel)
 
@@ -396,28 +347,6 @@
              ("C-c C" . hs:convert-heic)))
 
 (setq dired-listing-switches "-alFh")
-
-;;(defun counsel-bookmark-other-window ()
-;;  "Forward to `bookmark-jump-other-window' or `bookmark-set' if bookmark doesn't exist."
-;;  (interactive)
-;;  (require 'bookmark)
-;;  (ivy-read "Create or jump to bookmark in other window: "
-;;            (bookmark-all-names)
-;;            :history 'bookmark-history
-;;            :action (lambda (x)
-;;                      (cond ((and counsel-bookmark-avoid-dired
-;;                                  (member x (bookmark-all-names))
-;;                                  (file-directory-p (bookmark-location x)))
-;;                             (with-ivy-window
-;;                               (let ((default-directory (bookmark-location x)))
-;;                                 (counsel-find-file))))
-;;                            ((member x (bookmark-all-names))
-;;                             (with-ivy-window
-;;                               (bookmark-jump-other-window x)))
-;;                            (t
-;;                             (bookmark-set x))))
-;;            :caller 'counsel-bookmark))
-;;(global-set-key (kbd "C-x r B") 'counsel-bookmark-other-window)
 
 ;; More colors in dired.
 (straight-use-package 'diredfl)
