@@ -16,3 +16,5 @@
     file-decoration-style = none
     plus-style = syntax "#006600"
     plus-non-emph-style = syntax "#006600"
+[init]
+	defaultBranch = main
