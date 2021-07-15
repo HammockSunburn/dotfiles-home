@@ -63,6 +63,7 @@ sudo dnf install -y \
     PEGTL-devel \
     R \
     SDL2-devel \
+    SDL2_image-devel \
     abcde \
     ansible \
     bashtop \
