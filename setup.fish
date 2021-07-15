@@ -64,6 +64,7 @@ sudo dnf install -y \
     R \
     SDL2-devel \
     SDL2_image-devel \
+    SDL2_ttf-devel \
     abcde \
     ansible \
     bashtop \
