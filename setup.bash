@@ -246,6 +246,37 @@ emacs -batch -l $HOME/.emacs.d/init.el
 systemctl --user enable emacs
 systemctl --user restart emacs
 
+# Setup/pull chemacs.
+if test ! -d "$HOME/chemacs"; then
+    cd $HOME
+    git clone https://github.com/plexus/chemacs.git
+    cd $HOME/chemacs
+    ./install.sh
+else
+    cd $HOME/chemacs
+    git pull --rebase
+fi
+
+# Setup/pull doom-emacs.
+mkdir -p "$HOME/emacs"
+if test ! -d "$HOME/emacs/doom-emacs"; then
+    cd "$HOME/emacs"
+    git clone https://github.com/hlissner/doom-emacs
+    doom-emacs/bin/doom install -y
+else
+    cd "$HOME/emacs/doom-emacs"
+    git pull --rebase
+fi
+
+# Setup/pull spacemacs.
+if test ! -d "$HOME/emacs/spacemacs"; then
+    cd "$HOME/emacs"
+    git clone https://github.com/syl20bnr/spacemacs
+else
+    cd "$HOME/emacs/spacemacs"
+    git pull --rebase
+fi
+
 # Ensure I'm in the dialout and lock groups for Arduino.
 sudo usermod -a -G dialout,lock `whoami`
 
@@ -253,4 +284,4 @@ sudo usermod -a -G dialout,lock `whoami`
 sudo updatedb
 
 # Change shell if necessary
-# chsh -s /usr/bin/fish
+chsh -s /usr/bin/fish
