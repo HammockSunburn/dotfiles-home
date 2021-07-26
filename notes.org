@@ -797,6 +797,13 @@ i3 &
   git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
 #+end_src
 
+** First push to a bare repository
+
+#+begin_src shell
+  git remote add origin you@host.com:/path/to/something.git
+  git push origin main
+#+end_src
+
 * ZFS
 
  - List all snapshots: =zfs list -t snapshot=
