@@ -29,13 +29,10 @@ rm -f "$HOME/.config/i3status-rust"
 ln -sf "$DOTFILES_DIR/config/i3status-rust" "$HOME/.config/i3status-rust"
 ln -sf "$DOTFILES_DIR/config/mpd/mpd.conf" "$HOME/.config/mpd/"
 ln -sf "$DOTFILES_DIR/config/ncmpcpp/config" "$HOME/.config/ncmpcpp"
-ln -sf "$DOTFILES_DIR/emacs/init.el" "$HOME/.emacs.d"
 ln -sf "$DOTFILES_DIR/emacs/doom-emacs/config.el" "$HOME/.doom.d"
 ln -sf "$DOTFILES_DIR/emacs/doom-emacs/custom.el" "$HOME/.doom.d"
 ln -sf "$DOTFILES_DIR/emacs/doom-emacs/init.el" "$HOME/.doom.d"
 ln -sf "$DOTFILES_DIR/emacs/doom-emacs/packages.el" "$HOME/.doom.d"
-ln -sf "$DOTFILES_DIR/emacs/spacemacs/spacemacs" "$HOME/.spacemacs"
-ln -sf "$DOTFILES_DIR/emacs/emacs-profiles.el" "$HOME/.emacs-profiles.el"
 rm -rf "$HOME/.config/kitty"
 ln -s "$DOTFILES_DIR/config/kitty" "$HOME/.config"
 rm -rf "$HOME/.config/broot"
@@ -80,6 +77,7 @@ sudo dnf install -y \
     catch-devel \
     cc65 \
     clang \
+    clang-tools-extra \
     cmake \
     code \
     dbus-devel \
@@ -168,7 +166,20 @@ dconf load /org/gnome/settings-daemon/plugins/power/ < "$DOTFILES_DIR/gnome-powe
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 echo Done!
 
-#
+# Doom Emacs
+systemctl --user enable emacs
+systemctl --user restart emacs
+
+if test ! -e "$HOME/.emacs.d/bin/doom"; then
+    mv "$HOME/.emacs.d" "$HOME/.emacs.d.old"
+
+    git clone --depth 1 https://github.com/hlissner/doom-emacs "$HOME/.emacs.d"
+    "$HOME/.emacs.d/bin/doom" -y install
+else
+    "$HOME/.emacs.d/bin/doom" upgrade
+fi
+
+# neovim
 mkdir -p "$HOME/.config"
 ln -sf "$DOTFILES_DIR/config/nvim" "$HOME/.config"
 
@@ -239,43 +250,6 @@ systemctl --user start mpDris2
 cd "$DOTFILES_DIR"
 git config user.name "Hammock Sunburn"
 git config user.email "hammocksunburn@gmail.com"
-
-# Synchronize any new emacs packages
-emacs -batch -l $HOME/dotfiles-home/emacs/bootstrap-straight.el --eval="(straight-pull-all)"
-emacs -batch -l $HOME/.emacs.d/init.el
-systemctl --user enable emacs
-systemctl --user restart emacs
-
-# Setup/pull chemacs.
-if test ! -d "$HOME/chemacs"; then
-    cd $HOME
-    git clone https://github.com/plexus/chemacs.git
-    cd $HOME/chemacs
-    ./install.sh
-else
-    cd $HOME/chemacs
-    git pull --rebase
-fi
-
-# Setup/pull doom-emacs.
-mkdir -p "$HOME/emacs"
-if test ! -d "$HOME/emacs/doom-emacs"; then
-    cd "$HOME/emacs"
-    git clone https://github.com/hlissner/doom-emacs
-    doom-emacs/bin/doom install -y
-else
-    cd "$HOME/emacs/doom-emacs"
-    git pull --rebase
-fi
-
-# Setup/pull spacemacs.
-if test ! -d "$HOME/emacs/spacemacs"; then
-    cd "$HOME/emacs"
-    git clone https://github.com/syl20bnr/spacemacs
-else
-    cd "$HOME/emacs/spacemacs"
-    git pull --rebase
-fi
 
 # Ensure I'm in the dialout and lock groups for Arduino.
 sudo usermod -a -G dialout,lock `whoami`
