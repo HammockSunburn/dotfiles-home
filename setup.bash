@@ -239,13 +239,12 @@ $HOME/.cargo/bin/cargo install \
     --git https://github.com/greshake/i3status-rust i3status-rs
 
 # Stack
-if test ! -d "$HOME/.ghcup"; then
+if test ! -e "/usr/local/bin/stack"; then
     curl -sSL https://get.haskellstack.org/ | sh
 fi
 
-$HOME/.ghcup/bin/stack upgrade
-$HOME/.ghcup/bin/stack install hindent
-$HOME/.ghcup/bin/stack install hoogle
+stack install hindent
+stack install hoogle
 
 # Enable sshd service
 sudo systemctl enable sshd.service
