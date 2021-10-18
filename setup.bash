@@ -126,6 +126,7 @@ sudo dnf install -y \
     ncmpcpp \
     neovim \
     ninja-build \
+    ncurses-devel \
     openssl-devel \
     perl-FindBin \
     perl-Image-ExifTool \
