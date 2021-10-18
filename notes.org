@@ -494,6 +494,20 @@ ACTION=="add|change", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1932", SUBSYST
 
 To find the USB vendor and product values, use =lsusb=.
 
+** Enable systemd TRIM service
+
+To enable:
+
+#+begin_src shell
+sudo systemctl enable fstrim.timer
+#+end_src
+
+To check:
+
+#+begin_src shell
+sudo systemctl list-timers --all
+#+end_src
+
 ** zoxide
 
  |-------------+---------------------------------------------------------|
