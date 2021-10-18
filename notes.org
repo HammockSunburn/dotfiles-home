@@ -478,6 +478,22 @@ To compare the written image, see checkiso in config.fish.
   checkiso image.iso /dev/sdx
 #+end_src
 
+** Enable TRIM on USB SSD:
+
+To see if TRIM is enabled for a device:
+
+#+begin_src shell
+  sudo lsblk --discard /dev/sdb
+#+end_src
+
+To enable TRIM, add a udev rules file such as =/etc/udev/rules.d/50-usb-ssd-trim.rules= which contains:
+
+#+begin_src shell
+ACTION=="add|change", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1932", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+#+end_src
+
+To find the USB vendor and product values, use =lsusb=.
+
 ** zoxide
 
  |-------------+---------------------------------------------------------|
@@ -499,7 +515,7 @@ To compare the written image, see checkiso in config.fish.
 #+end_src
 
 ** Create hashes/de-dup pictures
-#
+
 #+begin_src shell
   fd -t f -0 | xargs -0 sha256sum > picture_hashes
   fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
