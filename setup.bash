@@ -226,15 +226,16 @@ fi
 $HOME/.cargo/bin/rustup toolchain install nightly stable
 
 $HOME/.cargo/bin/cargo install \
-          broot \
-          du-dust \
-          git-delta \
-          mdcat \
-          procs \
-          starship \
-          tokei \
-          xsv \
-          zoxide
+    broot \
+    cargo-edit \
+    du-dust \
+    git-delta \
+    mdcat \
+    procs \
+    starship \
+    tokei \
+    xsv \
+    zoxide
 
 $HOME/.cargo/bin/cargo install \
     --git https://github.com/greshake/i3status-rust i3status-rs
