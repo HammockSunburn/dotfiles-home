@@ -1,5 +1,8 @@
 zoxide init fish | source
 
+# Use a hammer to get TERM set right.
+set -gx TERM xterm-256color
+
 alias icat="kitty +kitten icat --align=left"
 
 if test -d /opt/boost
