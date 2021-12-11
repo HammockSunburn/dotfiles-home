@@ -1,7 +1,5 @@
 zoxide init fish | source
 
-alias ls="exa --time-style=long-iso"
-alias ping="prettyping --nolegend"
 alias icat="kitty +kitten icat --align=left"
 
 if test -d /opt/boost
@@ -24,7 +22,3 @@ function checkiso -d "Compare an ISO file to what's been written to a USB drive"
     echo "File checksum:" $file_sha
     echo "USB checksum: " $usb_sha
 end
-
-# ghcup-env
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-test -f $HOME/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
