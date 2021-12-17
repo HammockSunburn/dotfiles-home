@@ -13,6 +13,18 @@ if test -d "$HOME/bin"
     set -gx PATH "$HOME/bin" $PATH
 end
 
+if test -d "$HOME/software/emacs"
+    set -gx PATH "$HOME/software/emacs/bin" $PATH
+end
+
+if test -d "$HOME/software/neovim"
+    set -gx PATH "$HOME/software/neovim/bin" $PATH
+end
+
+if test -d "$HOME/software/tmux"
+    set -gx PATH "$HOME/software/tmux/bin" $PATH
+end
+
 function checkiso -d "Compare an ISO file to what's been written to a USB drive"
     sudo true
     echo "reading file checksum from" $argv[1]
