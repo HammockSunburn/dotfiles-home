@@ -25,7 +25,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
- 
+
+if !filereadable("/usr/bin/fzf")
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+endif
+
 call plug#end()
 
 " Ignore .o files in places like ctrlp
