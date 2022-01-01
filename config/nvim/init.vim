@@ -12,7 +12,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-highlightedyank'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rbgrouleff/bclose.vim'
@@ -99,11 +98,6 @@ let g:airline_symbols.notexists = '∉'
 
 " commentary setup
 autocmd FileType cpp set commentstring=//\ %s
-
-" Ripgrep
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep'
-endif
 
 " Shorten updatetime, this makes the git gutter update faster. This is in milliseconds.
 set updatetime=250
