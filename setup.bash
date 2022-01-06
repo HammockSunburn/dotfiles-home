@@ -240,14 +240,6 @@ $HOME/.cargo/bin/cargo install \
 $HOME/.cargo/bin/cargo install \
     --git https://github.com/greshake/i3status-rust i3status-rs
 
-# Stack
-if test ! -e "/usr/local/bin/stack"; then
-    curl -sSL https://get.haskellstack.org/ | sh
-fi
-
-stack install hindent
-stack install hoogle
-
 # Enable sshd service
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
