@@ -172,7 +172,7 @@ endfunction
 
 " FZF
 map <C-p>   :FZF<CR>
-map <M-p>   :Buffers<CR>
+map <F2>    :Buffers<CR>
 map <C-M-p> :History<CR>
 map <C-r>   :AgDir 
 
