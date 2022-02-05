@@ -30,9 +30,11 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Color theming.
+;; Color theming and font.
 (use-package gruvbox-theme
   :config (load-theme 'gruvbox t))
+
+(set-face-attribute 'default nil :font "CaskaydiaCove Nerd Font" :height 120)
 
 ;; Ask for y/n instead of yes/no.
 (defalias 'yes-or-no-p 'y-or-n-p)
