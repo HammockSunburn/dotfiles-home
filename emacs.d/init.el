@@ -31,7 +31,7 @@
 (scroll-bar-mode -1)
 
 ;; Color theming.
-(use-package doom-themes
+(use-package gruvbox-theme
   :config (load-theme 'gruvbox t))
 
 ;; Ask for y/n instead of yes/no.
@@ -40,8 +40,31 @@
 ;; Better M-x.
 (use-package amx :config (amx-mode))
 
-;; Ripgrep.
+;; Various simple packages.
+(use-package magit)
+(use-package markdown-mode)
 (use-package rg)
+(use-package cmake-mode)
+(use-package deadgrep)
+
+;; Smart mode line
+(use-package smart-mode-line
+  :config
+  (setq sml/theme 'dark)
+  (sml/setup)
+  )
+
+(global-display-line-numbers-mode)
+
+;; Which key
+(use-package which-key
+  :config
+  (setq which-key-idle-delay 0.5) ;; seconds
+  (which-key-mode))
+
+;; anzu (display current match/total matches in various search modes)
+(use-package anzu)
+(global-anzu-mode +1)
 
 ;; Projectile.
 (use-package projectile
