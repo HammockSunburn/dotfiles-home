@@ -48,6 +48,14 @@
 (use-package rg)
 (use-package cmake-mode)
 (use-package deadgrep)
+(use-package meson-mode)
+
+;; clang-format
+(use-package clang-format
+  :after cc-mode
+  :bind (:map c-mode-base-map
+	      ("S-<f12>" . clang-format-buffer)
+	      ("<f12>" . clang-format-region)))
 
 ;; Smart mode line
 (use-package smart-mode-line
