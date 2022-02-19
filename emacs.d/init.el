@@ -50,12 +50,54 @@
 (use-package deadgrep)
 (use-package meson-mode)
 
+(use-package git-gutter
+  :demand
+  :config (global-git-gutter-mode +1)
+  :bind (("C-c ]" . git-gutter:next-hunk)
+	 ("C-c [" . git-gutter:previous-hunk)
+	 ("C-c m" . git-gutter:mark-hunk)
+	 ("C-c s" . git-gutter:stage-hunk)
+	 ("C-c r" . git-gutter:revert-hunk)))
+
 ;; clang-format
 (use-package clang-format
   :after cc-mode
   :bind (:map c-mode-base-map
 	      ("S-<f12>" . clang-format-buffer)
 	      ("<f12>" . clang-format-region)))
+
+(if (string= (getenv "HOME") "/home/esc")
+    (progn
+      (defun my-c-mode-common-hook ()
+	(define-key c-mode-base-map "\C-m" 'newline-and-indent)
+	(c-set-offset 'substatement-open 0)
+	(c-set-offset 'arglist-intro 8)
+	(c-set-offset 'arglist-close 4)
+	(c-set-offset 'case-label 0)
+	(c-set-offset 'inclass 4)
+	(c-set-offset 'comment-intro 0)
+	(c-set-offset 'topmost-intro-cont 0)
+	(c-set-offset 'innamespace 0)
+	(c-set-offset 'namespace-open 0)
+	(c-set-offset 'namespace-close 0)
+	(c-set-offset 'template-args-cont 4)
+	(c-set-offset 'statement-case-open 0)
+	(c-set-offset 'statement-case-intro 4)
+	(c-set-offset 'member-init-intro 4)
+	(c-set-offset 'member-init-cont -2)
+	(c-set-offset 'inher-cont 0)
+	(c-set-offset 'statement-cont 4)
+	(c-set-offset 'brace-list-open 0)
+	(c-set-offset 'brace-list-intro 4)
+	(c-set-offset 'statement-case-open 0)
+	(c-set-offset 'statement-block-intro 4)
+	(c-set-offset 'defun-block-intro 4)
+	(c-set-offset 'case-label 4)
+	(c-set-offset 'access-label -4)
+	(setq truncate-lines nil)
+	(setq fill-column 120))
+
+      (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)))
 
 ;; Smart mode line
 (use-package smart-mode-line
@@ -79,7 +121,10 @@
 ;; Projectile.
 (use-package projectile
   :config (projectile-mode +1)
-  :bind (("C-x f" . projectile-find-file))
+  :bind (
+	 ("C-x f" . projectile-find-file)
+	 ("<f5>" . projectile-compile-project)
+	 )
   :bind-keymap ("C-c p" . projectile-command-map)
   :init (setq projectile-enable-caching t))
 
