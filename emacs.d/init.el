@@ -118,6 +118,14 @@
 (use-package anzu)
 (global-anzu-mode +1)
 
+;; Color compilation buffers.
+(ignore-errors
+  (use-package ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
 ;; Projectile.
 (use-package projectile
   :config (projectile-mode +1)
