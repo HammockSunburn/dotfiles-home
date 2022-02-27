@@ -50,6 +50,14 @@
 (use-package deadgrep)
 (use-package meson-mode)
 
+;; devdocs browsing.
+;; Use devdocs-install and devdocs-update-all
+(use-package devdocs
+  :config
+  (add-hook 'c++-mode-hook (lambda () (setq-local devdocs-current-docs '("cpp"))))
+  (add-hook 'cmake-mode-hook (lambda () (setq-local devdocs-current-docs '("cmake~3.21"))))
+  :bind (("C-h D" . devdocs-lookup)))
+
 (use-package git-gutter
   :demand
   :config (global-git-gutter-mode +1)
