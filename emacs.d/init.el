@@ -49,6 +49,11 @@
 (use-package cmake-mode)
 (use-package deadgrep)
 (use-package meson-mode)
+(use-package beacon
+  :config
+  (beacon-mode 1)
+  (setq beacon-blink-when-window-scrolls 't)
+  (setq beacon-blink-when-window-changes 't))
 
 ;; devdocs browsing.
 ;; Use devdocs-install and devdocs-update-all
