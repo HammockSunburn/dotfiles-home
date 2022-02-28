@@ -49,6 +49,12 @@
 (use-package cmake-mode)
 (use-package deadgrep)
 (use-package meson-mode)
+
+;; Ace window switching.
+(use-package ace-window
+  :bind (("M-o" . ace-window)))
+
+;; Beacon point highlighting.
 (use-package beacon
   :config
   (beacon-mode 1)
