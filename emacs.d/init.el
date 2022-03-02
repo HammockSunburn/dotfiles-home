@@ -50,6 +50,17 @@
 (use-package deadgrep)
 (use-package meson-mode)
 
+;; Hydra for git-gutter actions.
+(use-package hydra
+  :config
+  (defhydra hydra-git (global-map "<f6>")
+    "Git Hydra"
+    ("]" git-gutter:next-hunk "next" :column "Navigation")
+    ("[" git-gutter:previous-hunk "previous" :column "Navigation")
+    ("k" git-gutter:revert-hunk "revert" :column "Commands")
+    ("m" git-gutter:mark-hunk "mark" :column "Commands")
+    ("s" git-gutter:stage-hunk "stage" :column "Commands")))
+
 ;; Ace window switching.
 (use-package ace-window
   :bind (("M-o" . ace-window)))
