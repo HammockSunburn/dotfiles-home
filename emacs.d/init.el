@@ -31,8 +31,13 @@
 (scroll-bar-mode -1)
 
 ;; Color theming and font.
-(use-package gruvbox-theme
-  :config (load-theme 'gruvbox t))
+;; Other good ones: darktooth-theme, ample-theme, modus-vivendi.
+;;(use-package gruvbox-theme
+;;  :config (load-theme 'gruvbox t))
+
+;;(use-package ample-theme)
+(use-package darktooth-theme
+  :config (load-theme 'darktooth t))
 
 (set-face-attribute 'default nil :font "CaskaydiaCove Nerd Font" :height 120)
 
@@ -49,6 +54,7 @@
 (use-package cmake-mode)
 (use-package deadgrep)
 (use-package meson-mode)
+(use-package rmsbolt)
 
 ;; Hydra for git-gutter actions.
 (use-package hydra
