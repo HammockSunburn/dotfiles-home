@@ -32,12 +32,8 @@
 
 ;; Color theming and font.
 ;; Other good ones: darktooth-theme, ample-theme, modus-vivendi.
-;;(use-package gruvbox-theme
-;;  :config (load-theme 'gruvbox t))
-
-;;(use-package ample-theme)
-(use-package darktooth-theme
-  :config (load-theme 'darktooth t))
+(use-package gruvbox-theme
+  :config (load-theme 'gruvbox t))
 
 (set-face-attribute 'default nil :font "CaskaydiaCove Nerd Font" :height 120)
 
