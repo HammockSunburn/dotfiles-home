@@ -1,12 +1,15 @@
+[theme]
 theme = "gruvbox-dark"
+
+[icons]
 icons = "awesome"
 
 [[block]]
 block = "music"
 player = "mpd"
-buttons = ["play", "prev", "next"]
-max_width = 50
-on_click = "kitty ncmpcpp"
+#buttons = ["play", "prev", "next"]
+#max_width = 50
+#on_click = "kitty ncmpcpp"
 
 [[block]]
 block = "memory"
@@ -18,17 +21,17 @@ display_type = "memory"
 block = "cpu"
 interval = 1
 format = "{barchart} {utilization} {frequency}"
-warning = 101
-critical = 101
-info = 101
+#warning = 101
+#critical = 101
+#info = 101
 
-[[block]]
-block = "load"
-interval = 1
-format = "{1m}|{5m}|{15m}"
+#[[block]]
+#block = "load"
+#interval = 1
+#format = "{1m}|{5m}|{15m}"
 
-[[block]]
-block = "sound"
+#[[block]]
+#block = "sound"
 
 [[block]]
 block = "uptime"

@@ -35,7 +35,7 @@
 (use-package gruvbox-theme
   :config (load-theme 'gruvbox t))
 
-(set-face-attribute 'default nil :font "CaskaydiaCove Nerd Font" :height 120)
+(set-face-attribute 'default nil :font "Cascadia Code PL" :height 100)
 
 ;; Ask for y/n instead of yes/no.
 (defalias 'yes-or-no-p 'y-or-n-p)

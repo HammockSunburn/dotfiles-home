@@ -8,7 +8,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:CaskaydiaCove Nerd Font Mono 8
+font pango:Cascadia Code PL 8
 
 # Colors
 # class                  border      background  text        indicator   child_border
@@ -18,6 +18,10 @@ client.unfocused         #3c3836     #282828     #928374     #504945     #282828
 client.urgent            #282828     #cc241d     #ebdbb2     #cc241d     #cc241d
 client.placeholder       #000000     #0c0c0c     #ebdbb2     #000000     #0c0c0c
 client.background        #ffffff
+
+# Gaps
+gaps inner 4
+smart_borders no_gaps
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -31,7 +35,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Audio controls
-set $refresh_i3status killall -SIGUSR1 i3status
+set $refresh_i3status killall -SIGUSR1 i3status-rs
 bindsym $mod+Ctrl+space exec playerctl play-pause
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status

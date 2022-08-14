@@ -1,23 +1,19 @@
-[core]
-    pager = delta
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #014000"
+    minus-style = "syntax #340001"
+    syntax-theme = gruvbox-dark
+    navigate = true
+    line-numbers = true
+    side-by-side = true
 
 [interactive]
     diffFilter = delta --color-only
 
-[delta]
-    features = decorations
-    whitespace-error-style = 22 reverse
-    side-by-side = true
-    syntax-theme = gruvbox
-
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-    plus-style = syntax "#006600"
-    plus-non-emph-style = syntax "#006600"
 [init]
-	defaultBranch = main
-[user]
-	name = Hammock Sunburn
-	email = hammocksunburn@gmail.com
+    defaultBranch = main
