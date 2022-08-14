@@ -20,15 +20,12 @@ display_type = "memory"
 [[block]]
 block = "cpu"
 interval = 1
-format = "{barchart} {utilization} {frequency}"
-#warning = 101
-#critical = 101
-#info = 101
+format = "$barchart $utilization"
 
-#[[block]]
-#block = "load"
+[[block]]
+block = "load"
 #interval = 1
-#format = "{1m}|{5m}|{15m}"
+format = "1min: $1m"
 
 #[[block]]
 #block = "sound"
