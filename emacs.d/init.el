@@ -31,7 +31,7 @@
 (scroll-bar-mode -1)
 
 ;; Color theming and font.
-;; Other good ones: darktooth-theme, ample-theme, modus-vivendi.
+;; Other good ones: darktooth-theme, ample-theme, modus-vivendi, ef-themes.
 (use-package gruvbox-theme
   :config (load-theme 'gruvbox t))
 
@@ -84,12 +84,7 @@
 
 (use-package git-gutter
   :demand
-  :config (global-git-gutter-mode +1)
-  :bind (("C-c ]" . git-gutter:next-hunk)
-	 ("C-c [" . git-gutter:previous-hunk)
-	 ("C-c m" . git-gutter:mark-hunk)
-	 ("C-c s" . git-gutter:stage-hunk)
-	 ("C-c r" . git-gutter:revert-hunk)))
+  :config (global-git-gutter-mode +1))
 
 ;; clang-format
 (use-package clang-format
