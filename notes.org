@@ -1,5 +1,6 @@
 #+title: Hammock's Notes
 #+author: Hammock Sunburn
+#+startup: content
 
 * Emacs
 ** [[info:org][Org Mode]]
@@ -372,19 +373,6 @@ See =aw-dispatch-alist= for the list of prefix commands and keys.
  |-----------+-------------------------|
 
 ** TODO
-*** Things to figure out
-
- - Thin git gutter fringe like Doom Emacs
-
-*** Packages to consider
-
- - hydra, ivy-hydra
- - dired-hacks
- - dired-git
- - color-theme-sanityinc-tomorrow
- - EMMS (Emacs Multimedia System)
- - Topgrade
-
 * Ninja
 ** Show all targets
 
@@ -454,6 +442,14 @@ Dump all dconf settings:
 #+begin_src shell
 dconf dump /
 #+end_src
+
+** i3
+
+ |-------+-------------------|
+ | Keys  | Meaning           |
+ |-------+-------------------|
+ | Mod+f | fullscreen toggle |
+ |-------+-------------------|
 
 ** Kitty
 
@@ -682,12 +678,51 @@ exit
 
 ** Xephyr
 
-
 #+begin_src shell
 Xephyr -br -ac -noreset -screen 1200x900 :5 &
 set DISPLAY :5
 i3 &
 #+end_src
+
+** Arch
+
+List files in package:
+
+#+begin_src shell
+  pacman -Ql <package_name>
+#+end_src
+
+Search for a package:
+
+#+begin_src shell
+  pacman -Ss <search_term>
+#+end_src
+
+** weechat
+
+Basic setup:
+
+#+begin_src shell
+  /server add libera irc.libera.chat/6697 -ssl
+  /set irc.server.libera.nicks "hammock"
+  /set irc.server.libera.autoconnect on
+  /set irc.server.libera.sasl_username "hammock"
+  /set irc.server.libera.sasl_password "xxx"
+  /connect libera
+#+end_src
+
+Libera chat:
+
+=/msg alis LIST <searchterm>=
+
+Channels:
+
+  - #emacs
+  - #archlinux
+  - #C++
+  - #haskell
+  - #org-mode
+  - #git
 
 * ncmpcpp
 
@@ -876,7 +911,9 @@ i3 &
 
 * Haskell
 ** ghci
+
  - :r               (or :reload) reload the same file
+
 * FreeBSD
 
 My NAS setup isn't scripted or repeatable (yet), other than through

@@ -23,6 +23,9 @@
 ;; Don't make backup~ files.
 (setq make-backup-files nil)
 
+;; Human readable file sizes in dired.
+(setq dired-listing-switches "-alFh")
+
 ;; Minimal decorations.
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -32,10 +35,10 @@
 
 ;; Color theming and font.
 ;; Other good ones: darktooth-theme, ample-theme, modus-vivendi, ef-themes.
-(use-package gruvbox-theme
-  :config (load-theme 'gruvbox t))
+(use-package ef-themes
+  :config (load-theme 'ef-autumn t))
 
-(set-face-attribute 'default nil :font "Cascadia Code PL" :height 100)
+(set-face-attribute 'default nil :font "Cascadia Code PL" :height 120)
 
 ;; Ask for y/n instead of yes/no.
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -63,6 +66,10 @@
     ("m" git-gutter:mark-hunk "mark" :column "Commands")
     ("s" git-gutter:stage-hunk "stage" :column "Commands")))
 
+;; Org mode
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((C . t)))
+
 ;; Ace window switching.
 (use-package ace-window
   :bind (("M-o" . ace-window)))
@@ -82,9 +89,13 @@
   (add-hook 'cmake-mode-hook (lambda () (setq-local devdocs-current-docs '("cmake~3.21"))))
   :bind (("C-h D" . devdocs-lookup)))
 
+;; Other git setup
 (use-package git-gutter
   :demand
   :config (global-git-gutter-mode +1))
+
+;; AUCTeX
+(use-package tex :ensure auctex)
 
 ;; clang-format
 (use-package clang-format
