@@ -1,0 +1,4 @@
+#+title: Hammock's Notes
+#+author: Hammock Sunburn
+
+* Notes

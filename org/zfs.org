@@ -1,0 +1,9 @@
+#+title: Hammock's ZFS Notes
+#+author: Hammock Sunburn
+#+startup: content
+
+* ZFS
+
+ - List all snapshots: =zfs list -t snapshot=
+ - List all filesystems and space taken, including snapshots: =zfs list -o space=
+ - Create a new snapshot: =zfs snapshot zdata/pictures@predelete=

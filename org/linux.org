@@ -1,0 +1,439 @@
+#+title: Hammock's Linux Notes
+#+author: Hammock Sunburn
+#+startup: content
+
+* Linux
+** Fedora
+
+To set the hostname:
+
+#+begin_src shell
+sudo hostnamectl set-hostname new-name
+#+end_src
+
+** Fish
+
+To substitute =pkg_config= in a shell command, you have to split on spaces unlike in bash:
+
+#+begin_src shell
+gcc -o foo (pkg-config --cflags --libs gtk4 | string split -n " ") *.c
+#+end_src
+
+** Gnome
+
+Dump all dconf settings:
+
+#+begin_src shell
+dconf dump /
+#+end_src
+
+** i3
+
+ |-------+-------------------|
+ | Keys  | Meaning           |
+ |-------+-------------------|
+ | Mod+f | fullscreen toggle |
+ |-------+-------------------|
+
+** Kitty
+
+ |------------+--------------------|
+ | Keys       | Meaning            |
+ |------------+--------------------|
+ | =C-S-.=    | Increase font size |
+ | =C-S-,=    | Decrease font size |
+ | =C-S-PgUp= | Scroll back        |
+ | =C-S-PgDn= | Scroll forward     |
+ |------------+--------------------|
+
+** Write image to USB:
+
+#+begin_src shell
+  pv image.iso | sudo dd of=/dev/sdx conv=fsync
+#+end_src
+
+To compare the written image, see checkiso in config.fish.
+
+#+begin_src shell
+  checkiso image.iso /dev/sdx
+#+end_src
+
+** Enable TRIM on USB SSD:
+
+To see if TRIM is enabled for a device:
+
+#+begin_src shell
+  sudo lsblk --discard /dev/sdb
+#+end_src
+
+To enable TRIM, add a udev rules file such as =/etc/udev/rules.d/50-usb-ssd-trim.rules= which contains:
+
+#+begin_src shell
+ACTION=="add|change", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1932", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+#+end_src
+
+To find the USB vendor and product values, use =lsusb=.
+
+** Enable systemd TRIM service
+
+To enable:
+
+#+begin_src shell
+sudo systemctl enable fstrim.timer
+#+end_src
+
+To check:
+
+#+begin_src shell
+sudo systemctl list-timers --all
+#+end_src
+
+** zoxide
+
+ |-------------+---------------------------------------------------------|
+ | Keys        | Meaning                                                 |
+ |-------------+---------------------------------------------------------|
+ | =z foo=     | cd to highest ranked directory matching =foo=           |
+ | =z foo bar= | cd to highest ranked directory matching =foo= and =bar= |
+ | =z foo/=    | cd into actual directory named =foo=                    |
+ | =zi foo=    | cd with interactive selection using =fzf=               |
+ | =zq foo=    | Echo the best match, but don't cd                       |
+ | =za /foo=   | Add /foo to the database                                |
+ | =zr /foo=   | Remove /foo from the database                           |
+ |-------------+---------------------------------------------------------|
+
+** Nebulous backgrounds
+
+#+begin_src shell
+  convert -quality 75 input.jpg -strip -auto-orient -resize 4x4 -resize 3840x1600\! output.jpg
+#+end_src
+
+** Create hashes/de-dup pictures
+
+#+begin_src shell
+  fd -t f -0 | xargs -0 sha256sum > picture_hashes
+  fd -t -f 0 | xargs -n 1 -P 14 -0 sha256sum > picture_hashes_parallel
+  sort -k1,1 picture_hashes | uniq -w64 -D
+#+end_src
+
+** Rename image with date
+
+#+begin_src shell
+  exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e <filename>
+#+end_src
+
+Or all files in a directory:
+
+#+begin_src shell
+  for f in *
+    exiftool '-FileName<CreateDate' -d %Y%m%d-%%f.%%e "$f"
+  end
+#+end_src
+
+Inside Emacs dired, mark the files and use my custom command =C-c X= (=hs:rename-with-exif-date=).
+
+** Convert HEIF/HEIC files
+
+#+begin_src shell
+  for f in *.HEIC
+  do
+      echo converting $f
+      heif-convert $f $f.jpg
+  done
+#+end_src
+
+Inside Emacs dired, mark the files and use my custom command =C-c C= (=hs:convert-heic=).
+
+** Delete files listed in another file
+
+Assume that each line is a file, possibly with spaces in the filename
+
+#+begin_src shell
+  xargs -d '\n' rm
+#+end_src
+
+** Podman
+
+#+begin_src shell
+podman images           # show images
+podman volume ls        # list volumes
+podman volume prune     # prune all unused volumes
+podman rmi -a           # remove all images
+#+end_src
+
+If trying to remove an image with =podman rmi= doesn't work, you may
+need to delete things you've created with buildah:
+
+#+begin_src shell
+buildah rm -a
+buildah rmi -a
+#+end_src
+
+To see inside a container's filesystem from outside:
+
+#+begin_src shell
+podman inspect <container_id>
+# Find the "Source" under "Mounts"
+podman unshare
+cd <Mounts/Source>
+#+end_src
+
+PostgreSQL:
+
+#+begin_src shell
+podman run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         -d \
+         docker.io/library/postgres:13.1
+podman exec -it postgres psql -U postgres appdb
+podman exec postgres pg_dump -U postgres -F c appdb > backup_file
+podman exec -i postgres pg_restore -U postgres --clean -d appdb < backup_file
+
+podman exec -i postgres pg_dumpall -U postgres > backup-pgdumpall
+
+# Run using local directory:
+podman run \
+    --name postgres \
+    --security-opt label=disable \
+    -e POSTGRES_PASSWORD=postgres \
+    -v $HOME/containers/postgres:/var/lib/postgresql/data \
+    -d docker.io/library/postgres:13.1
+#+end_src
+
+** Docker
+
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         -d \
+         postgres
+
+sudo docker exec -it postgres bash
+echo testing > /testing.txt
+exit
+sudo docker exec -it postgres createdb -U postgres app
+sudo docker exec -it postgres psql -U postgres app
+create table foo (x int);
+exit
+sudo docker stop postgres
+sudo docker commit postgres postgres-backup
+sudo docker save postgres-backup | gzip > postgres-backup.tar.gz
+
+---
+
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres \
+         -p 5432:5432 \
+         --mount source=postgres-data,target=/var/lib/postgresql/data \
+         -d \
+         postgres:13.1
+sudo docker exec -it postgres bash
+echo testing > /testing.txt
+exit
+sudo docker exec -it postgres createdb -U postgres app
+sudo docker exec -it postgres psql -U postgres app
+create table foo (x int);
+exit
+sudo docker stop postgres
+sudo docker commit postgres postgres:13.1-YYYYMMDD
+sudo docker save postgres:13.1-YYYYMMDD | gzip > postgres-13.1:YYYYMMDD.tar.gz
+sudo docker run --rm --volumes-from postgres -v $(pwd):/backups ubuntu:latest tar cvzf /backups/pgdata.tar.gz /var/lib/postgresql/data
+
+sudo docker run --rm -it -v $(pwd):/backups --mount source=postgres-data2,target=/var/lib/postgresql/data --name temp-restore ubuntu:latest tar xvzf /backups/pgdata.tar.gz
+gunzip -c postgres-13.1:20201223.tar.gz | sudo docker load
+sudo docker run \
+         -e POSTGRES_PASSWORD=dev \
+         --name=postgres2 \
+         -p 5432:5432 \
+         --mount source=postgres-data2,target=/var/lib/postgresql/data \
+         -d \
+         postgres:13.1-20201223
+
+sudo docker exec -it postgres2 psql -U postgres app
+select * from foo;
+exit
+sudo docker exec -it postgres2 /bin/bash
+cat testing.txt
+exit
+
+** Xephyr
+
+#+begin_src shell
+Xephyr -br -ac -noreset -screen 1200x900 :5 &
+set DISPLAY :5
+i3 &
+#+end_src
+
+** Arch
+
+List files in package:
+
+#+begin_src shell
+  pacman -Ql <package_name>
+#+end_src
+
+Search for a package:
+
+#+begin_src shell
+  pacman -Ss <search_term>
+#+end_src
+
+** weechat
+
+Basic setup:
+
+#+begin_src shell
+  /server add libera irc.libera.chat/6697 -ssl
+  /set irc.server.libera.nicks "hammock"
+  /set irc.server.libera.autoconnect on
+  /set irc.server.libera.sasl_username "hammock"
+  /set irc.server.libera.sasl_password "xxx"
+  /connect libera
+#+end_src
+
+Libera chat:
+
+=/msg alis LIST <searchterm>=
+
+Channels:
+
+  - #emacs
+  - #archlinux
+  - #C++
+  - #haskell
+  - #org-mode
+  - #git
+
+** ncmpcpp
+*** Movement
+
+|-------------+---------------------------------------|
+| Key         | Action                                |
+|-------------+---------------------------------------|
+| =[=         | Move cursor up one album              |
+| =]=         | Move cursor down one album            |
+| ={=         | Move cursor up one artist             |
+| =}=         | Move cursor down one artist           |
+| =Tab=       | Switch to next screen in sequence     |
+| =Shift-Tab= | Switch to previous screen in sequence |
+| =1=         | Show playlist                         |
+| =2=         | Show browser                          |
+| =3=         | Show search engine                    |
+| =4=         | Show media library                    |
+| =5=         | Show playlist editor                  |
+| =6=         | Show tag editor                       |
+| =7=         | Show outputs                          |
+| =8=         | Show music visualizer                 |
+| =\==        | Show clock                            |
+| =@=         | Show server info                      |
+|-------------+---------------------------------------|
+
+*** Global
+
+|----------------+--------------------------------------------------------|
+| Key            | Action                                                 |
+|----------------+--------------------------------------------------------|
+| =s=            | Stop                                                   |
+| =p=            | Pause/Play                                             |
+| =>=            | Next track                                             |
+| =<=            | Previous track                                         |
+| =Backspace=    | Replay playing song                                    |
+| =f=            | Seek forward in playing song                           |
+| =b=            | Seek backward in playing son                           |
+| =-= or =Left=  | Decrease volume by 2%                                  |
+| =+= or =Right= | Increase volume by 2%                                  |
+| =t=            | Toggle space mode (select/add)                         |
+| =T=            | Toggle add mode (add or remove/always add)             |
+| =v=            | Reverse selection                                      |
+| =V=            | Remove selection                                       |
+| =B=            | Select songs of album around the cursor                |
+| =a=            | Add selected items to playlist                         |
+| =r=            | Toggle repeat mode                                     |
+| =z=            | Toggle random mode                                     |
+| =y=            | Toggle single mode                                     |
+| =R=            | Toggle consume mode                                    |
+| =Y=            | Toggle replay gain mode                                |
+| =#=            | Toggle bitrate visibility                              |
+| =Z=            | Shuffle playlist                                       |
+| =x=            | Toggle crossfade mode                                  |
+| =X=            | Set crossfade                                          |
+| =u=            | Start music database update                            |
+| =:=            | Execute command                                        |
+| =Ctrl-F=       | Apply filter                                           |
+| =/=            | Find item forward                                      |
+| =?=            | Find item backward                                     |
+| =,=            | Jump to previous found item                            |
+| =.=            | Jump to next found item                                |
+| =w=            | Toggle find mode (normal/wrapped)                      |
+| =G=            | Locate song in browser                                 |
+| =~=            | Locate song in media library                           |
+| =Ctrl-L=       | Lock/unlock current screen                             |
+| =Left= or =h=  | Switch to left screen                                  |
+| =Right= or =l= | Switch to right screen                                 |
+| =E=            | Locate song in tag editor                              |
+| =P=            | Toggle display mode                                    |
+| =\\=           | Toggle user interface                                  |
+| =!=            | Toggle displaying separator between albums             |
+| =g=            | Jump to given position in playing audio (mm:ss or x%)  |
+| =i=            | Show song info                                         |
+| =I=            | Show artist info                                       |
+| =L=            | Toggle lyrics fetcher                                  |
+| =F=            | Toggle fetching lyrics for playing songs in background |
+| =q=            | Quit                                                   |
+|----------------+--------------------------------------------------------|
+
+*** Playlist
+
+|-----------------+-----------------------------------------|
+| Key             | Action                                  |
+|-----------------+-----------------------------------------|
+| =Enter=         | Play selected item                      |
+| =Delete=        | Remove selected item from playlist      |
+| =c=             | Clear playlist                          |
+| =C=             | Clear playlist except selected item(s)  |
+| =Ctrl-P=        | Set priority of selected items          |
+| =Ctrl-K= or =m= | Move selected items up                  |
+| =Ctrl-J= or =n= | Move selected items down                |
+| =M=             | Move selected items to current position |
+| =A=             | Add item to playlist                    |
+| =e=             | Edit song                               |
+| =S=             | Save playlist                           |
+| =Ctrl-V=        | Sort playlist                           |
+| =Ctrl-R=        | Reverse playlist                        |
+| =o=             | Jump to current song                    |
+| =U=             | Toggle playing song centering           |
+| =l=             | Show lyrics                             |
+|-----------------+-----------------------------------------|
+
+*** Browser
+
+|-------------+-------------------------------------------------------------|
+| Key         | Action                                                      |
+|-------------+-------------------------------------------------------------|
+| =Enter=     | Enter directory or add item to playlist and play it         |
+| =Space=     | Add item to playlist/select it                              |
+| =e=         | Edit song or directory name or playlist name                |
+| =2=         | Browse MPD database/local filesystem (requires UNIX socket) |
+| =`=         | Toggle sort mode                                            |
+| =o=         | Locate playing song                                         |
+| =Backspace= | Jump to parent directory                                    |
+| =Delete=    | Delete selected items from disk                             |
+| =G=         | Jump to playlist editor (playlists only)                    |
+|-------------+-------------------------------------------------------------|
+
+*** Search Engine
+
+|---------+------------------------------------------------|
+| Key     | Action                                         |
+|---------+------------------------------------------------|
+| =Enter= | Add item to playlist and play it/change option |
+| =Space= | Add item to playlist                           |
+| =e=     | Edit song                                      |
+| =y=     | Start searching                                |
+| =3=     | Reset search constraints and clear results     |
+|---------+------------------------------------------------|
+

@@ -1,0 +1,18 @@
+#+title: Hammock's Git Notes
+#+author: Hammock Sunburn
+#+startup: content
+
+* Git
+** Change remote URL from https to ssh
+
+#+begin_src shell
+  git remote -v
+  git remote set-url origin git@github.com:HammockSunburn/REPOSITORY.git
+#+end_src
+
+** First push to a bare repository
+
+#+begin_src shell
+  git remote add origin you@host.com:/path/to/something.git
+  git push origin main
+#+end_src

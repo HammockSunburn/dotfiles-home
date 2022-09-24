@@ -1,0 +1,18 @@
+#+title: Hammock's Ninja Notes
+#+author: Hammock Sunburn
+#+startup: content
+
+* Ninja
+
+Show all targets:
+
+#+begin_src shell
+  ninja -t targets all
+#+end_src
+
+Show dependency graph:
+
+#+begin_src shell
+  ninja -t graph <target_name> | dot -Tpng | icat
+  ninja -t graph <target_name> | dot -Tpng -Gbgcolor=black -Ncolor=white -Ecolor=white -Nfontcolor=white | icat
+#+end_src
