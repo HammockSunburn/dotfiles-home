@@ -1,0 +1,327 @@
+#+title: Hammock's Fedora Setup
+#+author: Hammock Sunburn
+#+startup: content
+
+* Dotfiles setup
+
+#+begin_src bash :tangle no
+  mkdir -pv "$HOME/.emacs.d"
+  touch "$HOME/foo"
+
+  # Fish
+  rm -rf "$HOME/.config/fish"
+  ln -sv "$HOME/dotfiles-home/config/fish" "$HOME/.config"
+
+  # Neovim
+  rm -rf "$HOME/.config/nvim"
+  ln -sv "$HOME/dotfiles-home/config/nvim" "$HOME/.config"
+
+  # tmux
+  ln -sfv "$HOME/dotfiles-home/tmux.conf" "$HOME/.tmux.conf"
+  ln -sfv "$HOME/dotfiles-home/tmux-gruvbox-dark.conf" "$HOME/.config"
+
+  # git
+  ln -sf "$HOME/dotfiles-home/gitconfig" "$HOME/.gitconfig"
+
+  # kitty
+  rm -rf "$HOME/.config/kitty"
+  ln -sfv "$HOME/dotfiles-home/config/kitty" "$HOME/.config"
+
+  # ssh
+  mkdir -pv "$HOME/.ssh"
+  chmod -v o-rwx,g-rwx "$HOME/.ssh"
+
+  cd "$HOME/dotfiles-home"
+  git config user.name "Hammock Sunburn"
+  git config user.email "hammocksunburn@gmail.com"
+#+end_src
+
+#+RESULTS:
+| '/home/esc/.config/fish'                   | -> | '/home/esc/dotfiles-home/config/fish'            |          |    |     |             |
+| '/home/esc/.config/nvim'                   | -> | '/home/esc/dotfiles-home/config/nvim'            |          |    |     |             |
+| '/home/esc/.tmux.conf'                     | -> | '/home/esc/dotfiles-home/tmux.conf'              |          |    |     |             |
+| '/home/esc/.config/tmux-gruvbox-dark.conf' | -> | '/home/esc/dotfiles-home/tmux-gruvbox-dark.conf' |          |    |     |             |
+| '/home/esc/.config/kitty'                  | -> | '/home/esc/dotfiles-home/config/kitty'           |          |    |     |             |
+| mode                                       | of | '/home/esc/.ssh'                                 | retained | as | 700 | (rwx------) |
+
+* DNF Repositories
+
+#+begin_src bash :tangle no :dir /sudo::~ :var USERHOME=(expand-file-name (substitute-in-file-name "$HOME"))
+  # VSCode
+  rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  cp -f "$USERHOME/dotfiles-home/vscode/vscode.repo" /etc/yum.repos.d/
+
+  # RPM Fusion
+  FEDORA_VERSION=`rpm -E %fedora`
+  dnf install -y \
+	   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$FEDORA_VERSION".noarch.rpm \
+	   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$FEDORA_VERSION".noarch.rpm
+#+end_src
+
+#+RESULTS:
+| Visual               | Studio                                | Code | [===    | ]          | --- | B/s |   |   | 0     | B                         | --:--                     | ETAVisual | Studio | Code |  20 | kB/s |   |   |   3.0 | kB                        | 00:00 |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| rpmfusion-free-relea | [===                                  | ]    | ---     | B/s        |     |     | 0 | B | --:-- | ETArpmfusion-free-relea | [===                      | ]           | ---    | B/s  |     |      | 0 | B | --:-- | ETArpmfusion-free-relea | [     | ===                           | ]                      | --- | B/s  |   |   |  0 | B  | --:-- | ETArpmfusion-free-relea                    |  [ | ===  | ] | --- | B/s |    |       | 0 | B | --:-- | ETArpmfusion-free-relea100% | [====================] | 29 | kB/s |   |   | 11 | kB | 00:00 | ETArpmfusion-free-release-36.noarch.rpm | 6.9 | kB/s |   |   | 11 | kB | 00:01 |
+| rpmfusion-nonfree-re | [                                     | ===  | ]       | ---        | B/s |     |   | 0 | B     | --:--                     | ETArpmfusion-nonfree-re | [           | ===    | ]    | --- | B/s  |   |   |     0 | B                         | --:-- | ETArpmfusion-nonfree-re100% | [====================] |  30 | kB/s |   |   | 11 | kB | 00:00 | ETArpmfusion-nonfree-release-36.noarch.rpm | 16 | kB/s |   |     |  11 | kB | 00:00 |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| Package              | rpmfusion-free-release-36-1.noarch    | is   | already | installed. |     |     |   |   |       |                           |                           |             |        |      |     |      |   |   |       |                           |       |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| Package              | rpmfusion-nonfree-release-36-1.noarch | is   | already | installed. |     |     |   |   |       |                           |                           |             |        |      |     |      |   |   |       |                           |       |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| Dependencies         | resolved.                             |      |         |            |     |     |   |   |       |                           |                           |             |        |      |     |      |   |   |       |                           |       |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| Nothing              | to                                    | do.  |         |            |     |     |   |   |       |                           |                           |             |        |      |     |      |   |   |       |                           |       |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+| Complete!            |                                       |      |         |            |     |     |   |   |       |                           |                           |             |        |      |     |      |   |   |       |                           |       |                               |                        |     |      |   |   |    |    |       |                                              |    |      |   |     |     |    |       |   |   |       |                               |                        |    |      |   |   |    |    |       |                                           |     |      |   |   |    |    |       |
+
+* Package installation
+
+#+begin_src bash :tangle no :dir /sudo::~
+  dnf install -y \
+      ImageMagick \
+      R \
+      abcde \
+      bat \
+      boost-devel \
+      bpytop \
+      cascadia-code-pl-fonts \
+      clang \
+      clang-tools-extra \
+      cmake \
+      code \
+      dbus-devel \
+      emacs \
+      exa \
+      fd-find \
+      fish \
+      fmt-devel \
+      fzf \
+      gcc-c++ \
+      ghc-compiler \
+      gimp \
+      gnome-tweaks \
+      gnuplot \
+      gtk4 \
+      gtk4-devel \
+      hyperfine \
+      info \
+      kitty \
+      lame \
+      libXaw-devel \
+      libXdmcp-devel \
+      libXres-devel \
+      libXScrnSaver-devel \
+      libXvMC-devel \
+      libXv-devel \
+      libXxf86vm-devel \
+      libcurl-devel \
+      libfontenc-devel \
+      libheif \
+      libnsl \
+      libzstd-devel \
+      lnav \
+      lxi-tools \
+      make \
+      meson \
+      minicom \
+      musl-gcc \
+      neovim \
+      ninja-build \
+      ncurses-devel \
+      openssl-devel \
+      perl-FindBin \
+      perl-Image-ExifTool \
+      playerctl \
+      prettyping \
+      pv \
+      python3-devel \
+      python3-eyed3 \
+      python3-virtualenv \
+      ripgrep \
+      tbb-devel \
+      texlive \
+      tmux-powerline \
+      util-linux-user \
+      valgrind \
+      vlc \
+      weechat \
+      xcb-util-image-devel \
+      xcb-util-renderutil-devel \
+      xcb-util-wm-devel \
+      xorg-x11-xtrans-devel \
+      youtube-dl
+#+end_src
+
+#+RESULTS:
+| Last         | metadata                                       | expiration | check:  | 0:01:20    | ago | on | Sun | 25 | Sep | 2022 | 04:38:33 | PM | CDT. |
+| Package      | ImageMagick-1:6.9.12.63-1.fc36.x86_64          | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | R-4.1.3-1.fc36.x86_64                          | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | abcde-2.9.3-9.fc36.noarch                      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | bat-0.21.0-2.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | boost-devel-1.76.0-12.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | bpytop-1.0.68-2.fc36.noarch                    | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | cascadia-code-pl-fonts-2111.01-2.fc36.noarch   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | clang-14.0.5-1.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | clang-tools-extra-14.0.5-1.fc36.x86_64         | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | cmake-3.22.2-1.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | code-1.71.2-1663191299.el7.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | dbus-devel-1:1.14.0-1.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | emacs-1:28.1-2.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | exa-0.10.1-4.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | fd-find-8.2.1-8.fc36.x86_64                    | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | fish-3.5.0-1.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | fmt-devel-8.1.1-5.fc36.x86_64                  | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | fzf-0.33.0-1.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gcc-c++-12.2.1-2.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | ghc-compiler-8.10.5-117.fc36.x86_64            | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gimp-2:2.10.32-3.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gnome-tweaks-42~beta-1.fc36.noarch             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gnuplot-5.4.3-3.fc36.x86_64                    | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gtk4-4.6.7-1.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | gtk4-devel-4.6.7-1.fc36.x86_64                 | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | hyperfine-1.14.0-1.fc36.x86_64                 | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | info-6.8-3.fc36.x86_64                         | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | kitty-0.26.2-2.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | lame-3.100-12.fc36.x86_64                      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXaw-devel-1.0.14-2.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXdmcp-devel-1.1.3-8.fc36.x86_64             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXres-devel-1.2.1-2.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXScrnSaver-devel-1.2.3-10.fc36.x86_64       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXvMC-devel-1.0.12-7.fc36.x86_64             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXv-devel-1.0.11-16.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libXxf86vm-devel-1.1.4-18.fc36.x86_64          | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libcurl-devel-7.82.0-8.fc36.x86_64             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libfontenc-devel-1.1.4-3.fc36.x86_64           | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libheif-1.12.0-4.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libnsl-2.35-17.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | libzstd-devel-1.5.2-2.fc36.x86_64              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | lnav-0.10.1-3.fc36.x86_64                      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | lxi-tools-2.1-1.fc36.x86_64                    | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | make-1:4.3-7.fc36.x86_64                       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | meson-0.62.2-1.fc36.noarch                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | minicom-2.8-1.fc36.x86_64                      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | musl-gcc-1.2.3-1.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | neovim-0.7.2-1.fc36.x86_64                     | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | ninja-build-1.10.2-7.fc36.x86_64               | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | ncurses-devel-6.2-9.20210508.fc36.x86_64       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | openssl-devel-1:3.0.5-1.fc36.x86_64            | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | perl-FindBin-1.52-486.fc36.noarch              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | perl-Image-ExifTool-12.42-1.fc36.noarch        | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | playerctl-2.4.1-2.fc36.x86_64                  | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | prettyping-1.0.1-9.fc36.noarch                 | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | pv-1.6.20-2.fc36.x86_64                        | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | python3-devel-3.10.7-1.fc36.x86_64             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | python3-eyed3-0.9.6-5.fc36.noarch              | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | python3-virtualenv-20.13.4-2.fc36.noarch       | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | ripgrep-13.0.0-4.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | tbb-devel-2020.3-9.fc35.x86_64                 | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | texlive-9:2021-55.fc36.noarch                  | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | tmux-powerline-2.8.3-4.fc36.noarch             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | util-linux-user-2.38-1.fc36.x86_64             | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | valgrind-1:3.19.0-3.fc36.x86_64                | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | vlc-1:3.0.17.4-1.fc36.x86_64                   | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | weechat-3.5-2.fc36.x86_64                      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | xcb-util-image-devel-0.4.0-19.fc36.x86_64      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | xcb-util-renderutil-devel-0.3.9-20.fc36.x86_64 | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | xcb-util-wm-devel-0.4.1-22.fc36.x86_64         | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | xorg-x11-xtrans-devel-1.4.0-8.fc36.noarch      | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Package      | youtube-dl-2021.12.17-2.fc36.noarch            | is         | already | installed. |     |    |     |    |     |      |          |    |      |
+| Dependencies | resolved.                                      |            |         |            |     |    |     |    |     |      |          |    |      |
+| Nothing      | to                                             | do.        |         |            |     |    |     |    |     |      |          |    |      |
+| Complete!    |                                                |            |         |            |     |    |     |    |     |      |          |    |      |
+
+* Post-package installation configuration
+
+#+begin_src bash
+  # Bat theme configuration
+  mkdir -p `bat --config-dir`/themes
+  ln -sf "$HOME/dotfiles-home/gruvbox.tmTheme" `bat --config-dir`/themes
+  bat cache --build
+
+  # Default shell
+  chsh -s /usr/bin/fish
+  #+end_src
+
+#+RESULTS:
+| No       | syntaxes | were | found  | in                                | '/home/esc/.config/bat/syntaxes', | using | the | default | set. |
+| Writing  | theme    | set  | to     | /home/esc/.cache/bat/themes.bin   | ...                               | okay  |     |         |      |
+| Writing  | syntax   | set  | to     | /home/esc/.cache/bat/syntaxes.bin | ...                               | okay  |     |         |      |
+| Writing  | metadata | to   | folder | /home/esc/.cache/bat              | ...                               | okay  |     |         |      |
+| Changing | shell    | for  | esc.   |                                   |                                   |       |     |         |      |
+
+* Gnome
+
+#+begin_src bash
+  dconf load /org/gnome/terminal/ < "$HOME/dotfiles-home/gnome-terminal-prefs.dconf"
+  dconf load /org/gnome/desktop/wm/preferences/ < "$HOME/dotfiles-home/gnome-wm-prefs.dconf"
+  dconf load /org/gnome/desktop/session/ < "$HOME/dotfiles-home/gnome-session-prefs.dconf"
+  dconf load /org/gnome/settings-daemon/plugins/power/ < "$HOME/dotfiles-home/gnome-power-prefs.dconf"
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+#+end_src
+
+#+RESULTS:
+
+* Neovim
+
+#+begin_src bash
+  # Setup vim-plug
+  if test ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim"; then
+      echo Installing vim-plug and getting plugins...
+      curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" \
+	  --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+      nvim +PlugInstall +qall 
+  else
+      echo TODO: requires user input
+      # nvim --headless +PlugClean +qall
+  fi
+#+end_src
+
+#+RESULTS:
+: TODO: requires user input
+
+* Rust
+
+#+begin_src bash :async
+  if test ! -d "$HOME/.cargo"; then
+      echo Installing rustup...
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | /bin/bash -s -- -y
+      source $HOME/.cargo/env
+  else
+      rustup self update
+      rustup toolchain install nightly stable
+      rustup update
+  fi
+
+  $HOME/.cargo/bin/cargo install \
+			 du-dust \
+			 git-delta \
+			 mdcat \
+			 tokei \
+			 xsv \
+			 zoxide
+#+end_src
+
+#+RESULTS:
+| rustup                           | unchanged | - | 1.25.1 |                |            |             |
+|                                  |           |   |        |                |            |             |
+|                                  |           |   |        |                |            |             |
+| nightly-x86_64-unknown-linux-gnu | unchanged | - | rustc  | 1.66.0-nightly | (3f83906b3 | 2022-09-24) |
+|                                  |           |   |        |                |            |             |
+|                                  |           |   |        |                |            |             |
+| stable-x86_64-unknown-linux-gnu  | unchanged | - | rustc  |         1.64.0 | (a55dd71d5 | 2022-09-19) |
+|                                  |           |   |        |                |            |             |
+|                                  |           |   |        |                |            |             |
+| stable-x86_64-unknown-linux-gnu  | unchanged | - | rustc  |         1.64.0 | (a55dd71d5 | 2022-09-19) |
+| nightly-x86_64-unknown-linux-gnu | unchanged | - | rustc  | 1.66.0-nightly | (3f83906b3 | 2022-09-24) |
+|                                  |           |   |        |                |            |             |
+
+* Services
+
+#+begin_src bash :tangle no :dir /sudo::~
+  systemctl enable sshd.service
+  systemctl start sshd.service
+#+end_src
+
+#+RESULTS:
+
+* Final
+
+#+begin_src bash :tangle no :dir /sudo::~
+  updatedb
+#+end_src
+
+#+RESULTS:

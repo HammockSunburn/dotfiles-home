@@ -80,6 +80,19 @@
  | =C-c C-x C-p= or =M-p= | Move backward to previous link in the buffer       |
  |------------------------+----------------------------------------------------|
 
+** Babel
+
+To run a block within sudo, add =:dir /sudo::/path/goes/here=.
+
+To pass an environment variable to a code block, you can do this:
+
+#+begin_src
+:var USERHOME=(expand-file-name (substitute-in-file-name "$HOME"))
+#+end_src
+
+Using =ob-async=, you can add =:async= to source blocks and have them execute asynchronously. This doesn't seem
+to work with sudo blocks.
+
 * Info
 
  |-------+------------------------------|

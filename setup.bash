@@ -40,14 +40,6 @@ ln -s "$DOTFILES_DIR/config/broot" "$HOME/.config"
 mkdir -p "$HOME/.ssh"
 chmod o-rwx,g-rwx "$HOME/.ssh"
 
-mkdir -p "$HOME/.local/share/fonts/caskaydia"
-if test ! -e "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"; then
-    wget -O "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip" \
-        "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
-    unzip -d "$HOME/.local/share/fonts/caskaydia" "$HOME/.local/share/fonts/caskaydia/CascadiaCode.zip"
-    fc-cache -v
-fi
-
 # VSCode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo cp -f "$DOTFILES_DIR/vscode/vscode.repo" /etc/yum.repos.d/
@@ -74,6 +66,7 @@ sudo dnf install -y \
     boost-devel \
     bpytop \
     buildah \
+    cascadia-code-pl-fonts \
     catch-devel \
     cc65 \
     clang \

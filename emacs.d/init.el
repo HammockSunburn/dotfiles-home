@@ -67,16 +67,28 @@
     ("s" git-gutter:stage-hunk "stage" :column "Commands")))
 
 ;; Org mode
-(org-babel-do-load-languages
- 'org-babel-load-languages '((C . t)))
+(use-package ob-async)
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages '(
+			     (C . t)
+			     (shell . t)))
+
+;; All org files are here
 (setq org-agenda-files (list "~/dotfiles-home/org"))
+
+;; Default notes file for captures
 (setq org-default-notes-file "~/dotfiles-home/org/notes.org")
 
+;; Refile anywhere
 (setq org-refile-targets '((nil :maxlevel . 9)
                                 (org-agenda-files :maxlevel . 9)))
-(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
-(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
+
+;; Refile in a single go
+(setq org-outline-path-complete-in-steps nil)
+
+;; Show full paths for refiling
+(setq org-refile-use-outline-path t)
 
 ;; Ace window switching.
 (use-package ace-window
