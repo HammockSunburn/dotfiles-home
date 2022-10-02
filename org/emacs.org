@@ -2,7 +2,7 @@
 #+author: Hammock Sunburn
 #+startup: content
 
-* Org Mode :org:
+* Org Mode
 ** [[info:org#Motion][Motion]] / [[info:org#Global and local cycling][Cycling]]
 
  |-----------+-------------------------------------------------------------------|

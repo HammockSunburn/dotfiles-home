@@ -66,6 +66,9 @@
     ("m" git-gutter:mark-hunk "mark" :column "Commands")
     ("s" git-gutter:stage-hunk "stage" :column "Commands")))
 
+;; Haskell
+(use-package haskell-mode)
+
 ;; Org mode
 (use-package ob-async)
 

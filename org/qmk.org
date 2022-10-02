@@ -1,0 +1,27 @@
+#+title: Hammock's QMK Notes
+#+author: Hammock Sunburn
+#+startup: content
+
+* QMK
+** Basic Setup
+
+#+begin_src bash
+  cd ~/git
+  git clone https://github.com/qmk/qmk_firmware.git
+  git clone git@github.com:HammockSunburn/qmk.git
+  python3 -m pip install --user qmk
+  qmk setup -H ~/git/qmk_firmware/
+  # clone submodules
+  cd ~/git/qmk
+  ./setup.sh
+  cd ~/git/qmk_firmware
+  sudo cp -rf util/udev/* /etc/udev/rules.d/
+#+end_src
+
+** GMMK Pro
+
+#+begin_src bash
+qmk compile -kb gmmk/pro/rev1/ansi -km HammockSunburn
+qmk flash -kb gmmk/pro/rev1/ansi -km HammockSunburn
+# use right cmd + backslash to enter flashing mode
+#+end_src
