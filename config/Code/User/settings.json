@@ -3,7 +3,6 @@
     "editor.fontLigatures": true,
     "window.titleBarStyle": "custom",
     "editor.formatOnSave": true,
-    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.colorCustomizations": {},
     "mesonbuild.configureOnOpen": true,
     "C_Cpp.updateChannel": "Insiders",
@@ -13,4 +12,5 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.fontSize": 18,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
 }
