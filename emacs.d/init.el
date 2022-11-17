@@ -197,8 +197,8 @@
   :bind-keymap ("C-c p" . projectile-command-map)
   :init (setq projectile-enable-caching t))
 
-;; Selectrum, Prescient, and Consult.
-(use-package selectrum :config (selectrum-mode +1))
+;; Vertico, Prescient, and Consult.
+(use-package vertico :init (vertico-mode))
 (use-package prescient :config (prescient-persist-mode +1))
 (use-package selectrum-prescient :init (selectrum-prescient-mode +1) :after selectrum)
 (use-package consult
