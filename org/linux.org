@@ -11,6 +11,15 @@ To set the hostname:
 sudo hostnamectl set-hostname new-name
 #+end_src
 
+Home NFS setup:
+
+#+begin_src shell
+olympia:/zdata/data1		/mnt/data1	nfs	defaults,timeo=900,retrans=5,_netdev	0 0
+olympia:/zdata/video		/mnt/video	nfs	defaults,timeo=900,retrans=5,_netdev	0 0
+olympia:/zdata/pictures	/mnt/pictures	nfs	defaults,timeo=900,retrans=5,_netdev	0 0
+olympia:/zfast/scratch	/mnt/scratch	nfs	defaults,timeo=900,retrans=5,_netdev	0 0
+#+end_src
+
 ** Fish
 
 To substitute =pkg_config= in a shell command, you have to split on spaces unlike in bash:
