@@ -15,6 +15,9 @@
 (require 'use-package)
 (setq use-package-always-ensure 't)
 
+(custom-set-variables
+ '(gnutls-algorithm-priority "normal:-vers-tls1.3"))
+
 ;; Keep customize configurations out of my init file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)

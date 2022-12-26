@@ -17,3 +17,7 @@
 
 [init]
     defaultBranch = main
+
+[user]
+    email = HammockSunburn@gmail.com
+    name = Hammock Sunburn
