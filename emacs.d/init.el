@@ -28,6 +28,9 @@
 
 ;; Human readable file sizes in dired.
 (setq dired-listing-switches "-alFh")
+(use-package diredfl
+  :config
+  (add-hook 'dired-mode-hook (lambda () (diredfl-mode +1))))
 
 ;; Minimal decorations.
 (setq inhibit-startup-message t)
