@@ -133,6 +133,39 @@
 	      ("S-<f12>" . clang-format-buffer)
 	      ("<f12>" . clang-format-region)))
 
+;; LSP
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+	 (c++-mode . lsp)
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package flycheck)
+
+(use-package tree-sitter
+  :config
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs)
+(global-tree-sitter-mode)
+
+(setq-default flycheck-indication-mode 'left-margin)
+(add-hook 'flycheck-mode-hook #'flycheck-set-indication-mode)
+
+(use-package consult-lsp)
+(use-package treemacs)
+
+(use-package lsp-treemacs
+  :config (lsp-treemacs-sync-mode 1))
+
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  :bind (("C-c /" . company-complete)))
+
 (if (string= (getenv "HOME") "/home/esc")
     (progn
       (defun my-c-mode-common-hook ()
@@ -206,7 +239,6 @@
 ;; Vertico, Prescient, and Consult.
 (use-package vertico :init (vertico-mode))
 (use-package prescient :config (prescient-persist-mode +1))
-(use-package selectrum-prescient :init (selectrum-prescient-mode +1) :after selectrum)
 (use-package consult
   :bind (("C-x r x" . consult-register)
          ("C-x r b" . consult-bookmark)
