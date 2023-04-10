@@ -1,13 +1,13 @@
 #!/usr/bin/fish
 
-set -x boost_version 1_75_0
-set -x pretty_boost_version 1.75.0
+set -x boost_version 1_81_0
+set -x pretty_boost_version 1.81.0
 
 # Download the distribution if we don't already have it.
 mkdir -p $HOME/Downloads
 cd $HOME/Downloads
 if ! test -f "boost_$boost_version.tar.bz2"
-    wget "https://dl.bintray.com/boostorg/release/$pretty_boost_version/source/boost_$boost_version.tar.bz2"
+    wget "https://boostorg.jfrog.io/artifactory/main/release/$pretty_boost_version/source/boost_$boost_version.tar.bz2"
 end
 
 # Delete any uncompressed version and re-extract it.

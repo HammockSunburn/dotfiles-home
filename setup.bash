@@ -8,12 +8,7 @@ cd $DOTFILES_DIR
 
 mkdir -p \
       "$HOME/.config" \
-      "$HOME/.config/i3" \
-      "$HOME/.emacs.d" \
-      "$HOME/.doom.d" \
-      "$HOME/.config/ncmpcpp" \
-      "$HOME/.config/mpd" \
-      "$HOME/mpd"
+      "$HOME/.emacs.d"
 
 rm -rf "$HOME/.config/fish"
 ln -s "$DOTFILES_DIR/config/fish" "$HOME/.config"
@@ -30,9 +25,6 @@ chmod o-rwx,g-rwx "$HOME/.ssh"
 # VSCode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo cp -f "$DOTFILES_DIR/vscode/vscode.repo" /etc/yum.repos.d/
-mkdir -p "$HOME/.config/Code/User"
-ln -sf "$DOTFILES_DIR/config/Code/User/settings.json" "$HOME/.config/Code/User"
-ln -sf "$DOTFILES_DIR/config/Code/User/keybindings.json" "$HOME/.config/Code/User"
 
 # RPM Fusion
 FEDORA_VERSION=`rpm -E %fedora`
@@ -55,14 +47,17 @@ sudo dnf install -y \
     fzf \
     gcc-c++ \
     git-delta \
+    kitty \
     make \
     neovim \
     ninja-build \
+    openssl-devel \
     prettyping \
     procs \
     pv \
     ripgrep \
     texlive \
+    tmux \
     tmux-powerline \
     tokei \
     util-linux-user \
