@@ -24,7 +24,7 @@ chmod o-rwx,g-rwx "$HOME/.ssh"
 
 # VSCode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo cp -f "$DOTFILES_DIR/vscode/vscode.repo" /etc/yum.repos.d/
+sudo cp -f "$DOTFILES_DIR/vscode.repo" /etc/yum.repos.d/
 
 # RPM Fusion
 FEDORA_VERSION=`rpm -E %fedora`
@@ -47,7 +47,9 @@ sudo dnf install -y \
     fzf \
     gcc-c++ \
     git-delta \
+    jetbrains-mono-fonts \
     kitty \
+    latexmk \
     make \
     neovim \
     ninja-build \
@@ -57,6 +59,11 @@ sudo dnf install -y \
     pv \
     ripgrep \
     texlive \
+    texlive-latexindent \
+    texlive-supertabular \
+    texlive-listings \
+    texlive-minted \
+    texlive-xcolor \
     tmux \
     tmux-powerline \
     tokei \
@@ -71,6 +78,10 @@ sudo dnf install -y \
 mkdir -p `bat --config-dir`/themes
 ln -sf "$DOTFILES_DIR"/gruvbox.tmTheme `bat --config-dir`/themes
 bat cache --build
+
+# Kitty
+mkdir -p $HOME/.config/kitty
+ln -sf "$DOTFILES_DIR"/config/kitty/kitty.conf $HOME/.config/kitty
 
 # neovim
 mkdir -p "$HOME/.config"
