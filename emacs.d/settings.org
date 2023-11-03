@@ -1,0 +1,286 @@
+* use-package
+
+Enable the [[https://melpa.org/][MELPA]] package archive.
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+#+END_SRC
+
+* Basics
+
+#+BEGIN_SRC emacs-lisp
+  ;; User interface elements tuning.
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+
+  ;; Don't show the splash screen.
+  (setq inhibit-splash-screen t)
+
+  ;; Don't show UI dialogs for prompts.
+  (setq use-dialog-box nil)
+
+  ;; Themeing.
+  (setq modus-themes-mode-line '(accented borderless)
+	modus-themes-region '(bg-only)
+	modus-themes-bold-constructs t
+	modus-themes-italic-constructs t
+	modus-themes-scale-headings t)
+
+  (load-theme 'modus-vivendi t)
+
+  ;; Fonts.
+  (set-frame-font "JetBrains Mono 11" nil t)
+
+  ;; Smooth scrolling.
+  (pixel-scroll-precision-mode)
+  (setq pixel-scroll-precision-large-scroll-height 40.0)
+
+  ;; Highlight the current line
+  (global-hl-line-mode t)
+
+  ;; Cursor blinking.
+  (setq blink-cursor-blinks 10)
+  (blink-cursor-mode)
+
+  (setq column-number-mode t)
+
+  (use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
+
+  (use-package anzu :ensure
+    :config (global-anzu-mode 1))
+
+  (use-package ef-themes :ensure
+    :config
+    (load-theme 'ef-bio t))
+#+END_SRC
+
+* Ace Window
+
+[[https://github.com/abo-abo/ace-window][ace-window]] makes it easy to switch between windows. If only two windows exist, pressing =M-o= will switch between those
+two. If more than two windows are present, =M-o= expects another keystroke. Use =?= to see the bindings
+
+#+BEGIN_SRC
+  (use-package ace-window :ensure
+    :bind (("M-o" . ace-window)))
+#+END_SRC
+
+* Org Mode
+
+#+BEGIN_SRC emacs-lisp
+  ;; Enable auto-fill and widen the fill-column.
+  (add-hook 'org-mode-hook
+	    (lambda nil
+	      (auto-fill-mode 1)
+	      (set-fill-column 120)))
+
+  ;; The markdown exporter is included with org-mode, but not enabled by
+  ;; default.
+  (add-to-list 'org-export-backends 'md)
+#+END_SRC
+
+* Basic editing
+
+Enable =recentf-mode= and configure the number of saved items. Periodically save the recently edited files list in case
+Emacs crashes or is aborted.
+
+#+BEGIN_SRC emacs-lisp
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25
+	recentf-max-saved-items 25)
+  (run-at-time nil (* 5 60) 'recentf-save-list)
+  (global-set-key "\C-x\C-r" 'recentf-open-files)
+#+END_SRC
+
+Enable =save-place-mode= which will move point to the last place where it was when the file was previously visited.
+
+#+BEGIN_SRC emacs-lisp
+  (save-place-mode 1)
+#+END_SRC
+
+If a file is externally modified, automatically revert it so Emacs has the changes. Similarly for =dired=, automatically
+refresh when a directory is changed.
+
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode 1)
+  (setq global-auto-revert-non-file-buffers t)
+#+END_SRC
+
+* Vertico
+
+[[https://github.com/minad/vertico][Vertico]] provides a performant and minimalistic VERTical Interaction COmpletion UI.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vertico
+    :config
+    (vertico-mode)
+
+    :init
+    ;; Number of candidates to show. Defaults to 10.
+    (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer. If there are fewer than
+    ;; vertico-count, the Vertico minibuffer will only grow to show
+    ;; them.
+    (setq vertico-resize t))
+#+END_SRC
+
+* Orderless completion style
+
+Use [[https://github.com/oantolin/orderless][orderless]] completion, as recommended by the Vertico documentation. This provides a completion style that divides the
+pattern into space-separated components and matches candidates that match all of the components in any order. Each
+component can match in any one of several ways: literally, as a regexp, as an initialism, in the flex style, or as
+multiple word prefixes. By default, regexp and literal matches are enabled.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package orderless
+    :ensure t
+    :init
+    (setq completion-styles '(orderless basic)
+	  completion-category-defaults nil
+	  completion-category-overrides '((file (styles partial-completion)))))
+#+END_SRC
+
+* Consult
+
+[[https://github.com/minad/consult][Consult]] provides search and navigation commands based on the Emacs completion function =completing-read=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package consult
+    :ensure
+
+    :bind (
+	   ;; C-c bindings in `mode-specific-map'
+	   ("C-c M-x" . consult-mode-command)
+	   ("C-c h" . consult-history)
+	   ("C-c k" . consult-kmacro)
+	   ("C-c m" . consult-man)
+	   ("C-c i" . consult-info)
+	   ([remap Info-search] . consult-info)
+
+	   ;; C-x bindings in `ctl-x-map'
+	   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+	   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+	   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+	   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+	   ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+	   ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+	   ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+	   ("C-x M-f" . consult-recent-file)
+	   
+	   ;; Custom M-# bindings for fast register access
+	   ("M-#" . consult-register-load)
+	   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+	   ("C-M-#" . consult-register)
+
+	   ;; Other custom bindings
+	   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+
+	   ;; M-g bindings in `goto-map'
+	   ("M-g e" . consult-compile-error)
+	   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+	   ("M-g g" . consult-goto-line)             ;; orig. goto-line
+	   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+	   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+	   ("M-g m" . consult-mark)
+	   ("M-g k" . consult-global-mark)
+	   ("M-g i" . consult-imenu)
+	   ("M-g I" . consult-imenu-multi)
+
+	   ;; M-s bindings in `search-map'
+	   ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+	   ("M-s c" . consult-locate)
+	   ("M-s g" . consult-grep)
+	   ("M-s G" . consult-git-grep)
+	   ("M-s r" . consult-ripgrep)
+	   ("M-s l" . consult-line)
+	   ("M-s L" . consult-line-multi)
+	   ("M-s k" . consult-keep-lines)
+	   ("M-s u" . consult-focus-lines)
+
+	   ;; Isearch integration
+	   ("M-s e" . consult-isearch-history)
+	   :map isearch-mode-map
+	   ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+	   ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+	   ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+	   ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+
+	   ;; Minibuffer history
+	   :map minibuffer-local-map
+	   ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+	   ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+
+    :config
+    (consult-customize
+     consult-theme :preview-key '(:debounce 0.2 any)
+     consult-ripgrep consult-git-grep consult-grep
+     consult-bookmark consult-recent-file consult-xref
+     consult--source-bookmark consult--source-file-register
+     consult--source-recent-file consult--source-project-recent-file
+     ;; :preview-key "M-."
+     :preview-key '(:debounce 0.3 any)))
+
+#+END_SRC
+
+* Which Key
+
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :init
+    (setq which-key-idle-delay 0.25)
+    (which-key-mode)
+    :bind (("C-h C-m" . which-key-show-major-mode)
+	   ("C-h C-t" . which-key-show-top-level))
+    )
+#+END_SRC
+
+[[https://github.com/justbur/emacs-which-key][which-key]] is a minor mode that displays the key bindings following your currently entered incomplete command (a prefix)
+in a popup.
+
+* Save Minibuffer History
+
+#+BEGIN_SRC emacs-lisp
+  (savehist-mode)
+#+END_SRC
+
+* Marginalia
+
+[[https://github.com/minad/marginalia][marginalia]] adds extra information to minibuffer completion candidates. It integrates well with Vertico.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package marginalia
+    :ensure t
+    :init
+    (marginalia-mode)
+    :bind (:map minibuffer-local-map
+		("M-A" . marginalia-cycle))
+    )
+#+END_SRC
+
+* Tree Sitter
+
+Set up =tree-sitter= for the languages I care about. To see if =tree-sitter= is properly working in a buffer, you can
+use =(treesit-explore-mode)=. Or, you can use =(treesit-language-avaialble-p 'cpp)= or similar. To have the mode line
+show information about the current entity in a buffer, you can use =treesit-inspect-mode=`.
+
+#+BEGIN_SRC emacs-lisp
+  (setq treesit-language-source-alist
+	'((cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+	  (c "https://github.com/tree-sitter/tree-sitter-c")
+	  ))
+
+  (setq major-mode-remap-alist
+	'((c++-mode . c++-ts-mode)
+	  (c-mode . c-ts-mode)
+	  ))
+#+END_SRC
+
+* Magit
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit :ensure)
+#+END_SRC
