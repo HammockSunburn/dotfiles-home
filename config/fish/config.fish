@@ -4,6 +4,7 @@ zoxide init fish | source
 set -gx TERM xterm-256color
 
 alias icat="kitty +kitten icat --align=left"
+alias ls="eza"
 
 if test -d "$HOME/bin"
     set -gx PATH "$HOME/bin" $PATH
@@ -26,6 +27,7 @@ function checkiso -d "Compare an ISO file to what's been written to a USB drive"
     echo "USB checksum: " $usb_sha
 end
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/esc/.ghcup/bin $PATH # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+set -gx PATH $HOME/.cabal/bin /home/esc/.ghcup/bin $PATH # ghcup-env
 
 set NINJA_STATUS '[%p | %f/%t] '
